@@ -1,0 +1,10 @@
+{
+  "name": "v1-performance-report",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "V1 (HRMForce) performance-timing suite: Playwright-driven frontend page-load (measure.mjs) and login-API (measure-api.mjs) response-time measurements, plus an Excel report generator. Measures real single-request/page-load response times only — NOT a load/stress testing tool. Standalone: zero code dependency on the V1_Automation C# learning project.",
+  "dependencies": {
+    "playwright": "^1.55.0",
+    "exceljs": "^4.4.0"
+  }
+}

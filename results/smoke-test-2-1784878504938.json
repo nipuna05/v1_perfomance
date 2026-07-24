@@ -1,0 +1,578 @@
+{
+  "runLabel": "smoke-test-2",
+  "runTimestamp": "1784878504938",
+  "baseUrl": "https://q-assessments-hrmforce-it.h2software.nl",
+  "results": [
+    {
+      "role": "Admin",
+      "username": "service@hrmforce.com",
+      "flow": [
+        {
+          "label": "Page Load - Sign In page",
+          "ms": 2299,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Login",
+          "ms": 5887,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - CRM Dashboard",
+          "ms": 1524,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - CRM Organization",
+          "ms": 3759,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - CRM Contacts",
+          "ms": 2605,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - CRM Tasks",
+          "ms": 2290,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - CRM Opportunity",
+          "ms": 2290,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - CRM Tree View",
+          "ms": 1860,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - CRM Email",
+          "ms": 2835,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - CRM Not In Contacts",
+          "ms": 2300,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Analytics Dashboard",
+          "ms": 4409,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Satisfaction",
+          "ms": 2900,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Group Overview",
+          "ms": 2815,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Factor Overview",
+          "ms": 2434,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Performance",
+          "ms": 2497,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Exit Assessment",
+          "ms": 2575,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Pulse Survey",
+          "ms": 2998,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Energy Assessment",
+          "ms": 2996,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Team Assessment",
+          "ms": 3217,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Develop Matrix",
+          "ms": 3871,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - 9 Box Performance Grid",
+          "ms": 2909,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Culture Assessment",
+          "ms": 1467,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Candidates",
+          "ms": 2780,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Groups",
+          "ms": 3010,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Direct Candidates",
+          "ms": 2256,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Test Managers",
+          "ms": 2118,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Clients",
+          "ms": 4728,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Partner",
+          "ms": 3209,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Recruitment Dashboard",
+          "ms": 6363,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Match Profile",
+          "ms": 2385,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Matching",
+          "ms": 1127,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Recruitment Portal Dashboard",
+          "ms": 1346,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Vacancy",
+          "ms": 1720,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Recruitment Documents",
+          "ms": 1092,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Global Process",
+          "ms": 2230,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Global Process Email Template",
+          "ms": 2467,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Global Procedure",
+          "ms": 1596,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Process",
+          "ms": 2049,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Recruitment Email Template",
+          "ms": 2228,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Procedure",
+          "ms": 1787,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Stakeholders",
+          "ms": 2255,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Applicant",
+          "ms": 1718,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Recruitment Client",
+          "ms": 4270,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - BiLa",
+          "ms": 1978,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - BiLa Overview",
+          "ms": 1095,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Ziezo",
+          "ms": 2635,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - BiLa Basic Overview",
+          "ms": 2653,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - BiLa Plus",
+          "ms": 4109,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - BiLa Plus Overview",
+          "ms": 1502,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Employees",
+          "ms": 5509,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - PPP Overview",
+          "ms": 1492,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Year Cycle Overview",
+          "ms": 1298,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - My Teams",
+          "ms": 5150,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Planning Overview",
+          "ms": 2075,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Requests Overview",
+          "ms": 1918,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Holiday Overview",
+          "ms": 2171,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Competency Profiles",
+          "ms": 2146,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Function",
+          "ms": 1555,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Department",
+          "ms": 2150,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Organisation Diagram",
+          "ms": 1306,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Task Overview",
+          "ms": 2220,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Customised Competencies",
+          "ms": 2525,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Materials",
+          "ms": 2299,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Pulse Survey Questions",
+          "ms": 3672,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Pulse Survey Questionnaire",
+          "ms": 2823,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Study",
+          "ms": 2429,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Custom Assessment",
+          "ms": 2701,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Support Overview",
+          "ms": 6059,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Support Documents",
+          "ms": 2637,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Training Document",
+          "ms": 1976,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Sample Reports",
+          "ms": 1757,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Competency Overview",
+          "ms": 2137,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Support",
+          "ms": 1691,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Service Desk",
+          "ms": 2481,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Support Call",
+          "ms": 6643,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - FAQ",
+          "ms": 2515,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Security",
+          "ms": 2675,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Video",
+          "ms": 1752,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Signals",
+          "ms": 1526,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Contact Details",
+          "ms": 1111,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Language Manager",
+          "ms": 2162,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Default Prices",
+          "ms": 2291,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Currency",
+          "ms": 2055,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Invoices",
+          "ms": 1525,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Distributor",
+          "ms": 4092,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Certification Training",
+          "ms": 1770,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - API Manual Sync",
+          "ms": 1265,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Recalculate an Assessment",
+          "ms": 3838,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Recalculate all assessments",
+          "ms": 1562,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Recalculate All Assessments Client Wise",
+          "ms": 1323,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Archive Candidates",
+          "ms": 2136,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Resend Invoice",
+          "ms": 2103,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - ToDo",
+          "ms": 1935,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - User Log",
+          "ms": 2356,
+          "ok": true,
+          "error": null
+        }
+      ],
+      "notes": []
+    }
+  ]
+}

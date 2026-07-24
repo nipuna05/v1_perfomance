@@ -1,0 +1,4 @@
+{
+  "description": "Tracks V1 app performance-timing runs (page-load + login-API), standalone suite independent of the V1.Tests C# learning project.",
+  "runs": []
+}
