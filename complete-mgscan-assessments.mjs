@@ -1,0 +1,146 @@
+import { chromium } from 'playwright';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// One-off setup: completes BOTH sides of the Management Scan 360 assessment for the fresh
+// PerfTest hierarchy — Employee's self-assessment, then Manager's assessment about that
+// employee — so Nine-Grid/Kalibirity/report data becomes real instead of empty. Per the
+// Explore-agent research: all-on-one-page (no Next/Prev), scored questions are radio-style
+// `label.mgscan-scale-option` clicks, open-context questions are a `<textarea>`, Submit is
+// never disabled (server validates), and respondent type (Candidate vs MyManager) is resolved
+// server-side purely from which account is logged in — no client param to set.
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const credsFile = process.env.CREDS_FILE || '.credentials.local.json';
+const creds = JSON.parse(fs.readFileSync(path.join(__dirname, credsFile), 'utf-8'));
+
+const runStamp = process.argv[2];
+if (!runStamp) {
+  console.error('Usage: node complete-mgscan-assessments.mjs <runStamp>');
+  process.exit(1);
+}
+const accounts = JSON.parse(fs.readFileSync(path.join(__dirname, 'results', `account-setup-${runStamp}.json`), 'utf-8'));
+const employee = accounts.find(a => a.role === 'employee');
+const manager = accounts.find(a => a.role === 'manager');
+
+const shotsDir = path.join(__dirname, 'shots', 'assessments');
+fs.mkdirSync(shotsDir, { recursive: true });
+let seq = 0;
+async function shot(page, label) {
+  seq++;
+  await page.screenshot({ path: path.join(shotsDir, `${String(seq).padStart(2, '0')}-${label}.png`), fullPage: true }).catch(() => {});
+  console.log(`  [shot] ${label}`);
+}
+
+async function login(page, account) {
+  await page.goto(creds.signInUrl || creds.baseUrl, { waitUntil: 'domcontentloaded' });
+  await page.locator('#Login1_UserName').waitFor({ state: 'visible', timeout: 20000 });
+  await page.locator('#Login1_UserName').fill(account.username);
+  await page.locator('#Login1_Password').fill(account.password);
+  await page.locator('#Login1_LoginButton').click();
+  await page.locator('#MenuLogout').waitFor({ state: 'visible', timeout: 30000 });
+}
+
+async function answerAllQuestions(page) {
+  await page.locator('.mgscan-question').first().waitFor({ state: 'visible', timeout: 15000 });
+  const questions = await page.locator('.mgscan-question').all();
+  console.log(`  Answering ${questions.length} questions...`);
+  for (let i = 0; i < questions.length; i++) {
+    const q = questions[i];
+    const textarea = q.locator('textarea');
+    if (await textarea.count() > 0) {
+      await textarea.fill('Sample answer entered for Management Scan performance testing.');
+    } else {
+      const options = q.locator('label.mgscan-scale-option');
+      const count = await options.count();
+      if (count > 0) {
+        await options.nth(Math.min(2, count - 1)).click();
+      } else {
+        console.log(`  WARNING: question #${i + 1} has neither textarea nor scale options.`);
+      }
+    }
+  }
+}
+
+async function completeAssessment(page, label) {
+  // Views are toggled via Knockout `visible` (display:none), not `if` — the hidden view's DOM
+  // node still matches a plain '.btn-ctrl.primary' selector, and .first() doesn't skip it,
+  // so a *later* Playwright click (e.g. Submit) can resolve back to the earlier, now-hidden
+  // Start button and hang forever waiting for it to become visible (confirmed live). Playwright's
+  // ':visible' pseudo-class filters to only the currently-shown one.
+  const visiblePrimaryBtn = page.locator('.btn-ctrl.primary:visible');
+
+  // 'start' view — click the primary Start/Continue button.
+  await visiblePrimaryBtn.waitFor({ state: 'visible', timeout: 20000 });
+  await shot(page, `${label}-01-intro`);
+  await visiblePrimaryBtn.click();
+
+  // 'question' view — answer everything, then Submit.
+  await answerAllQuestions(page);
+  await shot(page, `${label}-02-answered`);
+
+  await visiblePrimaryBtn.click();
+  await page.waitForTimeout(2000);
+  await shot(page, `${label}-03-after-submit`);
+
+  // Surface any validation banner rather than silently proceeding.
+  const errorBanner = page.locator('[data-bind*="errorMessage"]');
+  if (await errorBanner.count() > 0) {
+    const text = (await errorBanner.first().textContent() || '').trim();
+    if (text) console.log(`  Validation/error banner: "${text}"`);
+  }
+
+  // 'end' view — click Back to dashboard if present.
+  const backBtn = page.getByText(/back to dashboard/i);
+  if (await backBtn.count() > 0) {
+    await backBtn.first().click();
+    await page.waitForTimeout(1000);
+    await shot(page, `${label}-04-end`);
+  }
+}
+
+(async () => {
+  const browser = await chromium.launch({ headless: true });
+
+  try {
+    console.log('=== Employee self-assessment ===');
+    const empPage = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
+    await login(empPage, employee);
+    await empPage.goto(`${creds.baseUrl}/MgScan.aspx`, { waitUntil: 'domcontentloaded' });
+    await shot(empPage, 'employee-dashboard-before');
+    const startAssessmentBtn = empPage.locator('a[data-bind*="onStartAssessment"]');
+    await startAssessmentBtn.waitFor({ state: 'visible', timeout: 15000 });
+    await startAssessmentBtn.click();
+    await completeAssessment(empPage, 'employee');
+    await empPage.close();
+
+    console.log('\n=== Manager assessment about Employee ===');
+    const mgrPage = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
+    await login(mgrPage, manager);
+    await mgrPage.goto(`${creds.baseUrl}/MgScan.aspx`, { waitUntil: 'domcontentloaded' });
+    await mgrPage.locator('#tabMgScanNineGrid a[data-bind*="onGenerate"]').waitFor({ state: 'visible', timeout: 20000 });
+    await mgrPage.locator('#tabMgScanNineGrid a[data-bind*="onGenerate"]').click();
+    await mgrPage.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {});
+    await shot(mgrPage, 'manager-nine-grid-generated');
+
+    // Switch to the Pending sub-tab to find the employee's "start assessment" row action.
+    const pendingTab = mgrPage.locator('button', { hasText: /pending/i });
+    if (await pendingTab.count() > 0) {
+      await pendingTab.first().click();
+      await mgrPage.waitForTimeout(500);
+    }
+    await shot(mgrPage, 'manager-pending-list');
+
+    const pendingStartBtn = mgrPage.locator('.mg-cell-pending-start').first();
+    await pendingStartBtn.waitFor({ state: 'visible', timeout: 10000 });
+    await pendingStartBtn.click();
+    await completeAssessment(mgrPage, 'manager');
+    await mgrPage.close();
+
+  } catch (e) {
+    console.log('FATAL:', e.message);
+  } finally {
+    await browser.close();
+  }
+})();

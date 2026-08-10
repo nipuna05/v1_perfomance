@@ -1,0 +1,26 @@
+[
+  {
+    "check": "Unanswered questions get .is-unanswered highlight after Submit",
+    "result": "PASS (30 highlighted)"
+  },
+  {
+    "check": "Validation error banner shown on submit-without-answering",
+    "result": "PASS (\"All 28 statements must be answered before the Management Scan can be completed (0 answered).\")"
+  },
+  {
+    "check": "Submit does NOT navigate away when validation fails (stays on question view)",
+    "result": "PASS"
+  },
+  {
+    "check": "Pause & resume later button present and clickable",
+    "result": "PASS"
+  },
+  {
+    "check": "Pause returns to Personal Dashboard",
+    "result": "PASS"
+  },
+  {
+    "check": "Answers retained after Pause + Resume (3 answered before pause)",
+    "result": "PASS (3/3 retained)"
+  }
+]

@@ -49,6 +49,11 @@ const THRESHOLDS = {
   'Login': { good: 3000, ok: 6000 },
   'Page Load': { good: 2000, ok: 4000 },
   'Post-login': { good: 2000, ok: 4000 }, // "Post-login redirect/home render" — home UI paint after auth
+  // Management Scan interaction steps (Generate, search, filter, cell-click, Kalibirity tab) —
+  // in-page UI actions, not full navigations, so a tighter bar than Page Load. First-pass
+  // thresholds per docs/management-scan-perf-plan.md §6 ("PDF/report timing... most likely to
+  // need its own threshold tuning") — revisit once realistic-volume data is seeded.
+  'Action -': { good: 1000, ok: 3000 },
 };
 
 function classify(label, ms) {
@@ -323,6 +328,74 @@ for (const res of results) {
     });
   }
   dr += 1;
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// SHEET 3 (optional): Functional Checks — pass/fail checklist, e.g. Assessment-page
+// validation/button behavior. Only rendered when the input JSON carries a
+// `functionalChecks` field, so this is a no-op for any input that doesn't set it.
+// ══════════════════════════════════════════════════════════════════════════
+if (data.functionalChecks) {
+  const fc = wb.addWorksheet('Functional Checks');
+  fc.columns = [{ width: 4 }, { width: 60 }, { width: 40 }];
+  styleTitle(fc, 1, data.functionalChecks.title || 'Functional Checks', 3);
+  let fr = 3;
+  const fcHeader = fc.getRow(fr);
+  ['#', 'Check', 'Result'].forEach((h, i) => fcHeader.getCell(i + 1).value = h);
+  styleHeaderRow(fcHeader);
+  fr++;
+  (data.functionalChecks.checks || []).forEach((c, i) => {
+    const row = fc.getRow(fr);
+    row.getCell(1).value = i + 1;
+    row.getCell(2).value = c.check;
+    row.getCell(2).alignment = { wrapText: true };
+    const pass = /^PASS/.test(c.result);
+    row.getCell(3).value = c.result;
+    row.getCell(3).alignment = { wrapText: true };
+    row.getCell(3).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: pass ? 'FFC6EFCE' : 'FFFFC7CE' } };
+    row.getCell(3).font = { color: { argb: pass ? 'FF006100' : 'FF9C0006' }, bold: true };
+    row.eachCell(borderCell);
+    fr++;
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// SHEET 4 (optional): Known Issues — bugs/observations found while exercising the
+// feature, for handoff to the dev team. Only rendered when `knownIssues` is present.
+// ══════════════════════════════════════════════════════════════════════════
+if (data.knownIssues && data.knownIssues.length) {
+  const ki = wb.addWorksheet('Known Issues');
+  ki.columns = [{ width: 16 }, { width: 30 }, { width: 55 }, { width: 45 }, { width: 45 }];
+  styleTitle(ki, 1, 'Known Issues & Observations', 5);
+  if (data.terminologyNote) {
+    styleSubtitle(ki, 2, data.terminologyNote, 5);
+    ki.getRow(2).height = 45;
+    ki.getCell(2, 1).alignment = { wrapText: true, vertical: 'top' };
+  }
+  let kr = 4;
+  const kiHeader = ki.getRow(kr);
+  ['Severity', 'Area', 'Summary', 'Reproduction / Evidence', 'Suggested Fix'].forEach((h, i) => kiHeader.getCell(i + 1).value = h);
+  styleHeaderRow(kiHeader);
+  kr++;
+  const sevColors = { Bug: { fill: 'FFFFC7CE', font: 'FF9C0006' }, 'Good (by design)': { fill: 'FFC6EFCE', font: 'FF006100' }, Info: { fill: 'FFFFEB9C', font: 'FF9C6500' }, 'Info / flaky-but-recoverable': { fill: 'FFFFEB9C', font: 'FF9C6500' } };
+  data.knownIssues.forEach((issue) => {
+    const row = ki.getRow(kr);
+    const sev = sevColors[issue.severity] || { fill: COLORS.na, font: 'FF000000' };
+    row.getCell(1).value = issue.severity;
+    row.getCell(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: sev.fill } };
+    row.getCell(1).font = { color: { argb: sev.font }, bold: true };
+    row.getCell(2).value = issue.area;
+    row.getCell(2).font = { bold: true };
+    row.getCell(3).value = issue.summary;
+    row.getCell(3).alignment = { wrapText: true };
+    row.getCell(4).value = [issue.reproduction, issue.evidence].filter(Boolean).join('\n\n');
+    row.getCell(4).alignment = { wrapText: true };
+    row.getCell(5).value = issue.suggestedFix || '';
+    row.getCell(5).alignment = { wrapText: true };
+    row.eachCell(borderCell);
+    row.height = 60;
+    kr++;
+  });
 }
 
 await wb.xlsx.writeFile(outputPath);

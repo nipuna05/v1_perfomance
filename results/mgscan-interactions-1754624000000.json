@@ -1,0 +1,84 @@
+{
+  "runLabel": "mgscan-interactions",
+  "runTimestamp": "1754624000000",
+  "baseUrl": "https://q-assessments-hrmforce-it.h2software.nl",
+  "results": [
+    {
+      "role": "Manager",
+      "username": "perftest.manager.1754623000000",
+      "flow": [
+        {
+          "label": "Login",
+          "ms": 8949,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Management Scan (Nine-Grid, Manager)",
+          "ms": 2957,
+          "ok": false,
+          "error": "locator.waitFor: Error: strict mode violation: locator('a[data-bind*=\"onGenerate\"]') resolved to 2 elements:\n    1) <a class=\"filter-generate\" data-bind=\"click: onGenerate\">…</a> aka locator('#mgScanManager a').filter({ hasText: 'Generate' })\n    2) <a class=\"filter-generate\" data-bind=\"click: onGen",
+          "extra": null
+        },
+        {
+          "label": "Action - Search by name",
+          "ms": 44,
+          "ok": false,
+          "error": "locator.fill: Error: strict mode violation: locator('input[data-bind*=\"filter().SearchText\"]') resolved to 2 elements:\n    1) <input type=\"text\" placeholder=\"Search by name...\" data-bind=\"value: filter().SearchText, valueUpdate: 'afterkeydown', event: { keypress: onSearchKeyUp }, attr: { placeholder",
+          "extra": null
+        },
+        {
+          "label": "Action - Clear search",
+          "ms": 32,
+          "ok": false,
+          "error": "locator.fill: Error: strict mode violation: locator('input[data-bind*=\"filter().SearchText\"]') resolved to 2 elements:\n    1) <input type=\"text\" placeholder=\"Search by name...\" data-bind=\"value: filter().SearchText, valueUpdate: 'afterkeydown', event: { keypress: onSearchKeyUp }, attr: { placeholder",
+          "extra": null
+        },
+        {
+          "label": "Action - Department filter select",
+          "ms": 23,
+          "ok": false,
+          "error": "locator.selectOption: Error: strict mode violation: locator('select[data-bind*=\"filter().DepartmentID\"]') resolved to 2 elements:\n    1) <select class=\"filter-select\" data-bind=\"options: departments,↵                           optionsText: 'Name',↵                           optionsValue: 'ID',↵     ",
+          "extra": null
+        },
+        {
+          "label": "Action - Nine-Grid Generate",
+          "ms": 19,
+          "ok": false,
+          "error": "locator.click: Error: strict mode violation: locator('a[data-bind*=\"onGenerate\"]') resolved to 2 elements:\n    1) <a class=\"filter-generate\" data-bind=\"click: onGenerate\">…</a> aka locator('#mgScanManager a').filter({ hasText: 'Generate' })\n    2) <a class=\"filter-generate\" data-bind=\"click: onGener",
+          "extra": null
+        },
+        {
+          "label": "Action - Grid Cell click",
+          "ms": 1504,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Kalibirity tab load (via tab click)",
+          "ms": 1151,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Kalibirity Generate",
+          "ms": 160,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Kalibirity batch save (skipped if no editable rows)",
+          "ms": 5,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "note": "No batch-save control found — expected with zero seeded candidates under this Manager."
+          }
+        }
+      ],
+      "notes": [
+        "Test data note: PerfTest Manager/Director/Employee have zero seeded assessment completions (0/0) — Generate/cell-click measurements reflect an empty dataset, not realistic data volume."
+      ]
+    }
+  ]
+}

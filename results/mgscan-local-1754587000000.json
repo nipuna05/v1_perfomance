@@ -1,0 +1,32 @@
+{
+  "runLabel": "mgscan-local",
+  "runTimestamp": "1754587000000",
+  "baseUrl": "http://localhost:62542",
+  "results": [
+    {
+      "role": "Admin",
+      "username": "service@hrmforce.com",
+      "flow": [
+        {
+          "label": "Page Load - Sign In page",
+          "ms": 313,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Login",
+          "ms": 7392,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Management Scan",
+          "ms": 5484,
+          "ok": true,
+          "error": null
+        }
+      ],
+      "notes": []
+    }
+  ]
+}

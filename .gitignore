@@ -1,4 +1,5 @@
 .credentials.local.json
+.credentials.*.json
 node_modules/
-shots/*storage-state*.json
+shots/
 auth-state.json

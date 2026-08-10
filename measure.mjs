@@ -4,7 +4,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const creds = JSON.parse(fs.readFileSync(path.join(__dirname, '.credentials.local.json'), 'utf-8'));
+const credsFile = process.env.CREDS_FILE || '.credentials.local.json';
+const creds = JSON.parse(fs.readFileSync(path.join(__dirname, credsFile), 'utf-8'));
 const RUN_LABEL = process.argv[2] || 'before-release';
 const RUN_TS = process.argv[3] || String(new Date('2026-07-14T00:00:00Z').getTime());
 
@@ -175,6 +176,14 @@ const MODULES = [
   // Other
   ['ToDo', 'ToDoList.aspx'],
   ['User Log', 'LoggingUserDetail.aspx'],
+
+  // Management Scan (added 2026-08-07, per docs/management-scan-perf-plan.md §3 row 1:
+  // "Management Scan menu item load (Dashboard -> Management Scan, default Nine-Grid tab)".
+  // Nine-Grid/Kalibirity tabs are client-side (Knockout) switches, not separate URLs, so this
+  // one entry times the same thing waitForLoadState already covers for every other module here
+  // — the Kalibirity/Generate/batch-save action-timing steps from the plan are NOT this;
+  // those need click-driven timing, not goto-driven.
+  ['Management Scan', 'MgScan.aspx'],
 ];
 
 async function measureUser(browser, user) {
@@ -186,11 +195,13 @@ async function measureUser(browser, user) {
 
   try {
     // ===================== Page Load - Sign In page =====================
-    // V1 is a classic ASP.NET Web Forms app: the sign-in form IS the base URL itself
-    // (LoginPage.GoToAsync() -> Page.GotoAsync(TestConfig.BaseUrl)) — there is no separate
-    // /sign-in route like the FlexForce SPA siblings this suite is modeled on.
+    // V1 is a classic ASP.NET Web Forms app: the sign-in form IS the base URL itself on a real
+    // IIS deployment (LoginPage.GoToAsync() -> Page.GotoAsync(TestConfig.BaseUrl)) — no separate
+    // /sign-in route. creds.signInUrl is an optional override for targets without that server-level
+    // default-document config (e.g. a bare `iisexpress /path /port` instance, which 403s on the
+    // root); falls back to baseUrl so this is a no-op for every existing (IT-env) config.
     flow.push(await step('Page Load - Sign In page', async () => {
-      await page.goto(creds.baseUrl, { waitUntil: 'load' });
+      await page.goto(creds.signInUrl || creds.baseUrl, { waitUntil: 'load' });
       await page.locator(UsernameInput).waitFor({ state: 'visible' });
     }));
 
@@ -204,7 +215,16 @@ async function measureUser(browser, user) {
     }));
 
     // ===================== Page Load - each of the ~92 modules =====================
-    for (const [name, relativeUrl] of MODULES) {
+    // MODULE_FILTER (comma-separated substrings, case-insensitive) narrows the sweep to
+    // matching module names — e.g. MODULE_FILTER="Management Scan" for a targeted run
+    // instead of the full ~92-page catalog. Unset runs everything, same as before.
+    const moduleFilter = process.env.MODULE_FILTER
+      ? process.env.MODULE_FILTER.split(',').map(s => s.trim().toLowerCase())
+      : null;
+    const modulesToRun = moduleFilter
+      ? MODULES.filter(([name]) => moduleFilter.some(f => name.toLowerCase().includes(f)))
+      : MODULES;
+    for (const [name, relativeUrl] of modulesToRun) {
       const targetUrl = `${creds.baseUrl}/${relativeUrl}`;
       let result = await step(`Page Load - ${name}`, async () => {
         await page.goto(targetUrl, { waitUntil: 'load' });
@@ -227,7 +247,7 @@ async function measureUser(browser, user) {
       flow.push(result);
       // Lightweight progress line (console only — does not affect the output JSON schema) so a
       // ~92-module sweep can be observed/verified incrementally rather than as one long silence.
-      console.log(`  [${flow.length - 2}/${MODULES.length}] ${name} -> ${result.ms}ms ok=${result.ok}${retried ? ' (retried)' : ''}`);
+      console.log(`  [${flow.length - 2}/${modulesToRun.length}] ${name} -> ${result.ms}ms ok=${result.ok}${retried ? ' (retried)' : ''}`);
     }
 
   } catch (e) {

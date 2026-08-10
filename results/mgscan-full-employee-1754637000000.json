@@ -1,0 +1,56 @@
+{
+  "runLabel": "mgscan-full",
+  "runTimestamp": "1754637000000",
+  "baseUrl": "https://q-assessments-hrmforce-it.h2software.nl",
+  "results": [
+    {
+      "role": "employee",
+      "username": "perftest.employee.1754623000000",
+      "flow": [
+        {
+          "label": "Login",
+          "ms": 7322,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Personal Dashboard",
+          "ms": 2318,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Permission check - Nine-Grid/Kalibirity tabs absent for Employee",
+          "ms": 3,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "confirmedAbsent": true
+          }
+        },
+        {
+          "label": "Action - Report (HTML) click",
+          "ms": 10,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true
+          }
+        },
+        {
+          "label": "Action - Report (PDF) click",
+          "ms": 7,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true
+          }
+        }
+      ],
+      "notes": [
+        "Report (HTML) button not present — cycle may not be published yet.",
+        "Report (PDF) button not present."
+      ]
+    }
+  ]
+}

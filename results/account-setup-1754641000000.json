@@ -1,0 +1,11 @@
+[
+  {
+    "role": "validationcheck",
+    "username": "perftest.validationcheck.1754641000000",
+    "fullName": "PerfTest ValidationCheck",
+    "lastName": "ValidationCheck",
+    "email": "perftest.validationcheck.1754641000000@example.invalid",
+    "errors": [],
+    "password": "PerfTest@2026"
+  }
+]

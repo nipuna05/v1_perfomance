@@ -1,0 +1,29 @@
+[
+  {
+    "role": "director",
+    "username": "perftest.director.1754623000000",
+    "fullName": "PerfTest Director",
+    "lastName": "Director",
+    "email": "perftest.director.1754623000000@example.invalid",
+    "errors": [],
+    "password": "PerfTest@2026"
+  },
+  {
+    "role": "manager",
+    "username": "perftest.manager.1754623000000",
+    "fullName": "PerfTest Manager",
+    "lastName": "Manager",
+    "email": "perftest.manager.1754623000000@example.invalid",
+    "errors": [],
+    "password": "PerfTest@2026"
+  },
+  {
+    "role": "employee",
+    "username": "perftest.employee.1754623000000",
+    "fullName": "PerfTest Employee",
+    "lastName": "Employee",
+    "email": "perftest.employee.1754623000000@example.invalid",
+    "errors": [],
+    "password": "PerfTest@2026"
+  }
+]

@@ -1,0 +1,82 @@
+{
+  "runLabel": "mgscan-interactions",
+  "runTimestamp": "1754625000000",
+  "baseUrl": "https://q-assessments-hrmforce-it.h2software.nl",
+  "results": [
+    {
+      "role": "Manager",
+      "username": "perftest.manager.1754623000000",
+      "flow": [
+        {
+          "label": "Login",
+          "ms": 9596,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Management Scan (Nine-Grid, Manager)",
+          "ms": 2454,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Search by name",
+          "ms": 614,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Clear search",
+          "ms": 331,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Department filter select",
+          "ms": 326,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "selected": "11709"
+          }
+        },
+        {
+          "label": "Action - Nine-Grid Generate",
+          "ms": 2635,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Grid Cell click",
+          "ms": 650,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Kalibirity tab load (via tab click)",
+          "ms": 1149,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Kalibirity Generate",
+          "ms": 136,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Kalibirity batch save (skipped if no editable rows)",
+          "ms": 7,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "note": "No batch-save control found — expected with zero seeded candidates under this Manager."
+          }
+        }
+      ],
+      "notes": [
+        "Test data note: PerfTest Manager/Director/Employee have zero seeded assessment completions (0/0) — Generate/cell-click measurements reflect an empty dataset, not realistic data volume."
+      ]
+    }
+  ]
+}

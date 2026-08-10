@@ -1,0 +1,129 @@
+{
+  "runLabel": "mgscan-full",
+  "runTimestamp": "1754630000000",
+  "baseUrl": "https://q-assessments-hrmforce-it.h2software.nl",
+  "results": [
+    {
+      "role": "manager",
+      "username": "perftest.manager.1754623000000",
+      "flow": [
+        {
+          "label": "Login",
+          "ms": 7517,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Management Scan (Nine-Grid)",
+          "ms": 2368,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Search by name (real match)",
+          "ms": 715,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Clear search",
+          "ms": 341,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Nine-Grid Generate",
+          "ms": 790,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Grid Cell click (real data cell)",
+          "ms": 745,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Data check - Employee row visible with correct scores",
+          "ms": 9,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "found": true,
+            "rowText": "PE\n                  PerfTest Employee\n                \n                3\n                3\n                Needs Support"
+          }
+        },
+        {
+          "label": "Action - Pending tab click",
+          "ms": 526,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Load More - pending list (only meaningful with >10 rows)",
+          "ms": 3,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true,
+            "reason": "below pagination threshold"
+          }
+        },
+        {
+          "label": "Action - Kalibirity tab load",
+          "ms": 1126,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Kalibirity Generate",
+          "ms": 113,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Data check - Kalibirity row for Employee visible",
+          "ms": 69,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "found": false
+          }
+        },
+        {
+          "label": "Action - Kalibirity batch save (\"Kalibraties opgeslagen\")",
+          "ms": 7,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true
+          }
+        },
+        {
+          "label": "Action - Publish/Unpublish toggle",
+          "ms": 3,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true
+          }
+        },
+        {
+          "label": "Action - Report (HTML) generate for candidate row",
+          "ms": 3,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true
+          }
+        }
+      ],
+      "notes": [
+        "No Load More control visible — dataset (1 candidate) is below the pagination threshold, so this is untestable with current seed data.",
+        "manager: no Kalibirity row for PerfTest Employee found after Generate — may require the automatic position to be computed (both sides Done) or a different filter state.",
+        "No batch-save control visible — no pending manual overrides staged.",
+        "Employee row not visible for publish-toggle test in this view state."
+      ]
+    }
+  ]
+}
