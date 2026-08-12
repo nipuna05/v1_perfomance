@@ -1,0 +1,8 @@
+{
+  "repo": "HRMForce",
+  "releaseId": "pre-PR5661-5665",
+  "confirmedSha": null,
+  "approxSha": "<= 21fa566 (2026-08-11 10:27 UTC, PR 5651) - confirmed to predate PR 5661 (7d2e1e5, 2026-08-12 05:04 UTC) and PR 5665 (415b75a, 2026-08-12 07:27 UTC)",
+  "confirmedBy": "Functional probe: Manager/evaluator assessment side rendered 31 .mgscan-question elements, not 28 - PR 5665 ('remove Manager's open questions') would have reduced this to 28, so it had not reached IT yet.",
+  "note": "Same effective build as the 2026-08-10 baseline - this run did not test a new release."
+}

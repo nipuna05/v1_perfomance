@@ -1,0 +1,480 @@
+{
+  "runs": [
+    {
+      "runStamp": "20260810",
+      "date": "2026-08-10",
+      "baseUrl": "https://q-assessments-hrmforce-it.h2software.nl",
+      "combinedResultsFile": "final-combined-report-1754640000000.json",
+      "release": {
+        "repo": "HRMForce",
+        "releaseId": "pre-PR5661-5665",
+        "confirmedSha": null,
+        "approxSha": "~8d222dd (2026-08-07) through same-day 2026-08-10 master commits - exact deployed SHA on IT was not captured at run time",
+        "confirmedBy": null,
+        "note": "Release tracking was not yet formalized when this baseline was run - this is a best-effort reconstruction from git history timestamps, not a verified deploy record. This gap is exactly why release tracking was formalized on 2026-08-12."
+      },
+      "steps": [
+        {
+          "role": "employee",
+          "label": "Login",
+          "ms": 7704,
+          "ok": true
+        },
+        {
+          "role": "employee",
+          "label": "Page Load - Personal Dashboard",
+          "ms": 2347,
+          "ok": true
+        },
+        {
+          "role": "employee",
+          "label": "Permission check - Nine-Grid/Kalibirity tabs absent for Employee",
+          "ms": 4,
+          "ok": true
+        },
+        {
+          "role": "employee",
+          "label": "Action - Report (HTML) click",
+          "ms": 2982,
+          "ok": true
+        },
+        {
+          "role": "employee",
+          "label": "Action - Report (PDF) click",
+          "ms": 12768,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Login",
+          "ms": 7233,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Page Load - Management Scan (Nine-Grid)",
+          "ms": 2856,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Search by name (real match)",
+          "ms": 714,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Clear search",
+          "ms": 328,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Nine-Grid Generate",
+          "ms": 803,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Grid Cell click (real data cell)",
+          "ms": 733,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Data check - Employee row visible with correct scores",
+          "ms": 9,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Pending tab click",
+          "ms": 525,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Load More - pending list (only meaningful with >10 rows)",
+          "ms": 4,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Kalibirity tab load",
+          "ms": 1122,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Kalibirity Generate",
+          "ms": 220,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Data check - Kalibirity row for Employee visible",
+          "ms": 68,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Stage a manual override (click a non-current swatch)",
+          "ms": 711,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Kalibirity batch save (\"Save calibrations (N)\")",
+          "ms": 1649,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Publish/Unpublish toggle",
+          "ms": 1243,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Report (HTML) generate for candidate row",
+          "ms": 6,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Login",
+          "ms": 6779,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Page Load - Management Scan (Nine-Grid)",
+          "ms": 2327,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Action - Search by name (real match)",
+          "ms": 712,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Action - Clear search",
+          "ms": 334,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Action - Nine-Grid Generate",
+          "ms": 809,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Action - Grid Cell click (real data cell)",
+          "ms": 735,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Data check - Employee row visible with correct scores",
+          "ms": 11,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Action - Pending tab click",
+          "ms": 523,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Load More - pending list (only meaningful with >10 rows)",
+          "ms": 4,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Action - Kalibirity tab load",
+          "ms": 1128,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Action - Kalibirity Generate",
+          "ms": 243,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Data check - Kalibirity row for Employee visible",
+          "ms": 98,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Action - Stage a manual override (click a non-current swatch)",
+          "ms": 30017,
+          "ok": false
+        },
+        {
+          "role": "director",
+          "label": "Action - Kalibirity batch save (\"Save calibrations (N)\")",
+          "ms": 10,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Action - Publish/Unpublish toggle",
+          "ms": 1272,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Action - Report (HTML) generate for candidate row",
+          "ms": 9,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "runStamp": "20260812",
+      "date": "2026-08-12",
+      "baseUrl": "https://q-assessments-hrmforce-it.h2software.nl",
+      "combinedResultsFile": "mgscan-full-combined-20260812.json",
+      "release": {
+        "repo": "HRMForce",
+        "releaseId": "pre-PR5661-5665",
+        "confirmedSha": null,
+        "approxSha": "<= 21fa566 (2026-08-11 10:27 UTC, PR 5651) - confirmed to predate PR 5661 (7d2e1e5, 2026-08-12 05:04 UTC) and PR 5665 (415b75a, 2026-08-12 07:27 UTC)",
+        "confirmedBy": "Functional probe: Manager/evaluator assessment side rendered 31 .mgscan-question elements, not 28 - PR 5665 ('remove Manager's open questions') would have reduced this to 28, so it had not reached IT yet.",
+        "note": "Same effective build as the 2026-08-10 baseline - this run did not test a new release."
+      },
+      "steps": [
+        {
+          "role": "employee",
+          "label": "Login",
+          "ms": 6864,
+          "ok": true
+        },
+        {
+          "role": "employee",
+          "label": "Page Load - Personal Dashboard",
+          "ms": 2225,
+          "ok": true
+        },
+        {
+          "role": "employee",
+          "label": "Permission check - Nine-Grid/Kalibirity tabs absent for Employee",
+          "ms": 3,
+          "ok": true
+        },
+        {
+          "role": "employee",
+          "label": "Action - Report (HTML) click",
+          "ms": 2422,
+          "ok": true
+        },
+        {
+          "role": "employee",
+          "label": "Action - Report (PDF) click",
+          "ms": 6589,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Login",
+          "ms": 7261,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Page Load - Management Scan (Nine-Grid)",
+          "ms": 1786,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Search by name (real match)",
+          "ms": 682,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Clear search",
+          "ms": 321,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Nine-Grid Generate",
+          "ms": 794,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Grid Cell click (real data cell)",
+          "ms": 719,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Data check - Employee row visible with correct scores",
+          "ms": 7,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Pending tab click",
+          "ms": 525,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Load More - pending list (only meaningful with >10 rows)",
+          "ms": 4,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Kalibirity tab load",
+          "ms": 1110,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Kalibirity Generate",
+          "ms": 212,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Data check - Kalibirity row for Employee visible",
+          "ms": 69,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Stage a manual override (click a non-current swatch)",
+          "ms": 734,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Kalibirity batch save (\"Save calibrations (N)\")",
+          "ms": 1623,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Publish/Unpublish toggle",
+          "ms": 1237,
+          "ok": true
+        },
+        {
+          "role": "manager",
+          "label": "Action - Report (HTML) generate for candidate row",
+          "ms": 6,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Login",
+          "ms": 10521,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Page Load - Management Scan (Nine-Grid)",
+          "ms": 2291,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Action - Search by name (real match)",
+          "ms": 691,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Action - Clear search",
+          "ms": 337,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Action - Nine-Grid Generate",
+          "ms": 780,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Action - Grid Cell click (real data cell)",
+          "ms": 719,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Data check - Employee row visible with correct scores",
+          "ms": 6,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Action - Pending tab click",
+          "ms": 534,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Load More - pending list (only meaningful with >10 rows)",
+          "ms": 4,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Action - Kalibirity tab load",
+          "ms": 1114,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Action - Kalibirity Generate",
+          "ms": 189,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Data check - Kalibirity row for Employee visible",
+          "ms": 64,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Action - Stage a manual override (click a non-current swatch)",
+          "ms": 30006,
+          "ok": false
+        },
+        {
+          "role": "director",
+          "label": "Action - Kalibirity batch save (\"Save calibrations (N)\")",
+          "ms": 6,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Action - Publish/Unpublish toggle",
+          "ms": 1235,
+          "ok": true
+        },
+        {
+          "role": "director",
+          "label": "Action - Report (HTML) generate for candidate row",
+          "ms": 5,
+          "ok": true
+        }
+      ]
+    }
+  ]
+}

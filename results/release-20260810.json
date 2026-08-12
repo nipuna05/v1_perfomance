@@ -1,0 +1,8 @@
+{
+  "repo": "HRMForce",
+  "releaseId": "pre-PR5661-5665",
+  "confirmedSha": null,
+  "approxSha": "~8d222dd (2026-08-07) through same-day 2026-08-10 master commits - exact deployed SHA on IT was not captured at run time",
+  "confirmedBy": null,
+  "note": "Release tracking was not yet formalized when this baseline was run - this is a best-effort reconstruction from git history timestamps, not a verified deploy record. This gap is exactly why release tracking was formalized on 2026-08-12."
+}

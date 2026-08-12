@@ -111,3 +111,48 @@ Produces a 4-sheet workbook: **Summary** (one row per role, kept separate), **De
 3. For each matching step label, flag anything that moved from Good→Acceptable/Slow (thresholds: Page Load ≤2s good/≤4s ok, Action ≤1s good/≤3s ok — see `generate-excel-perf.mjs`'s `THRESHOLDS`).
 4. Re-check whether the Director-publish 500 bug (§4) has been fixed — if so, remove/update that Known Issue rather than re-reporting it as new.
 5. Note dataset differences honestly: this baseline used exactly 1 candidate per manager — Load More/pagination was untestable below that threshold. If a future run seeds more data, that comparison becomes possible for the first time, not "regressed" from the baseline having a real number.
+6. Also do §9 below — a manual doc diff alone doesn't scale past two runs, and doesn't tell you whether you actually tested a new build.
+
+## 9. Tracking against each release
+
+Formalized 2026-08-12, after a run intended to test a new release turned out to still be measuring the old build (IT hadn't been redeployed yet — the assessment still played 31 questions for the Manager side, not the 28 the newly-merged PR would have produced). Two problems, two fixes:
+
+**Problem 1: "did I actually test what I think I tested?"** HRMForce has no version/build endpoint or footer stamp (checked — `AssemblyInfo.cs` has a static `1.0.0.0` that never changes, and no `.master` page renders a build marker). There is currently no reliable way to ask the environment directly what commit it's running. Until that changes (worth asking whoever owns deploys to add one, or at least note the deployed SHA somewhere reachable), the practical workaround is a **functional fingerprint check**: before running the full suite, exercise one behavior that's known to have changed in the release you're trying to test, and confirm it actually changed. Pick whatever the most recent relevant merged PR touched — e.g. after PR 5665 ("remove Manager's open questions"), the fingerprint is "does the Manager's assessment side render 28 `.mgscan-question` elements or 31." Record what you checked and what you found in the run's `release.json` (see below) — don't skip this and assume the deploy happened just because time passed.
+
+**Problem 2: comparing N runs by hand doesn't scale, and free-text "which release was this" notes can't be diffed reliably.** Every run now gets recorded into a single persistent trend log instead of one-off comparison docs:
+
+```bash
+# after building the combined report (§7 step 1, before generate-excel-perf.mjs):
+node record-perf-run.mjs <combinedResultsFile> <runStamp> <date> <releaseJsonFile>
+```
+
+`<releaseJsonFile>` is a small JSON file you write per run, e.g. `results/release-<runStamp>.json`:
+
+```json
+{
+  "repo": "HRMForce",
+  "releaseId": "pre-PR5661-5665",
+  "confirmedSha": null,
+  "approxSha": "<= 21fa566 (2026-08-11 10:27 UTC, PR 5651) - confirmed to predate PR 5661/5665",
+  "confirmedBy": "Functional probe: Manager side rendered 31 questions, not 28",
+  "note": "free text - anything future-you needs to know about how confident this identification is"
+}
+```
+
+- **`releaseId`** is the field comparisons actually key off — give it the **same value** across runs that are genuinely the same deployed build (like the 2026-08-10 and 2026-08-12 runs both being `pre-PR5661-5665`), and a new value whenever you've confirmed IT moved forward. This is a short canonical tag you invent, not required to be a real SHA — use a real `confirmedSha` when you have one (e.g. if a deploy pipeline or the person who deployed it tells you), leave it `null` otherwise. Don't try to make `sameRelease` detection work off the free-text `approxSha`/`note` fields — two honest descriptions of the same build will rarely be worded identically, which is exactly the bug that got fixed here.
+- Then diff any two runs (defaults to the two most recent):
+
+```bash
+node compare-perf-runs.mjs [runStampA] [runStampB] > docs/management-scan-perf-comparison-latest.md
+```
+
+This auto-generates a markdown table (every step, both runs' ms, delta, delta %, current verdict, and a REGRESSION flag for anything that crossed into a worse verdict bucket) and prints a same-release warning banner when `releaseId` matches, so nobody reads a stability-check as a release comparison by mistake. It replaces hand-transcribing numbers into a new dated `.md` file each time — keep writing a short dated narrative doc alongside it (`docs/management-scan-comparison-<date>.md`) only for things the script can't know: bug re-verification status, new functional observations, next-step recommendations. The trend log itself (`results/mgscan-perf-trend.json`) is the durable source of truth — it's what a chart across 5+ releases would eventually be built from, not any single comparison doc.
+
+**Per-release checklist, going forward:**
+1. Confirm what you're actually testing — run the functional fingerprint check for whatever changed in the target release; write down what you checked either way.
+2. Run §2–§7.
+3. Write `results/release-<runStamp>.json` with a `releaseId` — reuse the prior run's `releaseId` if the fingerprint check says nothing changed, invent a new one if it did.
+4. `node record-perf-run.mjs ...`
+5. `node compare-perf-runs.mjs > docs/management-scan-perf-comparison-latest.md`
+6. Write the short dated narrative doc for anything the script can't see (bug status, new findings, recommendations).
+7. Update the project dashboard's Performance section from the comparison output.
