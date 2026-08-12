@@ -58,7 +58,7 @@ async function shot(page, label) {
     await page.locator('#Login1_Password').fill(director.password);
     await page.locator('#Login1_LoginButton').click();
     await page.locator('#MenuLogout').waitFor({ state: 'visible', timeout: 30000 });
-    console.log('Logged in as Director.');
+    console.log(`Logged in as ${roleToUse}.`);
 
     await page.goto(`${creds.baseUrl}/MgScan.aspx`, { waitUntil: 'domcontentloaded' });
     const nineGridTab = page.locator('#tabMgScanNineGrid');
