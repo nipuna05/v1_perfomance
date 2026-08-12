@@ -155,6 +155,30 @@ const notes = [];
         await shot(page, 'after-generate');
       }));
 
+      flow.push(await step('Action - Report (PDF) toolbar (language popup + overview report)', async () => {
+        // Toolbar-level Report (PDF) is a 2-step flow: click opens a language-selection popup
+        // (onReportPdf -> pdfPopupVisibility(true)), then Ok generates the filtered/overview
+        // report (onPdfOk -> _openOverviewReport -> window.open). Confirmed via source
+        // (mgScanManager.html/.js) rather than guessed — recently fixed per PR 5590/5581
+        // (2026-08-07), which is why this step exists: the user asked to verify PDF
+        // view/download is genuinely working now, not just the row-level icon.
+        const toolbarBtn = nineGridTab.locator('a[data-bind*="onReportPdf"]');
+        if (await toolbarBtn.count() === 0) { notes.push('Toolbar Report (PDF) button not found.'); return { skipped: true }; }
+        await toolbarBtn.click();
+        const okBtn = page.locator('a[data-bind="click: onOk"]:visible');
+        await okBtn.waitFor({ state: 'visible', timeout: 5000 }).catch(() => {});
+        if (await okBtn.count() === 0) { notes.push('Report (PDF) language popup did not appear after toolbar click.'); return { skipped: true }; }
+        await shot(page, 'pdf-language-popup');
+        const downloadPromise = page.waitForEvent('download', { timeout: 15000 }).catch(() => null);
+        const [popup] = await Promise.all([
+          page.waitForEvent('popup', { timeout: 15000 }).catch(() => null),
+          okBtn.click(),
+        ]);
+        const download = await downloadPromise;
+        if (popup && !download) await popup.close().catch(() => {});
+        return { downloadStarted: !!download, openedNewTab: !!popup, suggestedFilename: download ? download.suggestedFilename() : null };
+      }));
+
       flow.push(await step('Action - Grid Cell click (real data cell)', async () => {
         // Prefer a cell that actually shows a candidate avatar (real data) over an empty one.
         const cellWithAvatar = nineGridTab.locator('.mg-nine-cell', { has: page.locator('[class*="avatar"], .mgscan-avatar, [style*="border-radius"]') });
@@ -305,12 +329,25 @@ const notes = [];
         await page.waitForTimeout(800);
       } catch { /* best-effort cleanup only */ }
 
-      flow.push(await step('Action - Report (HTML) generate for candidate row', async () => {
-        if (await employeeRow.count() === 0) return { skipped: true };
-        const btn = employeeRow.first().locator('button[title="Download HTML"], a[title="Download HTML"]');
-        if (await btn.count() === 0) { notes.push('No inline Report (HTML) icon found on the candidate row.'); return { skipped: true }; }
-        await btn.click();
-        await page.waitForTimeout(1000);
+      flow.push(await step('Action - Report (PDF) generate for candidate row', async () => {
+        // Row action icons ARE both present (Report HTML via onRowReportHtml, Report PDF via
+        // onRowReportPdf - mgScanManager.html ~639-640) - the static title="Download PDF" in
+        // the markup is only a pre-bind fallback, immediately overwritten at runtime by
+        // `attr: { title: tokens().ReportPdf }` (a localized Token Manager string, not literally
+        // "Download PDF") - confirmed live: matching on that literal title found nothing even
+        // though the button renders. Match on the stable icon class instead. Opens immediately
+        // (window.open), no language popup at row level (that's toolbar-only).
+        if (await employeeRow.count() === 0) { notes.push('Employee row not visible for row-level report test in this view state.'); return { skipped: true }; }
+        const btn = employeeRow.first().locator('.mg-cell-row-actions button:has(.fa-file-pdf)');
+        if (await btn.count() === 0) { notes.push('No inline Report (PDF) icon found on the candidate row.'); return { skipped: true }; }
+        const downloadPromise = page.waitForEvent('download', { timeout: 15000 }).catch(() => null);
+        const [popup] = await Promise.all([
+          page.waitForEvent('popup', { timeout: 15000 }).catch(() => null),
+          btn.click(),
+        ]);
+        const download = await downloadPromise;
+        if (popup && !download) await popup.close().catch(() => {});
+        return { downloadStarted: !!download, openedNewTab: !!popup, suggestedFilename: download ? download.suggestedFilename() : null };
       }));
     }
 

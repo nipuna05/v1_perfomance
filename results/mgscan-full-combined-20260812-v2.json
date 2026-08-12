@@ -1,0 +1,268 @@
+{
+  "runLabel": "management-scan-full-report",
+  "runTimestamp": "20260812c",
+  "baseUrl": "https://q-assessments-hrmforce-it.h2software.nl",
+  "results": [
+    {
+      "role": "Manager",
+      "username": "perftest.employee.20260812",
+      "flow": [
+        {
+          "label": "Login",
+          "ms": 6864,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Personal Dashboard",
+          "ms": 2225,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Permission check - Nine-Grid/Kalibirity tabs absent for Employee",
+          "ms": 3,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "confirmedAbsent": true
+          }
+        },
+        {
+          "label": "Action - Report (HTML) click",
+          "ms": 2422,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "openedNewTab": true
+          }
+        },
+        {
+          "label": "Action - Report (PDF) click",
+          "ms": 6589,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "downloadStarted": true,
+            "suggestedFilename": "ManagementScanEmployeeReport_English_20260812.pdf"
+          }
+        }
+      ],
+      "notes": [],
+      "scriptAccountRole": "employee"
+    },
+    {
+      "role": "Director",
+      "username": "perftest.manager.20260812",
+      "flow": [
+        {
+          "label": "Login",
+          "ms": 5984,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Management Scan (Nine-Grid)",
+          "ms": 2310,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Search by name (real match)",
+          "ms": 695,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Clear search",
+          "ms": 321,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Nine-Grid Generate",
+          "ms": 815,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Report (PDF) toolbar (language popup + overview report)",
+          "ms": 5449,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "downloadStarted": true,
+            "openedNewTab": true,
+            "suggestedFilename": "ManagementScanOverviewReport_English_20260812.pdf"
+          }
+        },
+        {
+          "label": "Action - Grid Cell click (real data cell)",
+          "ms": 715,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Data check - Employee row visible with correct scores",
+          "ms": 8,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "found": true,
+            "rowText": "PE\n                  PerfTest Employee\n                \n                3\n                3\n                Needs Support"
+          }
+        },
+        {
+          "label": "Action - Pending tab click",
+          "ms": 527,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Load More - pending list (only meaningful with >10 rows)",
+          "ms": 3,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true,
+            "reason": "below pagination threshold"
+          }
+        },
+        {
+          "label": "Action - Kalibirity tab load",
+          "ms": 1104,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Kalibirity Generate",
+          "ms": 187,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "modalStuck": false
+          }
+        },
+        {
+          "label": "Data check - Kalibirity row for Employee visible",
+          "ms": 67,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "found": true
+          }
+        },
+        {
+          "label": "Action - Stage a manual override (click a non-current swatch)",
+          "ms": 714,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Kalibirity batch save (\"Save calibrations (N)\")",
+          "ms": 1601,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "labelBefore": "Save calibrations (1)",
+            "labelAfter": "Calibrations saved (0)"
+          }
+        },
+        {
+          "label": "Action - Publish/Unpublish toggle",
+          "ms": 1231,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "before": "Unpublish",
+            "after": null,
+            "toggled": true,
+            "stillThere": false
+          }
+        },
+        {
+          "label": "Action - Report (PDF) generate for candidate row",
+          "ms": 4491,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "downloadStarted": true,
+            "openedNewTab": true,
+            "suggestedFilename": "ManagementScanManagerReport_English_20260812.pdf"
+          }
+        }
+      ],
+      "notes": [
+        "No Load More control visible \u2014 dataset (1 candidate) is below the pagination threshold, so this is untestable with current seed data.",
+        "manager: after toggling, the row/button left the current Completed-list view (expected if toggling Unpublish removes it from that filtered list) \u2014 toggle itself likely succeeded."
+      ],
+      "scriptAccountRole": "manager"
+    }
+  ],
+  "functionalChecks": {
+    "title": "Assessment Page \u2014 Validation & Button Behavior (PerfTest ValidationCheck account)",
+    "checks": [
+      {
+        "check": "Unanswered questions get .is-unanswered highlight after Submit",
+        "result": "PASS (30 highlighted)"
+      },
+      {
+        "check": "Validation error banner shown on submit-without-answering",
+        "result": "PASS (\"All 28 statements must be answered before the Management Scan can be completed (0 answered).\")"
+      },
+      {
+        "check": "Submit does NOT navigate away when validation fails (stays on question view)",
+        "result": "PASS"
+      },
+      {
+        "check": "Pause & resume later button present and clickable",
+        "result": "PASS"
+      },
+      {
+        "check": "Pause returns to Personal Dashboard",
+        "result": "PASS"
+      },
+      {
+        "check": "Answers retained after Pause + Resume (3 answered before pause)",
+        "result": "PASS (3/3 retained)"
+      }
+    ]
+  },
+  "knownIssues": [
+    {
+      "severity": "Bug",
+      "area": "Publish/Unpublish (Nine-Grid Completed list)",
+      "summary": "Clicking Publish/Unpublish as a caller who is NOT the cycle's direct MyManager (org-hierarchy \"Director\", two levels above the assessed person - a different authorization class from the feature's own \"Director\"/evaluator role) throws an unhandled server exception (HTTP 500 from Service/MgScanService.asmx/SetManagementScanPublishState) instead of a graceful authorization error. STILL PRESENT as of 2026-08-12 - reproduced a third time, unchanged. This org-rollup account is no longer part of the regular per-role performance sweep (see terminologyNote) but this finding stays open until fixed.",
+      "reproduction": "Log in as the org-level account one level above the evaluator (not the candidate's direct MyManager), open Nine-Grid, Generate, select the candidate's cell, click Publish/Unpublish on their row.",
+      "evidence": "Response body: {\"Message\":\"There was an error processing the request.\",\"StackTrace\":\"\",\"ExceptionType\":\"\"} - reproduced independently on three separate test runs (2026-08-10 x2, 2026-08-12).",
+      "suggestedFix": "MgScanService.asmx.cs SetManagementScanPublishState already has an UnAuthorized-result check - the underlying ManagementScanPlayBO.SetPublishState call for a non-authorized caller appears to throw before reaching that check rather than returning a normal ManagementScanSaveResult with Errors=[\"UnAuthorized\"]. Not yet filed as an ADO bug."
+    },
+    {
+      "severity": "Fixed - verified working",
+      "area": "PDF report view/download - toolbar and row-level (Director role)",
+      "summary": "Both PDF report generation paths available to the Director (evaluator) now work end-to-end: the Nine-Grid toolbar's Report (PDF) button (2-step: language popup, then Ok) produced a real download (ManagementScanOverviewReport_English_20260812.pdf, ~5.4-9.2s across two attempts), and the per-candidate row's Report (PDF) icon also produced a real download (ManagementScanManagerReport_English_20260812.pdf, ~4.5s). Neither path had been correctly instrumented before this run - the row-level icon test previously matched on a static title=\"Download PDF\" HTML attribute that gets overwritten at runtime by a Knockout token binding, so it always silently reported \"not found\" rather than actually testing the click. Fixed by matching on the stable .fa-file-pdf icon class instead.",
+      "reproduction": "Director role: Nine-Grid toolbar Report (PDF) button, and the PDF icon on a Voltooid row's action column."
+    },
+    {
+      "severity": "Good (by design)",
+      "area": "Kalibirity manual override (position swatches)",
+      "summary": "Unlike Publish, the Kalibirity position-override swatches correctly appear non-actionable for the unauthorized org-rollup account - no data mutation is possible, consistent with ADR-001 authorization intent. (Not re-tested this run since that account is no longer part of the default sweep - carried forward from 2026-08-10/2026-08-12 findings.)"
+    },
+    {
+      "severity": "Info / flaky-but-recoverable",
+      "area": "CandidateNew.aspx - \"+New\" button",
+      "summary": "Clicking 'Add New' on the candidate listing intermittently lands on an unrelated 'My Account' tab instead of opening the new-candidate form. Recovered reliably with a retry (re-navigate + re-click) every time it's occurred so far."
+    },
+    {
+      "severity": "Process fix",
+      "area": "create-mgscan-test-accounts.mjs - account-setup file overwrite bug",
+      "summary": "Creating a second batch of accounts under the same runStamp (e.g. the standalone validation-only account, created after the director/manager/employee hierarchy) used to silently OVERWRITE results/account-setup-<runStamp>.json instead of merging into it, destroying the earlier accounts' saved credentials and crashing the next script that needed them. Fixed 2026-08-12 to merge by role instead of overwriting."
+    },
+    {
+      "severity": "Info",
+      "area": "Report (PDF) generation time",
+      "summary": "Manager (assessed person) Personal Dashboard PDF: 6,589ms. Director (evaluator) toolbar overview PDF: ~5.4-9.2s across two runs. Director row-level PDF: 4,491ms. All in the same rough range - PDF generation server-side appears to dominate regardless of which surface triggers it."
+    }
+  ],
+  "terminologyNote": "Reported roles are the feature's own two-role model ONLY - \"Manager\" (the person being assessed) and \"Director\" (their evaluator) - per explicit instruction that this report should not include a third \"Employee\" category. Underlying test-account naming (for anyone reading the raw scripts/JSON) still uses org-hierarchy names: the account scripted as \"employee\" plays the assessment and is shown here as Manager; the account scripted as \"manager\" is the evaluator and is shown here as Director. A third org-hierarchy account (scripted as \"director\", one level above the evaluator) exists only to demonstrate the Publish/Unpublish 500 bug in Known Issues and is intentionally not included as a timed role in this report."
+}

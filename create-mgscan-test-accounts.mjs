@@ -204,7 +204,18 @@ async function createAccount(page, account, createdUsernames) {
 
   const outPath = path.join(__dirname, 'results', `account-setup-${RUN_STAMP}.json`);
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
-  fs.writeFileSync(outPath, JSON.stringify(summary, null, 2));
-  console.log(`\n\nSaved account summary to ${outPath}`);
+  // Merge with whatever's already recorded for this runStamp instead of overwriting - a second
+  // call for the same runStamp (e.g. the "validation-only" extra account) used to wipe out
+  // accounts an earlier call for the SAME runStamp had already created, since this used to be a
+  // plain overwrite. Confirmed live 2026-08-12: creating a validation-only account after the
+  // director/manager/employee hierarchy silently destroyed that hierarchy's saved credentials.
+  let existing = [];
+  if (fs.existsSync(outPath)) {
+    try { existing = JSON.parse(fs.readFileSync(outPath, 'utf-8')); } catch { existing = []; }
+  }
+  const newRoles = new Set(summary.map(a => a.role));
+  const merged = [...existing.filter(a => !newRoles.has(a.role)), ...summary];
+  fs.writeFileSync(outPath, JSON.stringify(merged, null, 2));
+  console.log(`\n\nSaved account summary to ${outPath} (${merged.length} account(s) total for this runStamp)`);
   console.log(JSON.stringify(summary, null, 2));
 })();

@@ -1,8 +1,30 @@
 # Management Scan Performance — Run 2 Narrative (2026-08-10 → 2026-08-12)
 
-*Second full end-to-end pass, run per `management-scan-testing-runbook.md`. Report file: `reports/ManagementScan_FULL_Report_2026-08-12_2026-08-12_08-19-28.xlsx`.*
+*Second full end-to-end pass, run per `management-scan-testing-runbook.md`. Report file: `reports/ManagementScan_FULL_Report_2026-08-12_v2_2026-08-12_11-53-08.xlsx` (supersedes the original `..._08-19-28.xlsx` — see addendum below).*
 
 *For the raw timing table, see the auto-generated `management-scan-perf-comparison-latest.md` (produced by `compare-perf-runs.mjs` from `results/mgscan-perf-trend.json`) — this doc only covers the judgment calls the script can't make.*
+
+## Addendum (same day, 2026-08-12): terminology fix + real PDF coverage
+
+After the run below, two corrections were made to the same 20260812 dataset (no new browser session needed for the first; the second re-ran just the Director-role sweep):
+
+1. **Dropped "Employee" as a reported role, per explicit instruction ("we only checking with manager and director only").** The report now shows exactly two roles using the feature's own terms — **Manager** (assessed person; was labeled "employee") and **Director** (evaluator; was labeled "manager"). The third org-hierarchy account (one level above the evaluator) is no longer part of the timed sweep at all — it only ever existed to demonstrate the Publish/Unpublish 500 bug, which stays in Known Issues without needing a live re-run every time.
+2. **PDF view/download was actually broken in the test, not in the product.** Investigated the real Knockout bindings (`mgScanManager.html`/`.js`) after being asked to verify "PDF view and downloading also now working": the row-level Report (PDF) icon and the Nine-Grid toolbar's Report (PDF) button (a 2-step flow — language popup, then a real `window.open`) were both real, working features, recently touched by PR 5590/5581 (2026-08-07). The test script's row-level check had been silently broken since it matched a static `title="Download PDF"` HTML attribute that gets overwritten at runtime by a Knockout token binding (`attr: { title: tokens().ReportPdf }`) — it always reported "not found" without ever actually testing the click. Fixed by matching the stable `.fa-file-pdf` icon class instead, and added the previously-untested toolbar flow as a new step.
+
+**Result, both now genuinely measured and working:**
+- Director, toolbar Report (PDF) (language popup + Ok): **5,449 ms** (real download, `ManagementScanOverviewReport_English_20260812.pdf`)
+- Director, row-level Report (PDF) icon: **4,491 ms** (real download, `ManagementScanManagerReport_English_20260812.pdf`)
+- Manager, Personal Dashboard Report (PDF): **6,589 ms** (unchanged from the run below, real download, `ManagementScanEmployeeReport_English_20260812.pdf`)
+
+All three PDF paths verdict "Slow" (>3,000ms Action threshold) but functionally correct. This wasn't a perf regression — the toolbar/row-level steps are brand new to the test, there's nothing to regress against yet.
+
+**Process fix found along the way:** `create-mgscan-test-accounts.mjs` used to overwrite `results/account-setup-<runStamp>.json` instead of merging when called a second time for the same runStamp (e.g. creating the standalone validation account after the director/manager/employee hierarchy) — this silently destroyed the earlier accounts' saved credentials and crashed the next script that needed them. Fixed to merge by role.
+
+Trend log entries: `20260812` (original, now superseded for methodology reasons — kept for history) and `20260812-v2` (current). Both share `releaseId: "pre-PR5661-5665"` — this was a test-coverage fix, not a new release.
+
+---
+
+## Original Run 2 (below, now partially superseded — see addendum above for what changed)
 
 ## Headline finding: this did NOT test the new release
 

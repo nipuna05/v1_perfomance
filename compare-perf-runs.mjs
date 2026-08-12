@@ -47,7 +47,14 @@ if (!runA || !runB) {
   process.exit(1);
 }
 
-function keyOf(s) { return `${s.role}::${s.label}`; }
+// Normalizes pre-2026-08-12 org-hierarchy role labels ('employee'/'manager') recorded before
+// runs switched to the feature's own terms ('Manager'/'Director') so older and newer runs can
+// still be diffed step-by-step instead of every renamed step showing as REMOVED+NEW. The
+// org-rollup 'director' account has no counterpart in the new scheme (dropped from reporting
+// entirely 2026-08-12) and is left unmapped on purpose - its steps correctly show as REMOVED
+// when compared against a run that no longer includes that role.
+const LEGACY_ROLE_ALIAS = { employee: 'Manager', manager: 'Director' };
+function keyOf(s) { return `${LEGACY_ROLE_ALIAS[s.role] || s.role}::${s.label}`; }
 const mapA = new Map(runA.steps.map(s => [keyOf(s), s]));
 const mapB = new Map(runB.steps.map(s => [keyOf(s), s]));
 const allKeys = [...new Set([...mapA.keys(), ...mapB.keys()])];

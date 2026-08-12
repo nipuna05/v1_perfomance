@@ -1,0 +1,8 @@
+{
+  "repo": "HRMForce",
+  "releaseId": "pre-PR5661-5665",
+  "confirmedSha": null,
+  "approxSha": "<= 21fa566 (2026-08-11 10:27 UTC, PR 5651) - confirmed to predate PR 5661 (7d2e1e5, 2026-08-12 05:04 UTC) and PR 5665 (415b75a, 2026-08-12 07:27 UTC)",
+  "confirmedBy": "Functional probe: Manager/evaluator assessment side rendered 31 .mgscan-question elements, not 28 - PR 5665 ('remove Manager's open questions') would have reduced this to 28, so it had not reached IT yet. Same environment/build as the original 20260812 run - only the test coverage changed.",
+  "note": "Supersedes the original 20260812 trend entry for methodology reasons, not a release change: relabeled roles to the feature's own Manager/Director terms (dropping the org-hierarchy 'Employee' label per explicit user instruction), and fixed two PDF report timing steps that were previously silently mismeasuring (matching a static title attribute that gets overwritten at runtime by a Knockout token binding, so they always reported 'not found' without actually exercising the click)."
+}

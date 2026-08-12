@@ -2,21 +2,40 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Merges the separate per-role Management Scan runs (Employee/Manager/Director) plus the
-// Assessment-page validation checklist and known-issue findings into one combined dataset for
-// generate-excel-perf.mjs — Manager and Director stay as distinct `results[]` entries (never
-// merged into one row) per the user's "Manager and director related separated performance need".
+// Merges the per-role Management Scan runs plus the Assessment-page validation checklist and
+// known-issue findings into one combined dataset for generate-excel-perf.mjs.
+//
+// Reported roles are the feature's own two-role model ONLY (2026-08-12 change, per explicit
+// user instruction: "we only checking with manager and director only") - NOT the org-hierarchy
+// test-account names used to script this (see docs/management-scan-testing-runbook.md section 0
+// for the full mapping). The account named "employee" plays the assessment and is relabeled here
+// to "Manager" (the feature's term for the assessed person); the account named "manager" is the
+// evaluator and is relabeled to "Director". The third org-hierarchy account ("director", one
+// level above the evaluator) is intentionally NOT included in the reported results - it's a
+// different authorization class used only to demonstrate the Publish/Unpublish 500 bug, which
+// stays documented in knownIssues rather than as a timed "role" section. Manager and Director
+// stay as distinct `results[]` entries (never merged into one row) per the user's earlier
+// "Manager and director related separated performance need".
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const resultsDir = path.join(__dirname, 'results');
 
-const [, , employeeFile, managerFile, directorFile, validationFile, outFile] = process.argv;
+const [, , employeeFile, managerFile, validationFile, outFile] = process.argv;
+if (!employeeFile || !managerFile || !validationFile || !outFile) {
+  console.error('Usage: node build-final-report-data.mjs <employeeAccountResultFile> <managerAccountResultFile> <validationResultFile> <combinedOutputFile>');
+  console.error('(the org-rollup "director" account result file is deliberately not accepted here - see comments in this file)');
+  process.exit(1);
+}
 
 function load(f) { return JSON.parse(fs.readFileSync(path.join(resultsDir, f), 'utf-8')); }
 
+const ROLE_DISPLAY_NAME = { employee: 'Manager', manager: 'Director' };
+function relabel(resultsArr) {
+  return resultsArr.map(r => ({ ...r, scriptAccountRole: r.role, role: ROLE_DISPLAY_NAME[r.role] || r.role }));
+}
+
 const employee = load(employeeFile);
 const manager = load(managerFile);
-const director = load(directorFile);
 const validationChecks = load(validationFile);
 
 const combined = {
@@ -24,9 +43,8 @@ const combined = {
   runTimestamp: manager.runTimestamp,
   baseUrl: manager.baseUrl,
   results: [
-    ...employee.results,
-    ...manager.results,
-    ...director.results,
+    ...relabel(employee.results),
+    ...relabel(manager.results),
   ],
   functionalChecks: {
     title: 'Assessment Page — Validation & Button Behavior (PerfTest ValidationCheck account)',

@@ -475,6 +475,154 @@
           "ok": true
         }
       ]
+    },
+    {
+      "runStamp": "20260812-v2",
+      "date": "2026-08-12",
+      "baseUrl": "https://q-assessments-hrmforce-it.h2software.nl",
+      "combinedResultsFile": "mgscan-full-combined-20260812-v2.json",
+      "release": {
+        "repo": "HRMForce",
+        "releaseId": "pre-PR5661-5665",
+        "confirmedSha": null,
+        "approxSha": "<= 21fa566 (2026-08-11 10:27 UTC, PR 5651) - confirmed to predate PR 5661 (7d2e1e5, 2026-08-12 05:04 UTC) and PR 5665 (415b75a, 2026-08-12 07:27 UTC)",
+        "confirmedBy": "Functional probe: Manager/evaluator assessment side rendered 31 .mgscan-question elements, not 28 - PR 5665 ('remove Manager's open questions') would have reduced this to 28, so it had not reached IT yet. Same environment/build as the original 20260812 run - only the test coverage changed.",
+        "note": "Supersedes the original 20260812 trend entry for methodology reasons, not a release change: relabeled roles to the feature's own Manager/Director terms (dropping the org-hierarchy 'Employee' label per explicit user instruction), and fixed two PDF report timing steps that were previously silently mismeasuring (matching a static title attribute that gets overwritten at runtime by a Knockout token binding, so they always reported 'not found' without actually exercising the click)."
+      },
+      "steps": [
+        {
+          "role": "Manager",
+          "label": "Login",
+          "ms": 6864,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "Page Load - Personal Dashboard",
+          "ms": 2225,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "Permission check - Nine-Grid/Kalibirity tabs absent for Employee",
+          "ms": 3,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "Action - Report (HTML) click",
+          "ms": 2422,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "Action - Report (PDF) click",
+          "ms": 6589,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Login",
+          "ms": 5984,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Page Load - Management Scan (Nine-Grid)",
+          "ms": 2310,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Search by name (real match)",
+          "ms": 695,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Clear search",
+          "ms": 321,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Nine-Grid Generate",
+          "ms": 815,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Report (PDF) toolbar (language popup + overview report)",
+          "ms": 5449,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Grid Cell click (real data cell)",
+          "ms": 715,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Data check - Employee row visible with correct scores",
+          "ms": 8,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Pending tab click",
+          "ms": 527,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Load More - pending list (only meaningful with >10 rows)",
+          "ms": 3,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Kalibirity tab load",
+          "ms": 1104,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Kalibirity Generate",
+          "ms": 187,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Data check - Kalibirity row for Employee visible",
+          "ms": 67,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Stage a manual override (click a non-current swatch)",
+          "ms": 714,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Kalibirity batch save (\"Save calibrations (N)\")",
+          "ms": 1601,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Publish/Unpublish toggle",
+          "ms": 1231,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Report (PDF) generate for candidate row",
+          "ms": 4491,
+          "ok": true
+        }
+      ]
     }
   ]
 }
