@@ -1,0 +1,35 @@
+[
+  {
+    "check": "Unanswered questions get .is-unanswered highlight after Submit",
+    "result": "PASS (30 highlighted)",
+    "ms": 10051
+  },
+  {
+    "check": "Validation error banner shown on submit-without-answering",
+    "result": "FAIL (no banner text found)",
+    "ms": 10051
+  },
+  {
+    "check": "Submit does NOT navigate away when validation fails (stays on question view)",
+    "result": "PASS"
+  },
+  {
+    "check": "Pause & resume later button present and clickable",
+    "result": "PASS",
+    "ms": 852
+  },
+  {
+    "check": "Pause returns to Personal Dashboard",
+    "result": "PASS",
+    "ms": 852
+  },
+  {
+    "check": "Resume -> question view with retained answers renders",
+    "result": "PASS",
+    "ms": 1049
+  },
+  {
+    "check": "Answers retained after Pause + Resume (3 answered before pause)",
+    "result": "PASS (3/3 retained)"
+  }
+]

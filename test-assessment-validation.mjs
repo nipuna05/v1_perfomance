@@ -15,7 +15,19 @@ const credsFile = process.env.CREDS_FILE || '.credentials.local.json';
 const creds = JSON.parse(fs.readFileSync(path.join(__dirname, credsFile), 'utf-8'));
 
 const runStamp = process.argv[2];
-const account = JSON.parse(fs.readFileSync(path.join(__dirname, 'results', `account-setup-${runStamp}.json`), 'utf-8'))[0];
+const accounts = JSON.parse(fs.readFileSync(path.join(__dirname, 'results', `account-setup-${runStamp}.json`), 'utf-8'));
+// Was `accounts[0]` - safe only when the validation-only account was the sole entry in its own
+// file (a distinct runStamp2 from the main hierarchy). Now that create-mgscan-test-accounts.mjs
+// merges by role instead of overwriting, calling it twice for the SAME runStamp (main hierarchy,
+// then validation-only) puts multiple accounts in one file with validation-only appended last,
+// not first - confirmed live 2026-08-13: index [0] silently picked up "PerfTest Director" instead
+// and the run failed looking for a Start-Assessment button Director doesn't have. Look up by role
+// like every other script in this suite does, regardless of which runStamp convention was used.
+const account = accounts.find(a => a.role === 'validationcheck');
+if (!account) {
+  console.error(`No 'validationcheck' role found in results/account-setup-${runStamp}.json - did you create it with the 'validation-only' argument?`);
+  process.exit(1);
+}
 
 const shotsDir = path.join(__dirname, 'shots', 'validation');
 fs.mkdirSync(shotsDir, { recursive: true });

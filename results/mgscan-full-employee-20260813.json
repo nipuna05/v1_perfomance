@@ -1,0 +1,59 @@
+{
+  "runLabel": "mgscan-full",
+  "runTimestamp": "20260813",
+  "baseUrl": "https://q-assessments-hrmforce-it.h2software.nl",
+  "results": [
+    {
+      "role": "employee",
+      "username": "perftest.employee.20260813",
+      "flow": [
+        {
+          "label": "Login",
+          "ms": 6719,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Personal Dashboard",
+          "ms": 1791,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Permission check - Nine-Grid/Kalibirity tabs absent for Employee",
+          "ms": 3,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "confirmedAbsent": true
+          }
+        },
+        {
+          "label": "Action - Report (HTML) click",
+          "ms": 15352,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "hadLanguagePopup": true,
+            "downloadStarted": false,
+            "openedNewTab": true,
+            "suggestedFilename": null
+          }
+        },
+        {
+          "label": "Action - Report (PDF) click",
+          "ms": 11638,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "hadLanguagePopup": true,
+            "downloadStarted": true,
+            "openedNewTab": true,
+            "suggestedFilename": "ManagementScanEmployeeReport_English_20260813.pdf"
+          }
+        }
+      ],
+      "notes": []
+    }
+  ]
+}

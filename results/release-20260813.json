@@ -1,0 +1,8 @@
+{
+  "repo": "HRMForce",
+  "releaseId": "post-2026-08-13-deploy",
+  "confirmedSha": null,
+  "approxSha": "at or near adf07fc (2026-08-13 06:18 UTC, PR 5693 'Manager view - remove button texts') - master HEAD at the time this run was executed; exact deployed SHA on IT not directly knowable (no version endpoint), but definitely includes PR 5665 and everything before it",
+  "confirmedBy": "Functional probe: Manager/evaluator assessment side rendered 28 .mgscan-question elements (not 31) - PR 5665 ('remove Manager's open questions') is confirmed live. Also observed: row-level Report(HTML)/(PDF) popups (added after the 2026-08-12 run), and Personal Dashboard Report(HTML)/(PDF) now going through the same popup flow ('Unify Manager and Employee report generation') - both consistent with a build well past the 2026-08-10/2026-08-12 pre-PR5661-5665 checkpoint.",
+  "note": "First run confirmed against the actual new release the user asked to test. Distinct from 'pre-PR5661-5665' (2026-08-10, 2026-08-12 runs)."
+}

@@ -51,8 +51,14 @@ function msSince(start) { return Number(now() - start) / 1e6; }
 // picking "All ..." while nothing else is selected is a no-op per commonFilter.js's mutual-
 // exclusivity rule (a real item always wins over "All ..."). Confirmed against source
 // (commonFilter.html/js) 2026-08-13, not guessed.
-async function chosenSelectRealOption(page, selectId) {
-  const chosenBox = page.locator(`#${selectId}_chosen`);
+//
+// `scope` must be `nineGridTab` (or `#tabMgScanKalibirity`), NOT the bare `page` - commonFilter
+// is mounted twice (once per tab, both kept alive via `visible` not `if`), so an unscoped
+// `#<id>_chosen` lookup resolves to 2 elements and strict-mode-fails (confirmed live 2026-08-13 -
+// exactly the duplicated-commonFilter gotcha this runbook already documented for the search box
+// and Generate button, just not yet applied to the newer Chosen filters when they were added).
+async function chosenSelectRealOption(scope, page, selectId) {
+  const chosenBox = scope.locator(`#${selectId}_chosen`);
   await chosenBox.click();
   const results = chosenBox.locator('.chosen-results li.active-result');
   await results.first().waitFor({ state: 'visible', timeout: 5000 });
@@ -66,15 +72,63 @@ async function chosenSelectRealOption(page, selectId) {
 // Removes every staged chip on a Chosen multi-select, which per commonFilter.js's mutual-
 // exclusivity rule snaps the widget back to "All ..." once the last real item is deselected -
 // same UI outcome as a fresh page load, without reloading the page.
-async function chosenClearAll(page, selectId) {
-  const chosenBox = page.locator(`#${selectId}_chosen`);
+//
+// Hard-capped and no-progress-guarded (confirmed live 2026-08-13: an earlier, uncapped version
+// of this loop hung indefinitely - the manager sweep never got past this step, with zero output
+// for 10+ minutes, screenshots showing it stalled right after "Generate (with filters applied)").
+// Whatever the exact root cause (selector mismatch for this build's Chosen markup, a click not
+// registering as a real user event, or something else), an unbounded while-loop on a live page
+// interaction must never be able to hang a script - cap it and report what happened either way.
+async function chosenClearAll(scope, page, selectId, notes) {
+  const chosenBox = scope.locator(`#${selectId}_chosen`);
   const closers = chosenBox.locator('.search-choice-close');
   let n = await closers.count();
-  while (n > 0) {
-    await closers.first().click();
+  const startCount = n;
+  let iterations = 0;
+  // This test only ever stages ONE chip per filter (chosenSelectRealOption picks a single
+  // option), so 5 is already generous headroom - kept well short of the old unbounded loop's
+  // multi-minute hang, worst case here is ~5 x (2s click timeout + 150ms) = ~11s, not infinite.
+  const MAX_ITERATIONS = 5;
+  while (n > 0 && iterations < MAX_ITERATIONS) {
+    iterations++;
+    const before = n;
+    await closers.first().click({ timeout: 2000 }).catch(() => {});
     await page.waitForTimeout(150);
     n = await closers.count();
+    if (n >= before) {
+      // No progress this iteration - clicking isn't removing chips. Stop immediately rather
+      // than burn the remaining iteration budget on something that clearly isn't working.
+      notes?.push(`chosenClearAll(${selectId}): click on .search-choice-close did not reduce the chip count (stuck at ${n}) - stopped after ${iterations} attempt(s) instead of hanging.`);
+      return { cleared: false, remaining: n, iterations };
+    }
   }
+  if (n > 0) notes?.push(`chosenClearAll(${selectId}): gave up after ${MAX_ITERATIONS} iterations with ${n} chip(s) still remaining (started with ${startCount}).`);
+  return { cleared: n === 0, remaining: n, iterations };
+}
+
+// Shared by every Report(HTML)/(PDF) trigger (toolbar, row-level, Personal Dashboard) - all of
+// them end in the same window.open("Report.aspx?...", "_blank") call, just reached via a
+// different button/popup path. HTML reports only ever open a new tab (no file download); PDF
+// reports both open a tab AND trigger a download almost immediately after. Waiting the full
+// download timeout unconditionally (the first version of this helper's logic) inflated every
+// HTML step's reported time by however long that timeout was, since the download event was
+// never coming - confirmed live 2026-08-13 (row-level HTML measured 15s for what should be a
+// ~1-2s open). Wait for the popup first (the one signal both report types always produce), then
+// give a short, bounded grace period for an accompanying download rather than the full timeout.
+async function clickAndAwaitReport(page, clickFn) {
+  // Both listeners registered BEFORE the click (required - Playwright only catches events that
+  // fire after waitForEvent is armed), then awaited together so the total wait is bounded by
+  // whichever timeout is longer, not both added sequentially. downloadTimeout is short: PDFs
+  // trigger it within ~1-2s of the popup opening, and HTML reports never trigger one at all, so
+  // there's nothing to gain from a long wait there (a naive sequential 15s wait AFTER the popup
+  // already resolved was exactly what inflated HTML row-report timing to 15s - confirmed live
+  // 2026-08-13, should be ~1-2s).
+  const popupPromise = page.waitForEvent('popup', { timeout: 15000 }).catch(() => null);
+  const downloadPromise = page.waitForEvent('download', { timeout: 4000 }).catch(() => null);
+  await clickFn();
+  const [popup, download] = await Promise.all([popupPromise, downloadPromise]);
+  if (popup && !download) await popup.close().catch(() => {});
+  return { downloadStarted: !!download, openedNewTab: !!popup, suggestedFilename: download ? download.suggestedFilename() : null };
 }
 
 async function step(label, fn) {
@@ -135,29 +189,33 @@ const notes = [];
       await page.getByText('Loading...', { exact: true }).waitFor({ state: 'hidden', timeout: 8000 }).catch(() => {});
       await shot(page, 'before-report-buttons-check');
 
-      flow.push(await step('Action - Report (HTML) click', async () => {
-        // Text match, not getByRole — these are icon+text buttons whose accessible name can
-        // differ unpredictably from the visible label (confirmed live: role-based match found 0
-        // even with the button plainly visible in the screenshot).
-        const btn = page.locator('button, a').filter({ hasText: 'Report (HTML)' });
-        if (await btn.count() === 0) { notes.push('Report (HTML) button not present — cycle may not be published yet.'); return { skipped: true }; }
-        const [popup] = await Promise.all([
-          page.waitForEvent('popup', { timeout: 8000 }).catch(() => null),
-          btn.click(),
-        ]);
-        await page.waitForTimeout(1000);
-        if (popup) { await popup.close().catch(() => {}); return { openedNewTab: true }; }
-        return { openedNewTab: false };
-      }));
+      // As of the "Unify Manager and Employee report generation" release (2026-08-13), the
+      // Personal Dashboard's Report(HTML)/(PDF) buttons now go through the SAME language-popup
+      // flow already handled for Manager's toolbar/row-level reports (onReportHtml/onReportPdf
+      // just set *PopupVisibility(true) now; the real window.open moves to onHtmlOk/onPdfOk).
+      // Confirmed via source (mgScanEmployee.js ~643-694) after this test's first run against
+      // the new release hung for 30s clicking the PDF button - it was blocked by the still-open
+      // HTML popup left over from the previous step, which the old immediate-download assumption
+      // never detected or dismissed.
+      async function personalDashboardReport(label) {
+        const btn = page.locator('button, a').filter({ hasText: `Report (${label})` });
+        if (await btn.count() === 0) { notes.push(`Report (${label}) button not present — cycle may not be published yet.`); return { skipped: true }; }
+        let hadLanguagePopup = false;
+        // The whole click sequence (main button, then Ok if a popup shows) runs INSIDE
+        // clickAndAwaitReport's clickFn, so its popup/download listeners are armed before any of
+        // it happens - correct regardless of whether this build shows the popup or opens
+        // immediately, with no separate/duplicated listener setup for each path.
+        const result = await clickAndAwaitReport(page, async () => {
+          await btn.click();
+          const okBtn = page.locator('a[data-bind="click: onOk"]:visible');
+          hadLanguagePopup = await okBtn.waitFor({ state: 'visible', timeout: 5000 }).then(() => true).catch(() => false);
+          if (hadLanguagePopup) await okBtn.click();
+        });
+        return { hadLanguagePopup, ...result };
+      }
 
-      flow.push(await step('Action - Report (PDF) click', async () => {
-        const btn = page.locator('button, a').filter({ hasText: 'Report (PDF)' });
-        if (await btn.count() === 0) { notes.push('Report (PDF) button not present.'); return { skipped: true }; }
-        const downloadPromise = page.waitForEvent('download', { timeout: 15000 }).catch(() => null);
-        await btn.click();
-        const download = await downloadPromise;
-        return { downloadStarted: !!download, suggestedFilename: download ? download.suggestedFilename() : null };
-      }));
+      flow.push(await step('Action - Report (HTML) click', () => personalDashboardReport('HTML')));
+      flow.push(await step('Action - Report (PDF) click', () => personalDashboardReport('PDF')));
 
     } else {
       // ── Manager / Director: full Nine-Grid + Kalibirity sweep. ──────────────────────────
@@ -199,19 +257,14 @@ const notes = [];
         // view/download is genuinely working now, not just the row-level icon.
         const toolbarBtn = nineGridTab.locator('a[data-bind*="onReportPdf"]');
         if (await toolbarBtn.count() === 0) { notes.push('Toolbar Report (PDF) button not found.'); return { skipped: true }; }
-        await toolbarBtn.click();
-        const okBtn = page.locator('a[data-bind="click: onOk"]:visible');
-        await okBtn.waitFor({ state: 'visible', timeout: 5000 }).catch(() => {});
-        if (await okBtn.count() === 0) { notes.push('Report (PDF) language popup did not appear after toolbar click.'); return { skipped: true }; }
-        await shot(page, 'pdf-language-popup');
-        const downloadPromise = page.waitForEvent('download', { timeout: 15000 }).catch(() => null);
-        const [popup] = await Promise.all([
-          page.waitForEvent('popup', { timeout: 15000 }).catch(() => null),
-          okBtn.click(),
-        ]);
-        const download = await downloadPromise;
-        if (popup && !download) await popup.close().catch(() => {});
-        return { downloadStarted: !!download, openedNewTab: !!popup, suggestedFilename: download ? download.suggestedFilename() : null };
+        return clickAndAwaitReport(page, async () => {
+          await toolbarBtn.click();
+          const okBtn = page.locator('a[data-bind="click: onOk"]:visible');
+          const popupAppeared = await okBtn.waitFor({ state: 'visible', timeout: 5000 }).then(() => true).catch(() => false);
+          if (!popupAppeared) { notes.push('Report (PDF) language popup did not appear after toolbar click.'); return; }
+          await shot(page, 'pdf-language-popup');
+          await okBtn.click();
+        });
       }));
 
       flow.push(await step('Action - Export (.xlsx download)', async () => {
@@ -227,21 +280,21 @@ const notes = [];
       }));
 
       flow.push(await step('Action - Filter: Department (multi-select, Chosen)', async () => {
-        if (await page.locator('#mgScanDepartment_chosen').count() === 0) { notes.push('Department filter (Chosen widget) not found.'); return { skipped: true }; }
-        const picked = await chosenSelectRealOption(page, 'mgScanDepartment');
+        if (await nineGridTab.locator('#mgScanDepartment_chosen').count() === 0) { notes.push('Department filter (Chosen widget) not found.'); return { skipped: true }; }
+        const picked = await chosenSelectRealOption(nineGridTab, page, 'mgScanDepartment');
         await shot(page, 'filter-department-picked');
         return { picked };
       }));
 
       flow.push(await step('Action - Filter: Function (multi-select, Chosen)', async () => {
-        if (await page.locator('#mgScanFunction_chosen').count() === 0) { notes.push('Function filter (Chosen widget) not found.'); return { skipped: true }; }
-        const picked = await chosenSelectRealOption(page, 'mgScanFunction');
+        if (await nineGridTab.locator('#mgScanFunction_chosen').count() === 0) { notes.push('Function filter (Chosen widget) not found.'); return { skipped: true }; }
+        const picked = await chosenSelectRealOption(nineGridTab, page, 'mgScanFunction');
         return { picked };
       }));
 
       flow.push(await step('Action - Filter: Supervisor (multi-select, Chosen)', async () => {
-        if (await page.locator('#mgScanSupervisor_chosen').count() === 0) { notes.push('Supervisor filter (Chosen widget) not found.'); return { skipped: true }; }
-        const picked = await chosenSelectRealOption(page, 'mgScanSupervisor');
+        if (await nineGridTab.locator('#mgScanSupervisor_chosen').count() === 0) { notes.push('Supervisor filter (Chosen widget) not found.'); return { skipped: true }; }
+        const picked = await chosenSelectRealOption(nineGridTab, page, 'mgScanSupervisor');
         return { picked };
       }));
 
@@ -261,11 +314,12 @@ const notes = [];
       }));
 
       flow.push(await step('Action - Reset filters (Department/Function/Supervisor back to All)', async () => {
-        await chosenClearAll(page, 'mgScanDepartment');
-        await chosenClearAll(page, 'mgScanFunction');
-        await chosenClearAll(page, 'mgScanSupervisor');
+        const dept = await chosenClearAll(nineGridTab, page, 'mgScanDepartment', notes);
+        const func = await chosenClearAll(nineGridTab, page, 'mgScanFunction', notes);
+        const sup = await chosenClearAll(nineGridTab, page, 'mgScanSupervisor', notes);
         const groupSelect = nineGridTab.locator('select').filter({ has: page.locator('option') }).last();
         await groupSelect.selectOption({ index: 0 }).catch(() => {});
+        return { dept, func, sup };
       }));
 
       flow.push(await step('Action - Nine-Grid Generate (filters reset)', async () => {
@@ -480,24 +534,14 @@ const notes = [];
         if (await employeeRow.count() === 0) { notes.push(`Employee row not visible for row-level ${label} report test in this view state.`); return { skipped: true }; }
         const btn = employeeRow.first().locator(`.mg-cell-row-actions button:has(${iconClass})`);
         if (await btn.count() === 0) { notes.push(`No inline Report (${label}) icon found on the candidate row.`); return { skipped: true }; }
-        await btn.click();
-        const okBtn = page.locator('a[data-bind="click: onOk"]:visible');
-        const popupAppeared = await okBtn.waitFor({ state: 'visible', timeout: 5000 }).then(() => true).catch(() => false);
-        const downloadPromise = page.waitForEvent('download', { timeout: 15000 }).catch(() => null);
-        let popup;
-        if (popupAppeared) {
-          [popup] = await Promise.all([
-            page.waitForEvent('popup', { timeout: 15000 }).catch(() => null),
-            okBtn.click(),
-          ]);
-        } else {
-          // Fall back to the pre-2026-08-13 immediate-open behaviour, in case this environment
-          // hasn't picked up the row-popup change yet.
-          popup = await page.waitForEvent('popup', { timeout: 2000 }).catch(() => null);
-        }
-        const download = await downloadPromise;
-        if (popup && !download) await popup.close().catch(() => {});
-        return { hadLanguagePopup: popupAppeared, downloadStarted: !!download, openedNewTab: !!popup, suggestedFilename: download ? download.suggestedFilename() : null };
+        let hadLanguagePopup = false;
+        const result = await clickAndAwaitReport(page, async () => {
+          await btn.click();
+          const okBtn = page.locator('a[data-bind="click: onOk"]:visible');
+          hadLanguagePopup = await okBtn.waitFor({ state: 'visible', timeout: 5000 }).then(() => true).catch(() => false);
+          if (hadLanguagePopup) await okBtn.click();
+        });
+        return { hadLanguagePopup, ...result };
       }
 
       flow.push(await step('Action - Report (HTML) generate for candidate row', () => rowReport('.fa-code', 'HTML')));
