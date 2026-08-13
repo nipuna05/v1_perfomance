@@ -33,6 +33,17 @@ async function shot(page, label) {
   console.log(`  [shot] ${label}`);
 }
 
+function now() { return process.hrtime.bigint(); }
+function msSince(start) { return Number(now() - start) / 1e6; }
+async function timeIt(flowArr, label, fn) {
+  const start = now();
+  let ok = true, error = null, extra = null;
+  try { extra = await fn(); } catch (e) { ok = false; error = e.message?.slice(0, 300) || String(e); }
+  const ms = Math.round(msSince(start));
+  flowArr.push({ label, ms, ok, error, extra });
+  return extra;
+}
+
 async function login(page, account) {
   await page.goto(creds.signInUrl || creds.baseUrl, { waitUntil: 'domcontentloaded' });
   await page.locator('#Login1_UserName').waitFor({ state: 'visible', timeout: 20000 });
@@ -42,28 +53,46 @@ async function login(page, account) {
   await page.locator('#MenuLogout').waitFor({ state: 'visible', timeout: 30000 });
 }
 
-async function answerAllQuestions(page) {
+// Per-statement timing: all 28 scored statements render on one page/DOM at once (no per-page
+// autosave - only Pause and Submit hit the server, confirmed via source 2026-08-13), so each
+// `.mgscan-scale-option` click is a pure client-side response - this measures UI responsiveness
+// per click, not a network round-trip. Open-context textareas (up to 3) are timed separately
+// since they're a fill, not a click. This is the only place assessment-play timing can be
+// captured at all: once an assessment completes it shows "Done" and can't be replayed for 3
+// months (see docs/management-scan-testing-runbook.md), so there is no way to re-run this
+// interaction on demand the way the Nine-Grid/Kalibirity sweep can be re-run anytime - this
+// script's one-time completion run during account setup IS the only measurement opportunity per
+// fresh dataset.
+async function answerAllQuestions(page, flowArr, rolePrefix) {
   await page.locator('.mgscan-question').first().waitFor({ state: 'visible', timeout: 15000 });
   const questions = await page.locator('.mgscan-question').all();
   console.log(`  Answering ${questions.length} questions...`);
+  let scoredCount = 0, openCount = 0;
   for (let i = 0; i < questions.length; i++) {
     const q = questions[i];
     const textarea = q.locator('textarea');
     if (await textarea.count() > 0) {
-      await textarea.fill('Sample answer entered for Management Scan performance testing.');
+      openCount++;
+      await timeIt(flowArr, `${rolePrefix} - Open question #${openCount} - textarea fill`, async () => {
+        await textarea.fill('Sample answer entered for Management Scan performance testing.');
+      });
     } else {
       const options = q.locator('label.mgscan-scale-option');
       const count = await options.count();
       if (count > 0) {
-        await options.nth(Math.min(2, count - 1)).click();
+        scoredCount++;
+        await timeIt(flowArr, `${rolePrefix} - Statement #${scoredCount} - scale-option click`, async () => {
+          await options.nth(Math.min(2, count - 1)).click();
+        });
       } else {
         console.log(`  WARNING: question #${i + 1} has neither textarea nor scale options.`);
       }
     }
   }
+  return { scoredCount, openCount };
 }
 
-async function completeAssessment(page, label) {
+async function completeAssessment(page, label, flowArr) {
   // Views are toggled via Knockout `visible` (display:none), not `if` — the hidden view's DOM
   // node still matches a plain '.btn-ctrl.primary' selector, and .first() doesn't skip it,
   // so a *later* Playwright click (e.g. Submit) can resolve back to the earlier, now-hidden
@@ -72,36 +101,52 @@ async function completeAssessment(page, label) {
   const visiblePrimaryBtn = page.locator('.btn-ctrl.primary:visible');
 
   // 'start' view — click the primary Start/Continue button.
-  await visiblePrimaryBtn.waitFor({ state: 'visible', timeout: 20000 });
+  await timeIt(flowArr, `${label} - Assessment start view load`, async () => {
+    await visiblePrimaryBtn.waitFor({ state: 'visible', timeout: 20000 });
+  });
   await shot(page, `${label}-01-intro`);
-  await visiblePrimaryBtn.click();
+  await timeIt(flowArr, `${label} - Click Start/Continue -> question view renders`, async () => {
+    await visiblePrimaryBtn.click();
+    await page.locator('.mgscan-question').first().waitFor({ state: 'visible', timeout: 15000 });
+  });
 
-  // 'question' view — answer everything, then Submit.
-  await answerAllQuestions(page);
+  // 'question' view — answer everything (individually timed), then Submit.
+  await answerAllQuestions(page, flowArr, label);
   await shot(page, `${label}-02-answered`);
 
-  await visiblePrimaryBtn.click();
-  await page.waitForTimeout(2000);
+  const submitResult = await timeIt(flowArr, `${label} - Submit -> response (validation banner or end view)`, async () => {
+    await visiblePrimaryBtn.click();
+    // Race the two possible outcomes rather than a blind fixed wait, so this step's ms reflects
+    // how long the actual response took, not an arbitrary sleep.
+    const errorBanner = page.locator('[data-bind*="errorMessage"]');
+    const endViewMarker = page.getByText(/back to dashboard/i);
+    await Promise.race([
+      errorBanner.first().waitFor({ state: 'visible', timeout: 10000 }).catch(() => {}),
+      endViewMarker.first().waitFor({ state: 'visible', timeout: 10000 }).catch(() => {}),
+    ]);
+    const bannerVisible = await errorBanner.first().isVisible().catch(() => false);
+    const bannerText = bannerVisible ? (await errorBanner.first().textContent() || '').trim() : null;
+    if (bannerText) console.log(`  Validation/error banner: "${bannerText}"`);
+    return { bannerShown: bannerVisible, bannerText };
+  });
   await shot(page, `${label}-03-after-submit`);
-
-  // Surface any validation banner rather than silently proceeding.
-  const errorBanner = page.locator('[data-bind*="errorMessage"]');
-  if (await errorBanner.count() > 0) {
-    const text = (await errorBanner.first().textContent() || '').trim();
-    if (text) console.log(`  Validation/error banner: "${text}"`);
-  }
 
   // 'end' view — click Back to dashboard if present.
   const backBtn = page.getByText(/back to dashboard/i);
   if (await backBtn.count() > 0) {
-    await backBtn.first().click();
-    await page.waitForTimeout(1000);
+    await timeIt(flowArr, `${label} - Back to dashboard`, async () => {
+      await backBtn.first().click();
+      await page.waitForTimeout(1000);
+    });
     await shot(page, `${label}-04-end`);
   }
+  return submitResult;
 }
 
 (async () => {
   const browser = await chromium.launch({ headless: true });
+  const employeeFlow = [];
+  const managerFlow = [];
 
   try {
     console.log('=== Employee self-assessment ===');
@@ -112,7 +157,7 @@ async function completeAssessment(page, label) {
     const startAssessmentBtn = empPage.locator('a[data-bind*="onStartAssessment"]');
     await startAssessmentBtn.waitFor({ state: 'visible', timeout: 15000 });
     await startAssessmentBtn.click();
-    await completeAssessment(empPage, 'employee');
+    await completeAssessment(empPage, 'employee', employeeFlow);
     await empPage.close();
 
     console.log('\n=== Manager assessment about Employee ===');
@@ -135,7 +180,7 @@ async function completeAssessment(page, label) {
     const pendingStartBtn = mgrPage.locator('.mg-cell-pending-start').first();
     await pendingStartBtn.waitFor({ state: 'visible', timeout: 10000 });
     await pendingStartBtn.click();
-    await completeAssessment(mgrPage, 'manager');
+    await completeAssessment(mgrPage, 'manager', managerFlow);
     await mgrPage.close();
 
   } catch (e) {
@@ -143,4 +188,21 @@ async function completeAssessment(page, label) {
   } finally {
     await browser.close();
   }
+
+  // Saved in the same {role, flow, notes} shape as measure-mgscan-full.mjs's output so
+  // build-final-report-data.mjs / record-perf-run.mjs can merge it in without a special case.
+  // Role names here are the org-hierarchy account roles ('employee'/'manager') - relabeled to
+  // the feature's own terms (Manager/Director) by build-final-report-data.mjs, same as every
+  // other script's output (see that file's ROLE_DISPLAY_NAME map).
+  const outPath = path.join(__dirname, 'results', `assessment-play-timing-${runStamp}.json`);
+  fs.writeFileSync(outPath, JSON.stringify({
+    runLabel: 'assessment-play-timing',
+    runTimestamp: runStamp,
+    baseUrl: creds.baseUrl,
+    results: [
+      { role: 'employee', username: employee.username, flow: employeeFlow, notes: [] },
+      { role: 'manager', username: manager.username, flow: managerFlow, notes: [] },
+    ],
+  }, null, 2));
+  console.log(`\nSaved assessment-play timing to ${outPath}`);
 })();

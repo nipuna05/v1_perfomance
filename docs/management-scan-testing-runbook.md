@@ -76,7 +76,7 @@ node measure-mgscan-full.mjs <runStamp> manager  mgscan-full <runTs>
 node measure-mgscan-full.mjs <runStamp> director mgscan-full <runTs>
 ```
 
-One script, role-aware branching — Employee only ever attempts Personal-Dashboard actions (and asserts the Nine-Grid/Kalibirity tabs are genuinely absent, rather than trying to force access); Manager/Director both run the full Nine-Grid + Kalibirity sweep (search, filter, Generate, cell-click, Kalibirity Generate, stage + save a manual override, Publish/Unpublish toggle, inline report generation).
+One script, role-aware branching — Employee only ever attempts Personal-Dashboard actions (and asserts the Nine-Grid/Kalibirity tabs are genuinely absent, rather than trying to force access); Manager/Director both run the full sweep: search, the 4 filters (Department/Function/Supervisor multi-select via Chosen, Group single-select), Generate (baseline, filtered, and reset), Export (.xlsx download), toolbar + row-level Report(HTML)/(PDF) (all four go through a language popup as of 2026-08-13), row-click navigation into a candidate's Personal Dashboard and back, "Load All Completed" (ADR-012), a Voltooid↔Openstaand sub-tab round trip, Kalibirity Generate, stage + save a manual override, and Publish/Unpublish toggle. See §10 for the full 2026-08-13 coverage expansion and why some of this (assessment-play timing) lives in a different script entirely.
 
 **Gotchas worth knowing before you extend this script:**
 - `commonFilter` (search box, filters, Generate button) is mounted **twice simultaneously** — once under the Nine-Grid tab, once under Kalibirity — because `MgScan.aspx` keeps both tabs' components alive via `visible` (not `if`) so switching tabs doesn't lose state. An unscoped `a[data-bind*="onGenerate"]` matches 2 elements and strict-mode-fails. Always scope to `#tabMgScanNineGrid` or `#tabMgScanKalibirity`.
@@ -85,7 +85,9 @@ One script, role-aware branching — Employee only ever attempts Personal-Dashbo
 - To stage an override: click a `.kal-swatch:not(.is-current)` inside the candidate's `.kal-row`, then optionally fill `.kal-inline-edit-input` (the "Reason for override" comment).
 - After Publish/Unpublish, the candidate's row can legitimately **disappear** from the currently-viewed list/cell (confirmed both directions) — don't assume the button element persists; use short (~3s) explicit timeouts on any post-click `getAttribute` check, or Playwright's default 30s auto-wait silently makes the step look "slow" when really it's just chasing a vanished element.
 - A "Loading..." modal briefly covers the page after several actions (Kalibirity Generate, dashboard navigation) — wait for it to hide before checking for content, not just `networkidle` (confirmed live: `networkidle` can resolve while the modal is still up).
-- Report (HTML)/(PDF) buttons: match by **visible text** (`page.locator('button, a').filter({ hasText: 'Report (HTML)' })`), not `getByRole('button', { name: ... })` — icon+text buttons' accessible name doesn't reliably match the visible label.
+- Report (HTML)/(PDF) buttons: match by **visible text** (`page.locator('button, a').filter({ hasText: 'Report (HTML)' })`), not `getByRole('button', { name: ... })` — icon+text buttons' accessible name doesn't reliably match the visible label. Row-level report icons are worse: their `title` attribute is a Knockout token binding (`attr: { title: tokens().ReportPdf }`) that overwrites whatever static `title` sits in the markup at runtime — match the icon class instead (`.fa-file-pdf` / `.fa-code`), confirmed 2026-08-12 after a title-text match silently found nothing for an entire session.
+- Chosen multi-select filters (Department/Function/Supervisor, added 2026-08-11): the native `<select multiple>` is hidden: interact with the widget it renders, `#<selectId>_chosen` (click to open, `.chosen-results li.active-result` for options, `.search-choice-close` per chip to deselect) — Playwright's `selectOption()` won't work since Chosen intercepts the real dropdown. A real, selectable "All ..." option (ID -111) is always prepended server-side and lands at index 0 — skip it (`nth(1)`) to pick a genuine value.
+- Row-level Report(HTML)/(PDF) gained their own language popups as of the 2026-08-13 master sync (`rowHtmlPopupVisibility`/`rowPdfPopupVisibility`) — same Ok-button pattern as the toolbar popups (`a[data-bind="click: onOk"]:visible`), but this is a **behaviour change**: a script written against the pre-08-13 immediate-`window.open` version will silently hang waiting for a download that never fires until the popup's Ok is clicked. `measure-mgscan-full.mjs`'s `rowReport()` helper detects which behaviour is live and handles both.
 
 ## 6. Assessment-page validation/button checks
 
@@ -93,7 +95,7 @@ One script, role-aware branching — Employee only ever attempts Personal-Dashbo
 node test-assessment-validation.mjs <runStamp-of-validation-only-account>
 ```
 
-Checks (all passed 2026-08-10): submit-without-answering highlights every unanswered question and shows a specific validation banner without navigating away; Pause & Resume correctly persists partial answers across a full logout-equivalent round-trip (dashboard → resume → same answers selected).
+Checks (all passed 2026-08-10): submit-without-answering highlights every unanswered question and shows a specific validation banner without navigating away; Pause & Resume correctly persists partial answers across a full logout-equivalent round-trip (dashboard → resume → same answers selected). As of 2026-08-13 each finding also carries an `ms` field where a message/UI-response appearance time is meaningful (validation banner appearance time, Pause round-trip, Resume round-trip) — rendered as a "Time (ms)" column in the Functional Checks sheet, blank for pure state assertions where a time wouldn't mean anything.
 
 ## 7. Build the consolidated report
 
@@ -156,3 +158,43 @@ This auto-generates a markdown table (every step, both runs' ms, delta, delta %,
 5. `node compare-perf-runs.mjs > docs/management-scan-perf-comparison-latest.md`
 6. Write the short dated narrative doc for anything the script can't see (bug status, new findings, recommendations).
 7. Update the project dashboard's Performance section from the comparison output.
+
+## 10. Comprehensive coverage expansion (2026-08-13)
+
+Written after the user asked to cover "each and every performance related measurement with different roles including navigation, filtering, sorting, downloading, searching, assessment play, button validation message popup or message appearing time" — a real coverage audit against live source (not assumption) first, then the actual script changes below. **Not yet run against a real release** — this is prep for whenever the user confirms the dev team's performance update has shipped; sync master again first per [[workflow-check-uptodate-before-local-run]] since more UI can land between now and then.
+
+### Coverage matrix
+
+| Category | Exists? | Covered by |
+|---|---|---|
+| Sorting | **No** — confirmed via code search (grepped all MgScan JS for `sortBy/onSort/sortable/orderBy`, zero hits). Nine-Grid is a fixed 3×3, lists have static non-clickable headers. Don't build a test for this. | N/A |
+| Filtering | 4 filters + search. Department/Function/Supervisor are multi-select (jQuery Chosen, added 2026-08-11); Group stays single-select. | `measure-mgscan-full.mjs` — 4 new filter steps + a Generate-with-filters + reset-filters + Generate-reset round trip |
+| Navigation | Menu entry, Nine-Grid↔Kalibirity tabs, Voltooid↔Openstaand sub-tabs, cell drill-down, row-click into a candidate's dashboard (an in-page Knockout view swap, not a real navigation — `MgScanVM.openDashboard` just sets `currentView('employee')`), "Load All Completed" (ADR-012). The Rev-3 "Start Management Scan" entry point on the HRMForce Start Page **is not built anywhere** (checked local, master, and the branch literally named for it) — don't test it yet. | `measure-mgscan-full.mjs` — row-click→dashboard→back, Load All Completed, sub-tab round trip |
+| Downloading | Toolbar Export (a real **.xlsx**, not CSV, recomputed server-side from active filters), toolbar Report(HTML)/(PDF), row-level Report(HTML)/(PDF) — **all four now go through a language popup** as of 2026-08-13 (row-level popups are new; toolbar ones existed since 2026-08-07/PR 5590). | `measure-mgscan-full.mjs` — Export step; `rowReport()` helper for both row-level icons, handles either popup or immediate-open |
+| Searching | Name search + a working clear-icon. | Already covered (unchanged) |
+| Assessment play | All 28 statements render on one page/DOM at once, each independently clickable — no per-page autosave, only Pause and Submit hit the server. Can only be measured **once per fresh dataset** (an assessment can't be replayed for 3 months once complete), unlike Nine-Grid/Kalibirity which can be re-exercised anytime. | `complete-mgscan-assessments.mjs` — now times the start-view load, each statement click and each open-question fill individually, the Submit→response race (banner or end-view, whichever resolves first), and Back-to-dashboard; writes `results/assessment-play-timing-<runStamp>.json` in the same `{role, flow, notes}` shape as everything else |
+| Button validation / messages | No `alert()`/toast component anywhere in MgScan (checked both branches) — all feedback is Knockout-bound inline text: the validation banner, `.is-unanswered` highlighting, Kalibirity's dynamic save-button label, disabled-button states. Two different loading indicators exist: `.nd-loading-screen` (app-wide, fires on every ajax call via `$(document).ajaxStart/ajaxStop`) and `.mg-loading-overlay` (Nine-Grid-specific, tied to the `isLoading` observable during Generate). A real regression was found in passing: the assessment's open-question textarea still has `maxlength="250"` on both branches even though a merged PR removed it (DB is now unbounded) — reintroduced by a merge conflict; worth a dedicated test once actually fixed. | `test-assessment-validation.mjs` — the Submit-without-answering and Pause/Resume checks now carry a real measured `ms` (time until the banner/dashboard/resumed-view actually appeared), not just pass/fail; `generate-excel-perf.mjs`'s Functional Checks sheet gained a "Time (ms)" column to show it |
+
+### Updated command sequence
+
+`build-final-report-data.mjs` now merges by role instead of overwriting, and takes an optional 5th argument for the assessment-play timing file — pass it whenever you have a freshly-created dataset for this run (you won't on a repeat run against an already-completed cycle, since that data can't be regenerated):
+
+```bash
+node create-mgscan-test-accounts.mjs <runStamp>
+node complete-mgscan-assessments.mjs <runStamp>          # now also writes results/assessment-play-timing-<runStamp>.json
+node director-publish.mjs <runStamp> manager
+node measure-mgscan-full.mjs <runStamp> employee mgscan-full <runTs>
+node measure-mgscan-full.mjs <runStamp> manager  mgscan-full <runTs>   # now covers filters/export/navigation/Load-All-Completed too
+node measure-mgscan-full.mjs <runStamp> director mgscan-full <runTs>
+node create-mgscan-test-accounts.mjs <runStamp2> validation-only
+node assign-manager.mjs "ValidationCheck" "Manager"
+node test-assessment-validation.mjs <runStamp2>          # findings now carry ms where meaningful
+node build-final-report-data.mjs <employeeFile> <managerFile> <validationFile> <combinedFile> results/assessment-play-timing-<runStamp>.json
+node generate-excel-perf.mjs "results/<combinedFile>" "reports/ManagementScan_FULL_Report.xlsx"
+```
+
+### New gotchas specific to this expansion
+
+- **`create-mgscan-test-accounts.mjs` used to silently overwrite, not merge, `results/account-setup-<runStamp>.json`** on a second call for the same runStamp — creating the standalone validation account after the director/manager/employee hierarchy destroyed the earlier accounts' saved credentials and crashed every later script that needed them. Fixed 2026-08-12 (merges by role now), but if you're working from an older checkout, watch for it.
+- Filter/Export/navigation timings are all **new steps with no baseline to compare against yet** — the first real run of this expanded script establishes a fresh mini-baseline for just these steps, layered on top of the existing 2026-08-10 baseline for everything else. Don't read "no prior number" as a regression.
+- Assessment-play timing can only ever be captured on a **freshly-created** dataset. If a future run reuses an already-completed cycle (no new account creation), there's no assessment-play data for that run — this is an expected gap, not a script failure.

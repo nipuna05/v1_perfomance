@@ -337,11 +337,11 @@ for (const res of results) {
 // ══════════════════════════════════════════════════════════════════════════
 if (data.functionalChecks) {
   const fc = wb.addWorksheet('Functional Checks');
-  fc.columns = [{ width: 4 }, { width: 60 }, { width: 40 }];
-  styleTitle(fc, 1, data.functionalChecks.title || 'Functional Checks', 3);
+  fc.columns = [{ width: 4 }, { width: 60 }, { width: 40 }, { width: 14 }];
+  styleTitle(fc, 1, data.functionalChecks.title || 'Functional Checks', 4);
   let fr = 3;
   const fcHeader = fc.getRow(fr);
-  ['#', 'Check', 'Result'].forEach((h, i) => fcHeader.getCell(i + 1).value = h);
+  ['#', 'Check', 'Result', 'Time (ms)'].forEach((h, i) => fcHeader.getCell(i + 1).value = h);
   styleHeaderRow(fcHeader);
   fr++;
   (data.functionalChecks.checks || []).forEach((c, i) => {
@@ -354,6 +354,10 @@ if (data.functionalChecks) {
     row.getCell(3).alignment = { wrapText: true };
     row.getCell(3).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: pass ? 'FFC6EFCE' : 'FFFFC7CE' } };
     row.getCell(3).font = { color: { argb: pass ? 'FF006100' : 'FF9C0006' }, bold: true };
+    // ms is optional - only checks that measure a message/UI-response appearance time set it
+    // (e.g. validation-banner appearance, Pause/Resume round-trip); pure state assertions leave
+    // it blank rather than showing a misleading 0.
+    if (typeof c.ms === 'number') row.getCell(4).value = c.ms;
     row.eachCell(borderCell);
     fr++;
   });

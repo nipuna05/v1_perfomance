@@ -20,10 +20,11 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const resultsDir = path.join(__dirname, 'results');
 
-const [, , employeeFile, managerFile, validationFile, outFile] = process.argv;
+const [, , employeeFile, managerFile, validationFile, outFile, assessmentPlayFile] = process.argv;
 if (!employeeFile || !managerFile || !validationFile || !outFile) {
-  console.error('Usage: node build-final-report-data.mjs <employeeAccountResultFile> <managerAccountResultFile> <validationResultFile> <combinedOutputFile>');
+  console.error('Usage: node build-final-report-data.mjs <employeeAccountResultFile> <managerAccountResultFile> <validationResultFile> <combinedOutputFile> [assessmentPlayTimingFile]');
   console.error('(the org-rollup "director" account result file is deliberately not accepted here - see comments in this file)');
+  console.error('assessmentPlayTimingFile is optional - the output of complete-mgscan-assessments.mjs, only available for a freshly-created dataset (an assessment can only be played once per 3-month cycle, so this data cannot be regenerated on demand the way Nine-Grid/Kalibirity data can).');
   process.exit(1);
 }
 
@@ -34,18 +35,37 @@ function relabel(resultsArr) {
   return resultsArr.map(r => ({ ...r, scriptAccountRole: r.role, role: ROLE_DISPLAY_NAME[r.role] || r.role }));
 }
 
+// Merges entries sharing the same (relabeled) role into one {role, username, flow, notes} object
+// per role, flow arrays concatenated in the order given - needed because assessment-play timing
+// and the Nine-Grid/Kalibirity sweep are two separate scripts/runs that both produce a 'Manager'
+// and a 'Director' entry; generate-excel-perf.mjs's per-role lookup uses .find(), which would
+// silently keep only the first match and drop the other script's data if these weren't merged
+// here first.
+function mergeByRole(...resultArrays) {
+  const byRole = new Map();
+  for (const arr of resultArrays) {
+    for (const r of arr) {
+      if (!byRole.has(r.role)) byRole.set(r.role, { role: r.role, username: r.username, flow: [], notes: [] });
+      const target = byRole.get(r.role);
+      target.flow.push(...(r.flow || []));
+      target.notes.push(...(r.notes || []));
+    }
+  }
+  return [...byRole.values()];
+}
+
 const employee = load(employeeFile);
 const manager = load(managerFile);
 const validationChecks = load(validationFile);
+const assessmentPlay = assessmentPlayFile ? load(assessmentPlayFile) : null;
 
 const combined = {
   runLabel: 'management-scan-full-report',
   runTimestamp: manager.runTimestamp,
   baseUrl: manager.baseUrl,
-  results: [
-    ...relabel(employee.results),
-    ...relabel(manager.results),
-  ],
+  results: assessmentPlay
+    ? mergeByRole(relabel(assessmentPlay.results), relabel(employee.results), relabel(manager.results))
+    : mergeByRole(relabel(employee.results), relabel(manager.results)),
   functionalChecks: {
     title: 'Assessment Page — Validation & Button Behavior (PerfTest ValidationCheck account)',
     checks: validationChecks,

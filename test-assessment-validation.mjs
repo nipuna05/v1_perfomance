@@ -27,6 +27,8 @@ async function shot(page, label) {
 }
 
 const findings = [];
+function now() { return process.hrtime.bigint(); }
+function msSince(start) { return Math.round(Number(now() - start) / 1e6); }
 
 (async () => {
   const browser = await chromium.launch({ headless: true });
@@ -51,16 +53,20 @@ const findings = [];
 
     // ── Test 1: Submit with nothing answered ────────────────────────────────────────────
     await shot(page, '02-question-page-unanswered');
+    const submitClickStart = now();
     await page.locator('.btn-ctrl.primary:visible').click();
-    await page.waitForTimeout(1500);
+    // Time the actual appearance of the validation banner/highlight, not a blind sleep -
+    // this is the "message appearing time" measurement, distinct from whether it shows at all.
+    const errorBanner = page.locator('[data-bind*="errorMessage"]');
+    const bannerAppeared = await errorBanner.first().waitFor({ state: 'visible', timeout: 10000 }).then(() => true).catch(() => false);
+    const bannerAppearMs = msSince(submitClickStart);
     await shot(page, '03-after-submit-unanswered');
 
     const unansweredCount = await page.locator('.mgscan-question.is-unanswered').count();
-    findings.push({ check: 'Unanswered questions get .is-unanswered highlight after Submit', result: unansweredCount > 0 ? `PASS (${unansweredCount} highlighted)` : 'FAIL (0 highlighted)' });
+    findings.push({ check: 'Unanswered questions get .is-unanswered highlight after Submit', result: unansweredCount > 0 ? `PASS (${unansweredCount} highlighted)` : 'FAIL (0 highlighted)', ms: bannerAppearMs });
 
-    const errorBanner = page.locator('[data-bind*="errorMessage"]');
-    const bannerText = (await errorBanner.count()) > 0 ? (await errorBanner.first().textContent() || '').trim() : '';
-    findings.push({ check: 'Validation error banner shown on submit-without-answering', result: bannerText ? `PASS ("${bannerText}")` : 'FAIL (no banner text found)' });
+    const bannerText = bannerAppeared ? (await errorBanner.first().textContent() || '').trim() : '';
+    findings.push({ check: 'Validation error banner shown on submit-without-answering', result: bannerText ? `PASS ("${bannerText}")` : 'FAIL (no banner text found)', ms: bannerAppearMs });
 
     const stillOnQuestionView = await page.locator('.mgscan-question').first().isVisible();
     findings.push({ check: 'Submit does NOT navigate away when validation fails (stays on question view)', result: stillOnQuestionView ? 'PASS' : 'FAIL' });
@@ -81,22 +87,26 @@ const findings = [];
     if (await pauseBtn.count() === 0) {
       findings.push({ check: 'Pause & resume later button present', result: 'FAIL (not found)' });
     } else {
+      const pauseClickStart = now();
       await pauseBtn.first().click();
-      await page.waitForTimeout(1500);
+      const dashboardHeading = page.locator('h1', { hasText: account.fullName });
+      const backOnDashboard = await dashboardHeading.waitFor({ state: 'visible', timeout: 10000 }).then(() => true).catch(() => false);
+      const pauseMs = msSince(pauseClickStart);
       await shot(page, '05-after-pause');
-      findings.push({ check: 'Pause & resume later button present and clickable', result: 'PASS' });
-
-      const backOnDashboard = await page.locator('h1', { hasText: account.fullName }).count() > 0;
-      findings.push({ check: 'Pause returns to Personal Dashboard', result: backOnDashboard ? 'PASS' : 'FAIL' });
+      findings.push({ check: 'Pause & resume later button present and clickable', result: 'PASS', ms: pauseMs });
+      findings.push({ check: 'Pause returns to Personal Dashboard', result: backOnDashboard ? 'PASS' : 'FAIL', ms: pauseMs });
 
       // Resume and verify the 3 answers are still selected.
       const continueBtn = page.locator('a[data-bind*="onStartAssessment"]');
       if (await continueBtn.count() > 0) {
+        const resumeStart = now();
         await continueBtn.click();
         await page.locator('.btn-ctrl.primary:visible').waitFor({ state: 'visible', timeout: 15000 });
         await shot(page, '06-resume-intro');
         await page.locator('.btn-ctrl.primary:visible').click(); // "Continue"
         await page.locator('.mgscan-question').first().waitFor({ state: 'visible', timeout: 15000 });
+        const resumeMs = msSince(resumeStart);
+        findings.push({ check: 'Resume -> question view with retained answers renders', result: 'PASS', ms: resumeMs });
         await shot(page, '07-resumed-question-page');
 
         const questionsAfterResume = await page.locator('.mgscan-question').all();

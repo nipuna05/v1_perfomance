@@ -23,6 +23,12 @@ Baseline numbers from the first full pass: `docs/management-scan-baseline-2026-0
 run since is accumulated in `results/mgscan-perf-trend.json` (see runbook §9) — this is the
 durable cross-release record, not any single dated comparison doc.
 
+Coverage was substantially expanded 2026-08-13 (runbook §10) per the user's request to cover
+"each and every performance related measurement... navigation, filtering, sorting, downloading,
+searching, assessment play, button validation message popup or message appearing time" — read
+§10's coverage matrix before assuming a category isn't covered (sorting genuinely isn't, confirmed
+absent from the feature entirely; everything else now is).
+
 ## When invoked
 
 1. **Confirm scope with the user first** if it's not already clear from their request:
@@ -46,21 +52,26 @@ durable cross-release record, not any single dated comparison doc.
 
 ```bash
 CREDS_FILE=.credentials.local.json node create-mgscan-test-accounts.mjs <runStamp>
-node complete-mgscan-assessments.mjs <runStamp>
+node complete-mgscan-assessments.mjs <runStamp>   # also writes results/assessment-play-timing-<runStamp>.json (only possible on a FRESH dataset)
 node director-publish.mjs <runStamp> manager      # NOT director — see runbook §4, real bug if you use director
 node measure-mgscan-full.mjs <runStamp> employee mgscan-full <runTs>
-node measure-mgscan-full.mjs <runStamp> manager  mgscan-full <runTs>
+node measure-mgscan-full.mjs <runStamp> manager  mgscan-full <runTs>   # covers filters/export/navigation/Load-All-Completed too (runbook §10)
 node measure-mgscan-full.mjs <runStamp> director mgscan-full <runTs>
 node create-mgscan-test-accounts.mjs <runStamp2> validation-only
-node assign-manager.mjs "ValidationCheck" "Director"
-node test-assessment-validation.mjs <runStamp2>
-node build-final-report-data.mjs <employeeFile> <managerFile> <directorFile> <validationFile> <combinedFile>
+node assign-manager.mjs "ValidationCheck" "Manager"
+node test-assessment-validation.mjs <runStamp2>   # findings now carry ms where a message-appearance time is meaningful
+node build-final-report-data.mjs <employeeFile> <managerFile> <validationFile> <combinedFile> results/assessment-play-timing-<runStamp>.json
 node generate-excel-perf.mjs "results/<combinedFile>" "reports/ManagementScan_FULL_Report.xlsx"
 
 # then record this run into the cross-release trend log (write results/release-<runStamp>.json first — see runbook §9):
 node record-perf-run.mjs <combinedFile> <runStamp> <date> results/release-<runStamp>.json
 node compare-perf-runs.mjs > docs/management-scan-perf-comparison-latest.md
 ```
+
+Note: `build-final-report-data.mjs` no longer takes a `directorFile` argument at all (the
+org-rollup account is intentionally excluded from reported roles — see runbook §0/CLAUDE.md
+context) and the assessment-play-timing file is an optional 5th argument, only available when
+this run created a fresh dataset (an assessment can't be replayed for 3 months once completed).
 
 ## After running
 

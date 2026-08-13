@@ -42,6 +42,41 @@ async function shot(page, label) {
 
 function now() { return process.hrtime.bigint(); }
 function msSince(start) { return Number(now() - start) / 1e6; }
+
+// Department/Function/Supervisor are jQuery "Chosen" multi-selects (ko.bindingHandlers.chosen,
+// mgScan.js - `$(element).chosen()` with no options object, so the library's default markup/ID
+// conventions apply unmodified: clicking `#<selectId>_chosen` opens the dropdown, results render
+// as `.chosen-results li.active-result`. Server-side PrependAllOption always inserts a real,
+// selectable "All ..." item first (ID -111) - skip it (nth(1)) to pick a genuine value, since
+// picking "All ..." while nothing else is selected is a no-op per commonFilter.js's mutual-
+// exclusivity rule (a real item always wins over "All ..."). Confirmed against source
+// (commonFilter.html/js) 2026-08-13, not guessed.
+async function chosenSelectRealOption(page, selectId) {
+  const chosenBox = page.locator(`#${selectId}_chosen`);
+  await chosenBox.click();
+  const results = chosenBox.locator('.chosen-results li.active-result');
+  await results.first().waitFor({ state: 'visible', timeout: 5000 });
+  const count = await results.count();
+  const target = count > 1 ? results.nth(1) : results.first();
+  const label = (await target.textContent())?.trim();
+  await target.click();
+  await page.waitForTimeout(200); // let Chosen re-render the chip/close the dropdown
+  return label;
+}
+// Removes every staged chip on a Chosen multi-select, which per commonFilter.js's mutual-
+// exclusivity rule snaps the widget back to "All ..." once the last real item is deselected -
+// same UI outcome as a fresh page load, without reloading the page.
+async function chosenClearAll(page, selectId) {
+  const chosenBox = page.locator(`#${selectId}_chosen`);
+  const closers = chosenBox.locator('.search-choice-close');
+  let n = await closers.count();
+  while (n > 0) {
+    await closers.first().click();
+    await page.waitForTimeout(150);
+    n = await closers.count();
+  }
+}
+
 async function step(label, fn) {
   const start = now();
   let ok = true, error = null, extra = null;
@@ -179,6 +214,66 @@ const notes = [];
         return { downloadStarted: !!download, openedNewTab: !!popup, suggestedFilename: download ? download.suggestedFilename() : null };
       }));
 
+      flow.push(await step('Action - Export (.xlsx download)', async () => {
+        // Toolbar Export -> FileDownload.aspx?ManagementScanNineGridExport=True&...filters ->
+        // NineGridController.ExportExcel - a real server-recomputed .xlsx, not a client-side
+        // CSV dump. Confirmed via source 2026-08-13.
+        const exportBtn = nineGridTab.locator('a[data-bind*="onExport"]');
+        if (await exportBtn.count() === 0) { notes.push('Export button not found.'); return { skipped: true }; }
+        const downloadPromise = page.waitForEvent('download', { timeout: 20000 }).catch(() => null);
+        await exportBtn.click();
+        const download = await downloadPromise;
+        return { downloadStarted: !!download, suggestedFilename: download ? download.suggestedFilename() : null };
+      }));
+
+      flow.push(await step('Action - Filter: Department (multi-select, Chosen)', async () => {
+        if (await page.locator('#mgScanDepartment_chosen').count() === 0) { notes.push('Department filter (Chosen widget) not found.'); return { skipped: true }; }
+        const picked = await chosenSelectRealOption(page, 'mgScanDepartment');
+        await shot(page, 'filter-department-picked');
+        return { picked };
+      }));
+
+      flow.push(await step('Action - Filter: Function (multi-select, Chosen)', async () => {
+        if (await page.locator('#mgScanFunction_chosen').count() === 0) { notes.push('Function filter (Chosen widget) not found.'); return { skipped: true }; }
+        const picked = await chosenSelectRealOption(page, 'mgScanFunction');
+        return { picked };
+      }));
+
+      flow.push(await step('Action - Filter: Supervisor (multi-select, Chosen)', async () => {
+        if (await page.locator('#mgScanSupervisor_chosen').count() === 0) { notes.push('Supervisor filter (Chosen widget) not found.'); return { skipped: true }; }
+        const picked = await chosenSelectRealOption(page, 'mgScanSupervisor');
+        return { picked };
+      }));
+
+      flow.push(await step('Action - Filter: Group (single-select, native)', async () => {
+        // Group is a plain <select> (no Chosen) - options: groups, value: filter().GroupID.
+        const groupSelect = nineGridTab.locator('select').filter({ has: page.locator('option') }).last();
+        const options = await groupSelect.locator('option').allTextContents();
+        if (options.length < 2) { notes.push('Group filter has fewer than 2 options - nothing to switch to.'); return { skipped: true }; }
+        await groupSelect.selectOption({ index: 1 });
+        return { picked: options[1]?.trim() };
+      }));
+
+      flow.push(await step('Action - Nine-Grid Generate (with filters applied)', async () => {
+        await nineGridTab.locator('a[data-bind*="onGenerate"]').click();
+        await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {});
+        await shot(page, 'after-generate-filtered');
+      }));
+
+      flow.push(await step('Action - Reset filters (Department/Function/Supervisor back to All)', async () => {
+        await chosenClearAll(page, 'mgScanDepartment');
+        await chosenClearAll(page, 'mgScanFunction');
+        await chosenClearAll(page, 'mgScanSupervisor');
+        const groupSelect = nineGridTab.locator('select').filter({ has: page.locator('option') }).last();
+        await groupSelect.selectOption({ index: 0 }).catch(() => {});
+      }));
+
+      flow.push(await step('Action - Nine-Grid Generate (filters reset)', async () => {
+        await nineGridTab.locator('a[data-bind*="onGenerate"]').click();
+        await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {});
+        await shot(page, 'after-generate-reset');
+      }));
+
       flow.push(await step('Action - Grid Cell click (real data cell)', async () => {
         // Prefer a cell that actually shows a candidate avatar (real data) over an empty one.
         const cellWithAvatar = nineGridTab.locator('.mg-nine-cell', { has: page.locator('[class*="avatar"], .mgscan-avatar, [style*="border-radius"]') });
@@ -196,6 +291,46 @@ const notes = [];
         }
         const rowText = await row.first().textContent();
         return { found: true, rowText: rowText?.trim().slice(0, 200) };
+      }));
+
+      flow.push(await step('Action - Row click -> open candidate Personal Dashboard', async () => {
+        // Not a real page navigation - MgScanVM.openDashboard just flips currentView() to
+        // 'employee' (in-page Knockout view swap, mgScan.js). Confirmed via source 2026-08-13.
+        const row = page.locator('.mg-cell-table-row', { hasText: 'PerfTest Employee' });
+        if (await row.count() === 0) { notes.push('Employee row not visible for dashboard-navigation test.'); return { skipped: true }; }
+        await row.first().click();
+        const dashboard = page.locator('#tabMgScanEmployee');
+        await dashboard.waitFor({ state: 'visible', timeout: 10000 }).catch(() => {});
+        const opened = await dashboard.isVisible().catch(() => false);
+        if (!opened) notes.push('Row click did not open the Personal Dashboard view (#tabMgScanEmployee never became visible).');
+        await shot(page, 'candidate-dashboard-opened');
+        return { opened };
+      }));
+
+      flow.push(await step('Action - Back to Nine-Grid from candidate dashboard', async () => {
+        const backBtn = page.locator('#tabMgScanEmployee button[data-bind="click: onBack"]');
+        if (await backBtn.count() === 0) { notes.push('Back button not found on candidate dashboard.'); return { skipped: true }; }
+        await backBtn.click();
+        await nineGridTab.locator('a[data-bind*="onGenerate"]').waitFor({ state: 'visible', timeout: 10000 });
+        await shot(page, 'back-on-nine-grid');
+      }));
+
+      flow.push(await step('Action - "Load All Completed" (drops cell scope, ADR-012)', async () => {
+        const loadAllBtn = page.locator('a[data-bind*="onShowAllCompleted"]');
+        if (await loadAllBtn.count() === 0) { notes.push('"Load All Completed" button not found - may not have shipped yet on this environment.'); return { skipped: true }; }
+        await loadAllBtn.click();
+        await page.waitForTimeout(300);
+        await shot(page, 'load-all-completed');
+      }));
+
+      flow.push(await step('Action - Sub-tab round trip (Voltooid -> Openstaand -> Voltooid)', async () => {
+        const openstaandBtn = page.locator('.mg-cell-tabs button', { hasText: /pending|openstaand/i });
+        const voltooidBtn = page.locator('.mg-cell-tabs button', { hasText: /completed|voltooid/i });
+        if (await openstaandBtn.count() === 0 || await voltooidBtn.count() === 0) { notes.push('Sub-tab buttons not found for round-trip test.'); return { skipped: true }; }
+        await openstaandBtn.first().click();
+        await page.waitForTimeout(300);
+        await voltooidBtn.first().click();
+        await page.waitForTimeout(300);
       }));
 
       flow.push(await step('Action - Pending tab click', async () => {
@@ -329,26 +464,44 @@ const notes = [];
         await page.waitForTimeout(800);
       } catch { /* best-effort cleanup only */ }
 
-      flow.push(await step('Action - Report (PDF) generate for candidate row', async () => {
-        // Row action icons ARE both present (Report HTML via onRowReportHtml, Report PDF via
-        // onRowReportPdf - mgScanManager.html ~639-640) - the static title="Download PDF" in
-        // the markup is only a pre-bind fallback, immediately overwritten at runtime by
-        // `attr: { title: tokens().ReportPdf }` (a localized Token Manager string, not literally
-        // "Download PDF") - confirmed live: matching on that literal title found nothing even
-        // though the button renders. Match on the stable icon class instead. Opens immediately
-        // (window.open), no language popup at row level (that's toolbar-only).
-        if (await employeeRow.count() === 0) { notes.push('Employee row not visible for row-level report test in this view state.'); return { skipped: true }; }
-        const btn = employeeRow.first().locator('.mg-cell-row-actions button:has(.fa-file-pdf)');
-        if (await btn.count() === 0) { notes.push('No inline Report (PDF) icon found on the candidate row.'); return { skipped: true }; }
+      // Row action icons ARE both present (Report HTML via onRowReportHtml, Report PDF via
+      // onRowReportPdf - mgScanManager.html ~712-714) - the static title="Download PDF"/
+      // "Download HTML" in the markup is only a pre-bind fallback, immediately overwritten at
+      // runtime by `attr: { title: tokens().ReportPdf/ReportHtml }` (localized Token Manager
+      // strings) - matching on that literal title finds nothing even though the button renders.
+      // Match on the stable icon class instead (.fa-file-pdf / .fa-code).
+      //
+      // As of the 2026-08-13 master sync, row-level reports gained their OWN language popups
+      // (rowHtmlPopupVisibility/rowPdfPopupVisibility, mgScanManager.html ~571-581) - a behaviour
+      // change from the immediate window.open this test previously assumed (fixed 2026-08-12,
+      // now stale again). Same Ok-button pattern as the toolbar popups: `a[data-bind="click:
+      // onOk"]:visible`.
+      async function rowReport(iconClass, label) {
+        if (await employeeRow.count() === 0) { notes.push(`Employee row not visible for row-level ${label} report test in this view state.`); return { skipped: true }; }
+        const btn = employeeRow.first().locator(`.mg-cell-row-actions button:has(${iconClass})`);
+        if (await btn.count() === 0) { notes.push(`No inline Report (${label}) icon found on the candidate row.`); return { skipped: true }; }
+        await btn.click();
+        const okBtn = page.locator('a[data-bind="click: onOk"]:visible');
+        const popupAppeared = await okBtn.waitFor({ state: 'visible', timeout: 5000 }).then(() => true).catch(() => false);
         const downloadPromise = page.waitForEvent('download', { timeout: 15000 }).catch(() => null);
-        const [popup] = await Promise.all([
-          page.waitForEvent('popup', { timeout: 15000 }).catch(() => null),
-          btn.click(),
-        ]);
+        let popup;
+        if (popupAppeared) {
+          [popup] = await Promise.all([
+            page.waitForEvent('popup', { timeout: 15000 }).catch(() => null),
+            okBtn.click(),
+          ]);
+        } else {
+          // Fall back to the pre-2026-08-13 immediate-open behaviour, in case this environment
+          // hasn't picked up the row-popup change yet.
+          popup = await page.waitForEvent('popup', { timeout: 2000 }).catch(() => null);
+        }
         const download = await downloadPromise;
         if (popup && !download) await popup.close().catch(() => {});
-        return { downloadStarted: !!download, openedNewTab: !!popup, suggestedFilename: download ? download.suggestedFilename() : null };
-      }));
+        return { hadLanguagePopup: popupAppeared, downloadStarted: !!download, openedNewTab: !!popup, suggestedFilename: download ? download.suggestedFilename() : null };
+      }
+
+      flow.push(await step('Action - Report (HTML) generate for candidate row', () => rowReport('.fa-code', 'HTML')));
+      flow.push(await step('Action - Report (PDF) generate for candidate row', () => rowReport('.fa-file-pdf', 'PDF')));
     }
 
   } catch (e) {
