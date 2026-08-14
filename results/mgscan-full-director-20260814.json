@@ -1,0 +1,287 @@
+{
+  "runLabel": "mgscan-full",
+  "runTimestamp": "20260814",
+  "baseUrl": "https://q-assessments-hrmforce-it.h2software.nl",
+  "results": [
+    {
+      "role": "director",
+      "username": "perftest.director.20260814",
+      "flow": [
+        {
+          "label": "Login",
+          "ms": 4985,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Management Scan (Nine-Grid)",
+          "ms": 2147,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Search by name (real match)",
+          "ms": 702,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Clear search",
+          "ms": 331,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Nine-Grid Generate",
+          "ms": 825,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Report (PDF) toolbar (language popup + overview report)",
+          "ms": 5331,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "downloadStarted": false,
+            "openedNewTab": true,
+            "suggestedFilename": null
+          }
+        },
+        {
+          "label": "Action - Export (.xlsx download)",
+          "ms": 482,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "downloadStarted": true,
+            "suggestedFilename": "Management_Scan.xlsx"
+          }
+        },
+        {
+          "label": "Action - Filter: Department (multi-select, Chosen)",
+          "ms": 397,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "picked": "Automation Test Department"
+          }
+        },
+        {
+          "label": "Action - Filter: Function (multi-select, Chosen)",
+          "ms": 337,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "picked": "Automation Test Function"
+          }
+        },
+        {
+          "label": "Action - Filter: Supervisor (multi-select, Chosen)",
+          "ms": 306,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "picked": "EMP ABCD  1"
+          }
+        },
+        {
+          "label": "Action - Filter: Group (single-select, native)",
+          "ms": 32,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "picked": "All Employee"
+          }
+        },
+        {
+          "label": "Action - Nine-Grid Generate (with filters applied)",
+          "ms": 120,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Reset filters (Department/Function/Supervisor back to All)",
+          "ms": 852,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "dept": {
+              "cleared": false,
+              "remaining": 1,
+              "iterations": 1
+            },
+            "func": {
+              "cleared": false,
+              "remaining": 1,
+              "iterations": 1
+            },
+            "sup": {
+              "cleared": false,
+              "remaining": 1,
+              "iterations": 1
+            }
+          }
+        },
+        {
+          "label": "Action - Nine-Grid Generate (filters reset)",
+          "ms": 124,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Grid Cell click (real data cell)",
+          "ms": 843,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Data check - Employee row visible with correct scores",
+          "ms": 6,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "found": false
+          }
+        },
+        {
+          "label": "Action - Row click -> open candidate Personal Dashboard",
+          "ms": 3,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true
+          }
+        },
+        {
+          "label": "Action - Back to Nine-Grid from candidate dashboard",
+          "ms": 3,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true
+          }
+        },
+        {
+          "label": "Action - \"Load All Completed\" (drops cell scope, ADR-012)",
+          "ms": 418,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Sub-tab round trip (Voltooid -> Openstaand -> Voltooid)",
+          "ms": 690,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Pending tab click",
+          "ms": 520,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Load More - pending list (only meaningful with >10 rows)",
+          "ms": 4,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true,
+            "reason": "below pagination threshold"
+          }
+        },
+        {
+          "label": "Action - Kalibirity tab load",
+          "ms": 1125,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Kalibirity Generate",
+          "ms": 271,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "modalStuck": false
+          }
+        },
+        {
+          "label": "Data check - Kalibirity row for Employee visible",
+          "ms": 82,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "found": false
+          }
+        },
+        {
+          "label": "Action - Stage a manual override (click a non-current swatch)",
+          "ms": 4,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true
+          }
+        },
+        {
+          "label": "Action - Kalibirity batch save (\"Save calibrations (N)\")",
+          "ms": 6,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true,
+            "label": "Calibrations saved (0)"
+          }
+        },
+        {
+          "label": "Action - Publish/Unpublish toggle",
+          "ms": 1236,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "before": "Unpublish",
+            "after": "Publish",
+            "toggled": true,
+            "stillThere": true
+          }
+        },
+        {
+          "label": "Action - Report (HTML) generate for candidate row",
+          "ms": 4012,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "hadLanguagePopup": true,
+            "downloadStarted": false,
+            "openedNewTab": true,
+            "suggestedFilename": null
+          }
+        },
+        {
+          "label": "Action - Report (PDF) generate for candidate row",
+          "ms": 5370,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "hadLanguagePopup": true,
+            "downloadStarted": false,
+            "openedNewTab": true,
+            "suggestedFilename": null
+          }
+        }
+      ],
+      "notes": [
+        "chosenClearAll(mgScanDepartment): click on .search-choice-close did not reduce the chip count (stuck at 1) - stopped after 1 attempt(s) instead of hanging.",
+        "chosenClearAll(mgScanFunction): click on .search-choice-close did not reduce the chip count (stuck at 1) - stopped after 1 attempt(s) instead of hanging.",
+        "chosenClearAll(mgScanSupervisor): click on .search-choice-close did not reduce the chip count (stuck at 1) - stopped after 1 attempt(s) instead of hanging.",
+        "director: PerfTest Employee row not found in this cell — may need a different cell (subtree visibility) or search.",
+        "Employee row not visible for dashboard-navigation test.",
+        "Back button not found on candidate dashboard.",
+        "No Load More control visible — dataset (1 candidate) is below the pagination threshold, so this is untestable with current seed data.",
+        "director: no Kalibirity row for PerfTest Employee found after Generate — may require the automatic position to be computed (both sides Done) or a different filter state.",
+        "Cannot stage an override — Employee row not found in Kalibirity list.",
+        "Batch-save button shows \"Calibrations saved (0)\" — no pending change was actually staged (override click may not have registered)."
+      ]
+    }
+  ]
+}

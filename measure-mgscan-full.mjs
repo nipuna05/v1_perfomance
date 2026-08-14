@@ -148,6 +148,18 @@ const notes = [];
   const page = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
   page.on('console', (msg) => { if (msg.type() === 'error') notes.push(`Browser console error: ${msg.text().slice(0, 200)}`); });
   page.on('pageerror', (err) => { notes.push(`Uncaught JS exception: ${err.message.slice(0, 300)}`); });
+  // A native browser dialog (confirm/alert/prompt) blocks all page interaction until dismissed -
+  // Playwright auto-dismisses these by default only for `beforeunload`; anything else just sits
+  // there, and every subsequent locator action hangs until its own timeout with no indication why.
+  // Confirmed live 2026-08-14: a native dialog titled "HrmForce" showing "Loading..." appeared
+  // during Kalibirity Generate and silently ate 30s on the next click - no console error/pageerror
+  // preceded it, so this is either an intentional (if unusual for an SPA) native dialog, or a
+  // fallback triggered by something not visible via those two events. Log + auto-dismiss so the
+  // rest of the flow can proceed and this shows up as data instead of an opaque timeout.
+  page.on('dialog', async (dialog) => {
+    notes.push(`Native browser dialog appeared: type=${dialog.type()}, message="${dialog.message().slice(0, 200)}" - auto-dismissed.`);
+    await dialog.dismiss().catch(() => {});
+  });
   page.on('requestfinished', async (req) => {
     if (req.url().includes('.asmx/')) {
       const res = await req.response();
@@ -443,9 +455,22 @@ const notes = [];
 
       flow.push(await step('Action - Stage a manual override (click a non-current swatch)', async () => {
         if (await kalRow.count() === 0) { notes.push('Cannot stage an override — Employee row not found in Kalibirity list.'); return { skipped: true }; }
+        // Confirmed live 2026-08-14: an in-page modal (NOT a native browser dialog - Playwright's
+        // `dialog` event never fires for it, despite being styled to look like an OS dialog,
+        // titled "HrmForce" with a "Loading..." spinner) can persist over the swatch, making
+        // Playwright's own actionability check wait the full click timeout with no indication why.
+        // This is the same class of "Loading..." stuck-spinner issue already seen on Kalibirity
+        // Generate, just a different trigger/selector - wait it out first rather than let a plain
+        // .click() hang for the full 30s with a message that doesn't explain what actually blocked it.
+        const genericLoading = page.getByText('Loading...', { exact: true });
+        const stuckBeforeSwatch = await genericLoading.isVisible().catch(() => false);
+        if (stuckBeforeSwatch) {
+          const cleared = await genericLoading.waitFor({ state: 'hidden', timeout: 10000 }).then(() => true).catch(() => false);
+          if (!cleared) { notes.push('A "Loading..." modal was still covering the page before the override-swatch click could even be attempted, and did not clear within 10s - likely the same stuck-spinner class of bug already known from Kalibirity Generate, but blocking a different action this time.'); return { skipped: true, stuckModal: true }; }
+        }
         const otherSwatch = kalRow.first().locator('.kal-swatch:not(.is-current)').first();
         if (await otherSwatch.count() === 0) { notes.push('No alternate position swatch found to click.'); return { skipped: true }; }
-        await otherSwatch.click();
+        await otherSwatch.click({ timeout: 10000 });
         await page.waitForTimeout(400);
         const commentInput = kalRow.first().locator('.kal-inline-edit-input');
         if (await commentInput.count() > 0) {

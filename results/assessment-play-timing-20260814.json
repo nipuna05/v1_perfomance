@@ -1,0 +1,431 @@
+{
+  "runLabel": "assessment-play-timing",
+  "runTimestamp": "20260814",
+  "baseUrl": "https://q-assessments-hrmforce-it.h2software.nl",
+  "results": [
+    {
+      "role": "employee",
+      "username": "perftest.employee.20260814",
+      "flow": [
+        {
+          "label": "employee - Assessment start view load",
+          "ms": 1302,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Click Start/Continue -> question view renders",
+          "ms": 326,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #1 - scale-option click",
+          "ms": 31,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #2 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #3 - scale-option click",
+          "ms": 48,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #4 - scale-option click",
+          "ms": 42,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #5 - scale-option click",
+          "ms": 48,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #6 - scale-option click",
+          "ms": 43,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #7 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #8 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #9 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #10 - scale-option click",
+          "ms": 43,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #11 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #12 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #13 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #14 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #15 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #16 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #17 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #18 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #19 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #20 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #21 - scale-option click",
+          "ms": 35,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #22 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #23 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #24 - scale-option click",
+          "ms": 41,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #25 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #26 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #27 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #28 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Open question #1 - textarea fill",
+          "ms": 13,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Open question #2 - textarea fill",
+          "ms": 12,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Open question #3 - textarea fill",
+          "ms": 9,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Submit -> response (validation banner or end view)",
+          "ms": 922,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "bannerShown": false,
+            "bannerText": null
+          }
+        },
+        {
+          "label": "employee - Back to dashboard",
+          "ms": 1069,
+          "ok": true,
+          "error": null
+        }
+      ],
+      "notes": []
+    },
+    {
+      "role": "manager",
+      "username": "perftest.manager.20260814",
+      "flow": [
+        {
+          "label": "manager - Assessment start view load",
+          "ms": 799,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Click Start/Continue -> question view renders",
+          "ms": 276,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #1 - scale-option click",
+          "ms": 28,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #2 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #3 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #4 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #5 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #6 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #7 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #8 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #9 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #10 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #11 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #12 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #13 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #14 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #15 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #16 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #17 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #18 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #19 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #20 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #21 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #22 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #23 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #24 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #25 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #26 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #27 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #28 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Submit -> response (validation banner or end view)",
+          "ms": 928,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "bannerShown": false,
+            "bannerText": null
+          }
+        },
+        {
+          "label": "manager - Back to dashboard",
+          "ms": 1066,
+          "ok": true,
+          "error": null
+        }
+      ],
+      "notes": []
+    }
+  ]
+}

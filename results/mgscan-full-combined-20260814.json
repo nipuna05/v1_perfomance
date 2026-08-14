@@ -1,0 +1,841 @@
+{
+  "runLabel": "management-scan-full-report",
+  "runTimestamp": "20260814",
+  "baseUrl": "https://q-assessments-hrmforce-it.h2software.nl",
+  "results": [
+    {
+      "role": "Manager",
+      "username": "perftest.employee.20260814",
+      "flow": [
+        {
+          "label": "employee - Assessment start view load",
+          "ms": 1302,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Click Start/Continue -> question view renders",
+          "ms": 326,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #1 - scale-option click",
+          "ms": 31,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #2 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #3 - scale-option click",
+          "ms": 48,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #4 - scale-option click",
+          "ms": 42,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #5 - scale-option click",
+          "ms": 48,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #6 - scale-option click",
+          "ms": 43,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #7 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #8 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #9 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #10 - scale-option click",
+          "ms": 43,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #11 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #12 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #13 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #14 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #15 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #16 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #17 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #18 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #19 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #20 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #21 - scale-option click",
+          "ms": 35,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #22 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #23 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #24 - scale-option click",
+          "ms": 41,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #25 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #26 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #27 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #28 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Open question #1 - textarea fill",
+          "ms": 13,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Open question #2 - textarea fill",
+          "ms": 12,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Open question #3 - textarea fill",
+          "ms": 9,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Submit -> response (validation banner or end view)",
+          "ms": 922,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "bannerShown": false,
+            "bannerText": null
+          }
+        },
+        {
+          "label": "employee - Back to dashboard",
+          "ms": 1069,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Login",
+          "ms": 5539,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Personal Dashboard",
+          "ms": 1733,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Permission check - Nine-Grid/Kalibirity tabs absent for Employee",
+          "ms": 7,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "confirmedAbsent": true
+          }
+        },
+        {
+          "label": "Action - Report (HTML) click",
+          "ms": 4012,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "hadLanguagePopup": true,
+            "downloadStarted": false,
+            "openedNewTab": true,
+            "suggestedFilename": null
+          }
+        },
+        {
+          "label": "Action - Report (PDF) click",
+          "ms": 5414,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "hadLanguagePopup": true,
+            "downloadStarted": false,
+            "openedNewTab": true,
+            "suggestedFilename": null
+          }
+        }
+      ],
+      "notes": []
+    },
+    {
+      "role": "Director",
+      "username": "perftest.manager.20260814",
+      "flow": [
+        {
+          "label": "manager - Assessment start view load",
+          "ms": 799,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Click Start/Continue -> question view renders",
+          "ms": 276,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #1 - scale-option click",
+          "ms": 28,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #2 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #3 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #4 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #5 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #6 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #7 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #8 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #9 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #10 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #11 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #12 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #13 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #14 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #15 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #16 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #17 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #18 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #19 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #20 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #21 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #22 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #23 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #24 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #25 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #26 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #27 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #28 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Submit -> response (validation banner or end view)",
+          "ms": 928,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "bannerShown": false,
+            "bannerText": null
+          }
+        },
+        {
+          "label": "manager - Back to dashboard",
+          "ms": 1066,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Login",
+          "ms": 6221,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Management Scan (Nine-Grid)",
+          "ms": 2224,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Search by name (real match)",
+          "ms": 715,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Clear search",
+          "ms": 347,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Nine-Grid Generate",
+          "ms": 804,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Report (PDF) toolbar (language popup + overview report)",
+          "ms": 5301,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "downloadStarted": false,
+            "openedNewTab": true,
+            "suggestedFilename": null
+          }
+        },
+        {
+          "label": "Action - Export (.xlsx download)",
+          "ms": 502,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "downloadStarted": true,
+            "suggestedFilename": "Management_Scan.xlsx"
+          }
+        },
+        {
+          "label": "Action - Filter: Department (multi-select, Chosen)",
+          "ms": 411,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "picked": "Automation Test Department"
+          }
+        },
+        {
+          "label": "Action - Filter: Function (multi-select, Chosen)",
+          "ms": 326,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "picked": "Automation Test Function"
+          }
+        },
+        {
+          "label": "Action - Filter: Supervisor (multi-select, Chosen)",
+          "ms": 299,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "picked": "PerfTest Manager"
+          }
+        },
+        {
+          "label": "Action - Filter: Group (single-select, native)",
+          "ms": 34,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "picked": "All Employee"
+          }
+        },
+        {
+          "label": "Action - Nine-Grid Generate (with filters applied)",
+          "ms": 142,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Reset filters (Department/Function/Supervisor back to All)",
+          "ms": 1145,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "dept": {
+              "cleared": false,
+              "remaining": 1,
+              "iterations": 1
+            },
+            "func": {
+              "cleared": false,
+              "remaining": 1,
+              "iterations": 1
+            },
+            "sup": {
+              "cleared": false,
+              "remaining": 1,
+              "iterations": 1
+            }
+          }
+        },
+        {
+          "label": "Action - Nine-Grid Generate (filters reset)",
+          "ms": 132,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Grid Cell click (real data cell)",
+          "ms": 812,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Data check - Employee row visible with correct scores",
+          "ms": 3,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "found": false
+          }
+        },
+        {
+          "label": "Action - Row click -> open candidate Personal Dashboard",
+          "ms": 3,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true
+          }
+        },
+        {
+          "label": "Action - Back to Nine-Grid from candidate dashboard",
+          "ms": 2,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true
+          }
+        },
+        {
+          "label": "Action - \"Load All Completed\" (drops cell scope, ADR-012)",
+          "ms": 435,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Sub-tab round trip (Voltooid -> Openstaand -> Voltooid)",
+          "ms": 680,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Pending tab click",
+          "ms": 511,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Load More - pending list (only meaningful with >10 rows)",
+          "ms": 5,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true,
+            "reason": "below pagination threshold"
+          }
+        },
+        {
+          "label": "Action - Kalibirity tab load",
+          "ms": 1117,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Kalibirity Generate",
+          "ms": 209,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "modalStuck": false
+          }
+        },
+        {
+          "label": "Data check - Kalibirity row for Employee visible",
+          "ms": 61,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "found": true
+          }
+        },
+        {
+          "label": "Action - Stage a manual override (click a non-current swatch)",
+          "ms": 10051,
+          "ok": false,
+          "error": "locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#tabMgScanKalibirity .kal-row').filter({ hasText: 'PerfTest Employee' }).first().locator('.kal-swatch:not(.is-current)').first()\u001b[22m\n\u001b[2m    - locator resolved to <a class=\"kal-swatch\" title=\"Needs Support\" data-bind=\"↵                            click: function () { $parent.selectPosition($data) },↵                  ",
+          "extra": null
+        },
+        {
+          "label": "Action - Kalibirity batch save (\"Save calibrations (N)\")",
+          "ms": 6,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true,
+            "label": "Calibrations saved (0)"
+          }
+        },
+        {
+          "label": "Action - Publish/Unpublish toggle",
+          "ms": 1235,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "before": "Unpublish",
+            "after": "Publish",
+            "toggled": true,
+            "stillThere": true
+          }
+        },
+        {
+          "label": "Action - Report (HTML) generate for candidate row",
+          "ms": 4014,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "hadLanguagePopup": true,
+            "downloadStarted": false,
+            "openedNewTab": true,
+            "suggestedFilename": null
+          }
+        },
+        {
+          "label": "Action - Report (PDF) generate for candidate row",
+          "ms": 5435,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "hadLanguagePopup": true,
+            "downloadStarted": false,
+            "openedNewTab": true,
+            "suggestedFilename": null
+          }
+        }
+      ],
+      "notes": [
+        "chosenClearAll(mgScanDepartment): click on .search-choice-close did not reduce the chip count (stuck at 1) - stopped after 1 attempt(s) instead of hanging.",
+        "chosenClearAll(mgScanFunction): click on .search-choice-close did not reduce the chip count (stuck at 1) - stopped after 1 attempt(s) instead of hanging.",
+        "chosenClearAll(mgScanSupervisor): click on .search-choice-close did not reduce the chip count (stuck at 1) - stopped after 1 attempt(s) instead of hanging.",
+        "manager: PerfTest Employee row not found in this cell — may need a different cell (subtree visibility) or search.",
+        "Employee row not visible for dashboard-navigation test.",
+        "Back button not found on candidate dashboard.",
+        "No Load More control visible — dataset (1 candidate) is below the pagination threshold, so this is untestable with current seed data.",
+        "Batch-save button shows \"Calibrations saved (0)\" — no pending change was actually staged (override click may not have registered)."
+      ]
+    }
+  ],
+  "functionalChecks": {
+    "title": "Assessment Page — Validation & Button Behavior (PerfTest ValidationCheck account)",
+    "checks": [
+      {
+        "check": "Unanswered questions get .is-unanswered highlight after Submit",
+        "result": "PASS (30 highlighted)",
+        "ms": 10048
+      },
+      {
+        "check": "Validation error banner shown on submit-without-answering",
+        "result": "FAIL (no banner text found)",
+        "ms": 10048
+      },
+      {
+        "check": "Submit does NOT navigate away when validation fails (stays on question view)",
+        "result": "PASS"
+      },
+      {
+        "check": "Pause & resume later button present and clickable",
+        "result": "PASS",
+        "ms": 851
+      },
+      {
+        "check": "Pause returns to Personal Dashboard",
+        "result": "PASS",
+        "ms": 851
+      },
+      {
+        "check": "Resume -> question view with retained answers renders",
+        "result": "PASS",
+        "ms": 1081
+      },
+      {
+        "check": "Answers retained after Pause + Resume (3 answered before pause)",
+        "result": "PASS (3/3 retained)"
+      }
+    ]
+  },
+  "knownIssues": [
+    {
+      "severity": "Bug (confirmed, recurring)",
+      "area": "Assessment page — validation error banner",
+      "summary": "\"Validation error banner shown on submit-without-answering\" has now FAILED on 2 consecutive test days (2026-08-13 and 2026-08-14): no banner text is found within a 10s wait after submitting with unanswered required questions. The per-question \".is-unanswered\" red highlighting still works correctly both days (30/31 questions flagged, correctly excluding the one optional trailing question), and Submit correctly does not navigate away — only the banner/message itself is missing.",
+      "reproduction": "Log in as PerfTest ValidationCheck, start the assessment, click Submit without answering any questions, wait up to 10s for a validation banner.",
+      "evidence": "assessment-validation-20260814c.json: \"Validation error banner shown on submit-without-answering\": \"FAIL (no banner text found)\" (10048ms wait) — same result as 2026-08-13."
+    },
+    {
+      "severity": "Bug (new, needs investigation)",
+      "area": "Kalibirity manual override — direct-manager evaluator (Director role)",
+      "summary": "For the account that IS the candidate's direct manager/evaluator (feature-term \"Director\", org-hierarchy \"manager\" account — the one role that SHOULD be able to stage an override), clicking a non-current position swatch now times out instead of registering the click. Reproduced on 3 consecutive attempts today (30008ms, 30008ms, 10051ms with a reduced timeout). A screenshot showed an in-page HTML modal styled like a native OS dialog (blue title bar reading \"HrmForce\", \"Loading...\" spinner) sitting over the page; adding a page.on('dialog') handler and re-running confirmed it never fires as a real native dialog, so something is leaving an in-page loading overlay covering the swatch rather than a true browser prompt. This is distinct from the previously-documented \"Good (by design)\" case below — that one is an authorization boundary working as intended; this is an authorized account's own action failing.",
+      "reproduction": "Log in as the evaluator (feature \"Director\", e.g. perftest.manager.20260814), open Kalibirity tab, Generate, click an alternate (non-current) position swatch on the direct report's row.",
+      "evidence": "mgscan-full-manager-20260814.json / relabeled \"Director\" entry in mgscan-full-combined-20260814.json: \"Action - Stage a manual override (click a non-current swatch)\" ok:false, \"locator.click: Timeout 10000ms exceeded.\""
+    },
+    {
+      "severity": "Bug (confounded result — do not report as resolved without re-testing)",
+      "area": "Publish/Unpublish (Nine-Grid Completed list) — cross-manager authorization",
+      "summary": "This release merged ADR-023 (\"Client-scope the super-user branch of Management Scan authorization\"), which changes SetPublishState's authorization check so non-Admin super-user account types (Test_Manager, Client, Partner, Distributor, etc.) must have the same Client_ID as the target employee, while Admin stays unconditionally exempt. Separately, mid-run today we found and fixed a test-data bug: the org-rollup \"Director\" test account's \"Is Test Manager\" checkbox was unchecked, which had been suppressing its Nine-Grid view entirely. After fixing that flag, Director's Publish/Unpublish today returned 200 OK (toggled Unpublish -> Publish, ~1236ms) instead of the 500 reproduced on every prior run. This is NOT a clean confirmation that ADR-023 fixed the original bug: our Director test account sits in the SAME test client as the employee, which is exactly the branch ADR-023 says should succeed regardless of whether the original 500 was ever fixed. We have not yet exercised the branch that would actually distinguish the two explanations — a super-user account whose Client_ID differs from the target employee's, which per ADR-023 should now fail closed with a graceful authorization error instead of a 500.",
+      "reproduction": "Today: log in as perftest.director.20260814 (org-rollup, 2 levels up, same test client as the employee), open Nine-Grid, Generate, select the candidate's cell, click Publish/Unpublish — succeeds (200 OK) both in the reported \"Director\" row and the org-rollup director sweep.",
+      "evidence": "mgscan-full-director-20260814.json and mgscan-full-manager-20260814.json (relabeled \"Director\"): \"Action - Publish/Unpublish toggle\" ok:true, ms:1235-1236, extra.toggled:true. Compare against every prior run (2026-08-10 through 2026-08-13), where the same interaction returned HTTP 500.",
+      "suggestedFix": "Re-run this specific check with a super-user test account provisioned under a DIFFERENT Client_ID than the target employee. Expected per ADR-023: a graceful authorization failure (not a 500). If it still 500s, the original bug is unfixed and ADR-023 only tightened scope without touching the underlying unhandled-exception path in ManagementScanPlayBO.SetPublishState."
+    },
+    {
+      "severity": "Retracted — test-tooling mistake, not a product bug (corrected after further investigation)",
+      "area": "CandidateNew.aspx — \"Username already exists\" on account creation",
+      "summary": "Earlier today this was logged as a false-positive validation error on genuinely-fresh usernames. Checked against git history before finalizing this report and that framing was wrong: both occurrences were re-attempts to create a username that had ALREADY been created earlier the SAME DAY under an identical runStamp. perftest.director.20260814 was already committed (with zero errors) from an earlier same-day attempt at this exact hierarchy that appears to have stopped right after creating the Director account (Manager/Employee were not yet created) — consistent with account creation happening bottom-up and something interrupting the run after step 1. perftest.validationcheck.20260814b was already committed (with zero errors) from the earlier same-day post-2026-08-14-deploy checkpoint run. Re-running account creation against the same runStamp a second time correctly reported \"Username already exists\" both times — that is accurate behavior, not a UI bug.",
+      "evidence": "git show HEAD:results/account-setup-20260814.json (pre-today) already contained a zero-error \"director\" entry for perftest.director.20260814 before this run touched the file; git show HEAD:results/account-setup-20260814b.json (pre-today) already contained a zero-error \"validationcheck\" entry for perftest.validationcheck.20260814b. Lesson for the runbook: don't reuse a runStamp across multiple same-day account-creation attempts without checking what already exists under it first."
+    },
+    {
+      "severity": "Info (test-data gotcha, fixed this run — add to runbook)",
+      "area": "CandidateNew.aspx — \"Is Test Manager\" checkbox not set on a leftover, partially-set-up account",
+      "summary": "The org-rollup Director test account used in this run (perftest.director.20260814) had \"Is Test Manager\" unchecked, which caused MgScan.aspx to render an empty candidate Personal Dashboard instead of the Nine-Grid supervisor view — even though the account's manager hierarchy (its own \"Manager\" field) was correctly linked. Likely explanation (see the retracted finding above): this account was created hours earlier the same day by an interrupted first attempt at this hierarchy that stopped right after the Director step, so it never went through whatever later part of that day's setup flow would have set this flag — this run picked up and reused a half-configured leftover account without realizing it wasn't actually fresh. Root-caused by comparing against yesterday's still-working director account and manually inspecting the checkbox via the Edit view. Fixed by checking the box and saving; verified the Nine-Grid rendered correctly afterward.",
+      "evidence": "check-testmanager-flag.mjs: perftest.director.20260814 = false (before fix); check-director-fixed.mjs: \"Has Nine-Grid tabs now: 1\" (after fix).",
+      "suggestedFix": "Runbook/tooling fix: before reusing a runStamp for account creation, check results/account-setup-<runStamp>.json for pre-existing entries rather than assuming a fresh hierarchy — an interrupted prior attempt under the same runStamp can leave a partially-configured account that looks fresh but isn't."
+    },
+    {
+      "severity": "Info (carried forward, not re-verified this run)",
+      "area": "CandidateNew.aspx — \"+New\" button intermittent mis-landing",
+      "summary": "Previously observed on 2 of ~6 attempts landing on an unrelated \"My Account\" tab instead of the new-candidate form; not specifically re-measured today (today's account-creation runs hit the \"Username already exists\" false-positive instead, see above, rather than this symptom). Carried forward as a known intermittent issue rather than re-confirmed."
+    },
+    {
+      "severity": "Info",
+      "area": "Report (PDF/HTML) generation time — this run",
+      "summary": "Today's Report(HTML)/Report(PDF) times cluster around 4.0s / 5.3-5.4s across both reported roles (Manager's own dashboard, Director's toolbar and row-level reports) — noticeably lower than a previously-reported ~12.8s PDF figure from an earlier run. Not flagged as a regression (the earlier figure was higher, not lower), but the day-to-day spread is wide enough that a fixed number shouldn't be treated as a stable baseline without more samples.",
+      "evidence": "mgscan-full-combined-20260814.json: Manager \"Report (PDF)\" 5414ms; Director toolbar PDF 5301ms, row PDF 5435ms."
+    },
+    {
+      "severity": "Info (not verified this run)",
+      "area": "Full page-load sweep (~93 modules)",
+      "summary": "Not re-run today — this run only exercised Management Scan flows (account setup, assessment play, Nine-Grid/Kalibirity interactions, validation checks). The previously-reported 2-module failure (Dashboard.aspx, AdminTools.aspx?t=0) is carried forward as historical context only, not re-confirmed against today's release."
+    }
+  ],
+  "terminologyNote": "The Nine-Grid's own \"Manager\"/\"Director\" progress bars refer to the two sides of a Management Scan cycle (the assessment SUBJECT is labeled \"Manager\"; their evaluator/boss is labeled \"Director\") — NOT the org-hierarchy test account names used to script this suite. In this test hierarchy: PerfTest Employee is the assessment subject (feature's \"Manager\"), PerfTest Manager is the evaluator/direct manager (feature's \"Director\"), and PerfTest Director is one level further up (org-rollup only, not one of the two reported roles) — used to exercise the super-user/cross-manager authorization branch described in ADR-023 and the Publish/Unpublish confound above.",
+  "releaseNote": {
+    "date": "2026-08-14",
+    "summary": "Synced local branch to master (32 new commits since the 2026-08-13 baseline) ahead of this run, per a confirmed new IT release. Most relevant merged change: ADR-023 (\"Client-scope the super-user branch of Management Scan authorization\"), a GDPR/security fix closing a cross-tenant report-read and Publish/Unpublish-write gap for non-Admin super-user account types. See the Publish/Unpublish knownIssues entry above for why today's test results cannot yet confirm whether this also fixed the previously-tracked 500 bug."
+  }
+}

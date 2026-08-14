@@ -1879,6 +1879,634 @@
           "ok": true
         }
       ]
+    },
+    {
+      "runStamp": "20260814",
+      "date": "2026-08-14",
+      "baseUrl": "https://q-assessments-hrmforce-it.h2software.nl",
+      "combinedResultsFile": "mgscan-full-combined-20260814.json",
+      "release": {
+        "repo": "HRMForce",
+        "releaseId": "post-2026-08-14-adr023-deploy",
+        "confirmedSha": null,
+        "approxSha": "at or near ab5bf25 (2026-08-14 11:15 UTC, PR 5735 'add bug fixes to master') - master HEAD at the time this run was executed; 28 commits ahead of the earlier same-day checkpoint (post-2026-08-14-deploy / cd4c0e6), 86 commits ahead of the 2026-08-13 verified release (post-2026-08-13-deploy / adf07fc)",
+        "confirmedBy": "git log cd4c0e6..origin/master (local checkout fast-forwarded/merged to this point before running). Notable merged change in this range: 87d4101 'Fix cross-tenant report access and publish authorization (ADR-023)' - see Docs/5_ManagementScan/DECISIONS/ADR-023-client-scope-super-user-report-authorization.md.",
+        "note": "This is the run the user asked for after confirming a new IT release ('get a latest from master and run perfomance tets on IT... in hetre not included all the adrs'). Distinct from post-2026-08-14-deploy (release-20260814b.json), which was captured 28 commits earlier the same day before ADR-023 landed. See knownIssues in mgscan-full-combined-20260814.json for why this run's Publish/Unpublish result cannot be cleanly attributed to ADR-023 (test-account confound). Side note not related to this test run: found an UNMERGED branch (origin/bugfix/Iteration_1024-nine-grid-and-calibrity-dropdowns-fucntion-check, commit b90a2f6, dated 2026-08-14) that introduces its own 'ADR-023' file (Kalibirity authorization filtered candidate list) - a genuine number collision with the ADR-023 already on master, caught by the repo's Docs/.adr-sequence ledger (branch bumped 22->24, master bumped 22->23; these will conflict at merge time exactly as the ledger mechanism is designed to force, not merge silently). Flagging for whoever integrates that branch - it will need Docs/.adr-sequence renumbering per CLAUDE.md section 8, not something this test run should touch."
+      },
+      "steps": [
+        {
+          "role": "Manager",
+          "label": "employee - Assessment start view load",
+          "ms": 1302,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Click Start/Continue -> question view renders",
+          "ms": 326,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #1 - scale-option click",
+          "ms": 31,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #2 - scale-option click",
+          "ms": 44,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #3 - scale-option click",
+          "ms": 48,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #4 - scale-option click",
+          "ms": 42,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #5 - scale-option click",
+          "ms": 48,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #6 - scale-option click",
+          "ms": 43,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #7 - scale-option click",
+          "ms": 44,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #8 - scale-option click",
+          "ms": 45,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #9 - scale-option click",
+          "ms": 45,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #10 - scale-option click",
+          "ms": 43,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #11 - scale-option click",
+          "ms": 46,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #12 - scale-option click",
+          "ms": 46,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #13 - scale-option click",
+          "ms": 46,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #14 - scale-option click",
+          "ms": 47,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #15 - scale-option click",
+          "ms": 45,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #16 - scale-option click",
+          "ms": 44,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #17 - scale-option click",
+          "ms": 46,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #18 - scale-option click",
+          "ms": 46,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #19 - scale-option click",
+          "ms": 44,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #20 - scale-option click",
+          "ms": 44,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #21 - scale-option click",
+          "ms": 35,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #22 - scale-option click",
+          "ms": 47,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #23 - scale-option click",
+          "ms": 47,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #24 - scale-option click",
+          "ms": 41,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #25 - scale-option click",
+          "ms": 46,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #26 - scale-option click",
+          "ms": 46,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #27 - scale-option click",
+          "ms": 46,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Statement #28 - scale-option click",
+          "ms": 44,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Open question #1 - textarea fill",
+          "ms": 13,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Open question #2 - textarea fill",
+          "ms": 12,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Open question #3 - textarea fill",
+          "ms": 9,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Submit -> response (validation banner or end view)",
+          "ms": 922,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "employee - Back to dashboard",
+          "ms": 1069,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "Login",
+          "ms": 5539,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "Page Load - Personal Dashboard",
+          "ms": 1733,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "Permission check - Nine-Grid/Kalibirity tabs absent for Employee",
+          "ms": 7,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "Action - Report (HTML) click",
+          "ms": 4012,
+          "ok": true
+        },
+        {
+          "role": "Manager",
+          "label": "Action - Report (PDF) click",
+          "ms": 5414,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Assessment start view load",
+          "ms": 799,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Click Start/Continue -> question view renders",
+          "ms": 276,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #1 - scale-option click",
+          "ms": 28,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #2 - scale-option click",
+          "ms": 44,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #3 - scale-option click",
+          "ms": 46,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #4 - scale-option click",
+          "ms": 44,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #5 - scale-option click",
+          "ms": 45,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #6 - scale-option click",
+          "ms": 45,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #7 - scale-option click",
+          "ms": 47,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #8 - scale-option click",
+          "ms": 44,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #9 - scale-option click",
+          "ms": 45,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #10 - scale-option click",
+          "ms": 45,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #11 - scale-option click",
+          "ms": 47,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #12 - scale-option click",
+          "ms": 45,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #13 - scale-option click",
+          "ms": 46,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #14 - scale-option click",
+          "ms": 45,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #15 - scale-option click",
+          "ms": 46,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #16 - scale-option click",
+          "ms": 46,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #17 - scale-option click",
+          "ms": 45,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #18 - scale-option click",
+          "ms": 46,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #19 - scale-option click",
+          "ms": 47,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #20 - scale-option click",
+          "ms": 44,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #21 - scale-option click",
+          "ms": 44,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #22 - scale-option click",
+          "ms": 47,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #23 - scale-option click",
+          "ms": 45,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #24 - scale-option click",
+          "ms": 45,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #25 - scale-option click",
+          "ms": 46,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #26 - scale-option click",
+          "ms": 45,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #27 - scale-option click",
+          "ms": 46,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Statement #28 - scale-option click",
+          "ms": 46,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Submit -> response (validation banner or end view)",
+          "ms": 928,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "manager - Back to dashboard",
+          "ms": 1066,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Login",
+          "ms": 6221,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Page Load - Management Scan (Nine-Grid)",
+          "ms": 2224,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Search by name (real match)",
+          "ms": 715,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Clear search",
+          "ms": 347,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Nine-Grid Generate",
+          "ms": 804,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Report (PDF) toolbar (language popup + overview report)",
+          "ms": 5301,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Export (.xlsx download)",
+          "ms": 502,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Filter: Department (multi-select, Chosen)",
+          "ms": 411,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Filter: Function (multi-select, Chosen)",
+          "ms": 326,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Filter: Supervisor (multi-select, Chosen)",
+          "ms": 299,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Filter: Group (single-select, native)",
+          "ms": 34,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Nine-Grid Generate (with filters applied)",
+          "ms": 142,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Reset filters (Department/Function/Supervisor back to All)",
+          "ms": 1145,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Nine-Grid Generate (filters reset)",
+          "ms": 132,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Grid Cell click (real data cell)",
+          "ms": 812,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Data check - Employee row visible with correct scores",
+          "ms": 3,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Row click -> open candidate Personal Dashboard",
+          "ms": 3,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Back to Nine-Grid from candidate dashboard",
+          "ms": 2,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - \"Load All Completed\" (drops cell scope, ADR-012)",
+          "ms": 435,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Sub-tab round trip (Voltooid -> Openstaand -> Voltooid)",
+          "ms": 680,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Pending tab click",
+          "ms": 511,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Load More - pending list (only meaningful with >10 rows)",
+          "ms": 5,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Kalibirity tab load",
+          "ms": 1117,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Kalibirity Generate",
+          "ms": 209,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Data check - Kalibirity row for Employee visible",
+          "ms": 61,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Stage a manual override (click a non-current swatch)",
+          "ms": 10051,
+          "ok": false
+        },
+        {
+          "role": "Director",
+          "label": "Action - Kalibirity batch save (\"Save calibrations (N)\")",
+          "ms": 6,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Publish/Unpublish toggle",
+          "ms": 1235,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Report (HTML) generate for candidate row",
+          "ms": 4014,
+          "ok": true
+        },
+        {
+          "role": "Director",
+          "label": "Action - Report (PDF) generate for candidate row",
+          "ms": 5435,
+          "ok": true
+        }
+      ]
     }
   ]
 }
