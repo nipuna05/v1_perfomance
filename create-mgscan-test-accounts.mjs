@@ -68,7 +68,12 @@ async function createAccount(page, account, createdUsernames) {
   await page.goto(`${creds.baseUrl}/CandidateNew.aspx`, { waitUntil: 'domcontentloaded' });
   const addNewBtn = page.locator('a.new-design-add-new-btn');
   await addNewBtn.waitFor({ state: 'visible', timeout: 30000 });
-  await page.waitForTimeout(500);
+  // Was 500ms. The "lands on My Account instead of the new-candidate form" flake, historically
+  // ~1-in-6, hit 5-in-5 in a row on 2026-08-14 (same release that also redesigned the Personal
+  // Dashboard's report buttons and touched Starter.aspx.cs/session handling) - consistent with
+  // Knockout's binding attachment now taking measurably longer after whatever changed, not pure
+  // chance. Widening the settle wait rather than just keep retrying.
+  await page.waitForTimeout(1500);
   await shot(page, `${account.key}-01-listing`);
 
   // Retry loop: this click is intermittently flaky even with the settle wait above — confirmed

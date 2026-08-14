@@ -1,0 +1,819 @@
+{
+  "runLabel": "management-scan-full-report",
+  "runTimestamp": "20260814b",
+  "baseUrl": "https://q-assessments-hrmforce-it.h2software.nl",
+  "results": [
+    {
+      "role": "Manager",
+      "username": "perftest.employee.20260814b",
+      "flow": [
+        {
+          "label": "employee - Assessment start view load",
+          "ms": 796,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Click Start/Continue -> question view renders",
+          "ms": 325,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #1 - scale-option click",
+          "ms": 48,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #2 - scale-option click",
+          "ms": 43,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #3 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #4 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #5 - scale-option click",
+          "ms": 43,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #6 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #7 - scale-option click",
+          "ms": 40,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #8 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #9 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #10 - scale-option click",
+          "ms": 48,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #11 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #12 - scale-option click",
+          "ms": 42,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #13 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #14 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #15 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #16 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #17 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #18 - scale-option click",
+          "ms": 43,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #19 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #20 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #21 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #22 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #23 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #24 - scale-option click",
+          "ms": 43,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #25 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #26 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #27 - scale-option click",
+          "ms": 48,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #28 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Open question #1 - textarea fill",
+          "ms": 11,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Open question #2 - textarea fill",
+          "ms": 9,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Open question #3 - textarea fill",
+          "ms": 11,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Submit -> response (validation banner or end view)",
+          "ms": 908,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "bannerShown": false,
+            "bannerText": null
+          }
+        },
+        {
+          "label": "employee - Back to dashboard",
+          "ms": 1057,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Login",
+          "ms": 6781,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Personal Dashboard",
+          "ms": 1822,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Permission check - Nine-Grid/Kalibirity tabs absent for Employee",
+          "ms": 3,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "confirmedAbsent": true
+          }
+        },
+        {
+          "label": "Action - Report (HTML) click",
+          "ms": 4012,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "hadLanguagePopup": true,
+            "downloadStarted": false,
+            "openedNewTab": true,
+            "suggestedFilename": null
+          }
+        },
+        {
+          "label": "Action - Report (PDF) click",
+          "ms": 5783,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "hadLanguagePopup": true,
+            "downloadStarted": false,
+            "openedNewTab": true,
+            "suggestedFilename": null
+          }
+        }
+      ],
+      "notes": []
+    },
+    {
+      "role": "Director",
+      "username": "perftest.manager.20260814b",
+      "flow": [
+        {
+          "label": "manager - Assessment start view load",
+          "ms": 1300,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Click Start/Continue -> question view renders",
+          "ms": 256,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #1 - scale-option click",
+          "ms": 27,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #2 - scale-option click",
+          "ms": 40,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #3 - scale-option click",
+          "ms": 43,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #4 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #5 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #6 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #7 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #8 - scale-option click",
+          "ms": 49,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #9 - scale-option click",
+          "ms": 41,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #10 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #11 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #12 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #13 - scale-option click",
+          "ms": 42,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #14 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #15 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #16 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #17 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #18 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #19 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #20 - scale-option click",
+          "ms": 42,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #21 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #22 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #23 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #24 - scale-option click",
+          "ms": 40,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #25 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #26 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #27 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #28 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Submit -> response (validation banner or end view)",
+          "ms": 917,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "bannerShown": false,
+            "bannerText": null
+          }
+        },
+        {
+          "label": "manager - Back to dashboard",
+          "ms": 1070,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Login",
+          "ms": 7012,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Management Scan (Nine-Grid)",
+          "ms": 2309,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Search by name (real match)",
+          "ms": 710,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Clear search",
+          "ms": 346,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Nine-Grid Generate",
+          "ms": 847,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Report (PDF) toolbar (language popup + overview report)",
+          "ms": 5328,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "downloadStarted": false,
+            "openedNewTab": true,
+            "suggestedFilename": null
+          }
+        },
+        {
+          "label": "Action - Export (.xlsx download)",
+          "ms": 798,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "downloadStarted": true,
+            "suggestedFilename": "Management_Scan.xlsx"
+          }
+        },
+        {
+          "label": "Action - Filter: Department (multi-select, Chosen)",
+          "ms": 369,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "picked": "Automation Test Department"
+          }
+        },
+        {
+          "label": "Action - Filter: Function (multi-select, Chosen)",
+          "ms": 1144,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "picked": "Automation Test Function"
+          }
+        },
+        {
+          "label": "Action - Filter: Supervisor (multi-select, Chosen)",
+          "ms": 287,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "picked": "PerfTest Manager"
+          }
+        },
+        {
+          "label": "Action - Filter: Group (single-select, native)",
+          "ms": 36,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "picked": "All Employee"
+          }
+        },
+        {
+          "label": "Action - Nine-Grid Generate (with filters applied)",
+          "ms": 116,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Reset filters (Department/Function/Supervisor back to All)",
+          "ms": 953,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "dept": {
+              "cleared": false,
+              "remaining": 1,
+              "iterations": 1
+            },
+            "func": {
+              "cleared": false,
+              "remaining": 1,
+              "iterations": 1
+            },
+            "sup": {
+              "cleared": false,
+              "remaining": 1,
+              "iterations": 1
+            }
+          }
+        },
+        {
+          "label": "Action - Nine-Grid Generate (filters reset)",
+          "ms": 111,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Grid Cell click (real data cell)",
+          "ms": 933,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Data check - Employee row visible with correct scores",
+          "ms": 3,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "found": false
+          }
+        },
+        {
+          "label": "Action - Row click -> open candidate Personal Dashboard",
+          "ms": 3,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true
+          }
+        },
+        {
+          "label": "Action - Back to Nine-Grid from candidate dashboard",
+          "ms": 2,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true
+          }
+        },
+        {
+          "label": "Action - \"Load All Completed\" (drops cell scope, ADR-012)",
+          "ms": 434,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Sub-tab round trip (Voltooid -> Openstaand -> Voltooid)",
+          "ms": 683,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Pending tab click",
+          "ms": 489,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Load More - pending list (only meaningful with >10 rows)",
+          "ms": 3,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true,
+            "reason": "below pagination threshold"
+          }
+        },
+        {
+          "label": "Action - Kalibirity tab load",
+          "ms": 1108,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Kalibirity Generate",
+          "ms": 233,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "modalStuck": false
+          }
+        },
+        {
+          "label": "Data check - Kalibirity row for Employee visible",
+          "ms": 71,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "found": true
+          }
+        },
+        {
+          "label": "Action - Stage a manual override (click a non-current swatch)",
+          "ms": 732,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Kalibirity batch save (\"Save calibrations (N)\")",
+          "ms": 1615,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "labelBefore": "Save calibrations (1)",
+            "labelAfter": "Calibrations saved (0)"
+          }
+        },
+        {
+          "label": "Action - Publish/Unpublish toggle",
+          "ms": 1232,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "before": "Unpublish",
+            "after": "Publish",
+            "toggled": true,
+            "stillThere": true
+          }
+        },
+        {
+          "label": "Action - Report (HTML) generate for candidate row",
+          "ms": 4012,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "hadLanguagePopup": true,
+            "downloadStarted": false,
+            "openedNewTab": true,
+            "suggestedFilename": null
+          }
+        },
+        {
+          "label": "Action - Report (PDF) generate for candidate row",
+          "ms": 5338,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "hadLanguagePopup": true,
+            "downloadStarted": false,
+            "openedNewTab": true,
+            "suggestedFilename": null
+          }
+        }
+      ],
+      "notes": [
+        "chosenClearAll(mgScanDepartment): click on .search-choice-close did not reduce the chip count (stuck at 1) - stopped after 1 attempt(s) instead of hanging.",
+        "chosenClearAll(mgScanFunction): click on .search-choice-close did not reduce the chip count (stuck at 1) - stopped after 1 attempt(s) instead of hanging.",
+        "chosenClearAll(mgScanSupervisor): click on .search-choice-close did not reduce the chip count (stuck at 1) - stopped after 1 attempt(s) instead of hanging.",
+        "manager: PerfTest Employee row not found in this cell \u2014 may need a different cell (subtree visibility) or search.",
+        "Employee row not visible for dashboard-navigation test.",
+        "Back button not found on candidate dashboard.",
+        "No Load More control visible \u2014 dataset (1 candidate) is below the pagination threshold, so this is untestable with current seed data."
+      ]
+    }
+  ],
+  "functionalChecks": {
+    "title": "Assessment Page \u2014 Validation & Button Behavior (PerfTest ValidationCheck account)",
+    "checks": [
+      {
+        "check": "Unanswered questions get .is-unanswered highlight after Submit",
+        "result": "PASS (30 highlighted)",
+        "ms": 10048
+      },
+      {
+        "check": "Validation error banner shown on submit-without-answering",
+        "result": "FAIL (no banner text found)",
+        "ms": 10048
+      },
+      {
+        "check": "Submit does NOT navigate away when validation fails (stays on question view)",
+        "result": "PASS"
+      },
+      {
+        "check": "Pause & resume later button present and clickable",
+        "result": "PASS",
+        "ms": 848
+      },
+      {
+        "check": "Pause returns to Personal Dashboard",
+        "result": "PASS",
+        "ms": 848
+      },
+      {
+        "check": "Resume -> question view with retained answers renders",
+        "result": "PASS",
+        "ms": 991
+      },
+      {
+        "check": "Answers retained after Pause + Resume (3 answered before pause)",
+        "result": "PASS (3/3 retained)"
+      }
+    ]
+  },
+  "knownIssues": [
+    {
+      "severity": "Bug",
+      "area": "Publish/Unpublish (Nine-Grid Completed list)",
+      "summary": "Clicking Publish/Unpublish as a caller who is NOT the cycle's direct MyManager throws an unhandled server exception (HTTP 500 from Service/MgScanService.asmx/SetManagementScanPublishState) instead of a graceful authorization error. STILL PRESENT - reproduced a FIFTH time (2026-08-10 x2, 2026-08-12, 2026-08-13, 2026-08-14), byte-identical response each time, across three separate deployed releases now. Still not filed as an ADO bug - strongly recommend doing so at this point.",
+      "reproduction": "Log in as the org-level account one level above the evaluator (not the candidate's direct MyManager), open Nine-Grid, Generate, select the candidate's cell, click Publish/Unpublish on their row.",
+      "evidence": "Response body: {\"Message\":\"There was an error processing the request.\",\"StackTrace\":\"\",\"ExceptionType\":\"\"}"
+    },
+    {
+      "severity": "Needs follow-up - now confirmed on 2 consecutive runs",
+      "area": "Assessment validation banner not appearing",
+      "summary": "Submitting the assessment with nothing answered still correctly highlights every required question client-side (30 of 31, correctly excluding the one optional trailing question). But the textual validation banner (server-driven, via the errorMessage observable set from the CompleteManagementScan response) did NOT appear within a 10-second wait on this run OR the previous day's run (2026-08-13) - both waited out the full 10s. The baseline and 2026-08-12 runs found it within ~1.5s. This is now reproducible across two separate releases, not a one-off - upgraded from 'unconfirmed' to a real finding worth prioritizing. The underlying code path (_unansweredMessage() in mgScanAssessment.js) still exists in source.",
+      "reproduction": "Log in as an account with no manager relationship, start the assessment, submit without answering anything, wait for the banner."
+    },
+    {
+      "severity": "UI change - test fixed, not a product bug",
+      "area": "Personal Dashboard Report(HTML)/(PDF) buttons redesigned to icon-only",
+      "summary": "This release removed the visible 'Report (HTML)'/'Report (PDF)' text labels from the Personal Dashboard's report buttons (now icon-only, matching the row-level icon style elsewhere) - confirmed via source (mgScanEmployee.html) and a live screenshot showing the redesigned dashboard rendering correctly with real scores/Nine-Grid position. The test's text-based selector found 0 buttons and would have wrongly reported the feature as broken; fixed to match by icon class (.fa-code / .fa-file-pdf) like everywhere else. Both report types confirmed genuinely working after the fix (HTML: opens a tab; PDF: real download).",
+      "reproduction": "View the Personal Dashboard as the assessed person after publish."
+    },
+    {
+      "severity": "Process finding",
+      "area": "\"Add New\" button flake rate markedly worse this run",
+      "summary": "The known 'lands on My Account instead of the new-candidate form' flake (historically ~1-in-6 attempts) hit 5-in-5 in a row when creating the standalone validation account, and also required a retry mid-batch for the main hierarchy. Widened the pre-click settle wait from 500ms to 1500ms, which fixed it immediately on the next attempt - consistent with Knockout's binding attachment now taking measurably longer after this release's changes (which also touched Starter.aspx.cs and session handling), not pure chance.",
+      "reproduction": "Click 'Add New' on CandidateNew.aspx shortly after the listing page becomes visible."
+    },
+    {
+      "severity": "Good (by design)",
+      "area": "Kalibirity manual override (position swatches)",
+      "summary": "The unauthorized org-rollup account's manual-override swatches remain correctly non-actionable (30s timeout, no data mutation possible) - confirmed again this run, consistent with ADR-001 authorization intent."
+    },
+    {
+      "severity": "Confirmed release",
+      "area": "Fingerprint check",
+      "summary": "Manager/evaluator assessment side still renders 28 questions (not 31) - consistent with the 2026-08-13 release. This run's environment reflects 20 additional commits merged since then (Kalibirity grid-sync fix, pending-list duplicate fix, Manager report work, Personal Dashboard report button redesign) - all confirmed exercised in this pass."
+    }
+  ],
+  "terminologyNote": "Reported roles are the feature's own two-role model ONLY - \"Manager\" (the person being assessed) and \"Director\" (their evaluator). A third org-hierarchy account one level above the evaluator exists only to demonstrate the Publish/Unpublish 500 bug in Known Issues and is not a timed role in this report."
+}

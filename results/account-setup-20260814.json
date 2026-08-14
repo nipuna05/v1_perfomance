@@ -1,0 +1,11 @@
+[
+  {
+    "role": "director",
+    "username": "perftest.director.20260814",
+    "fullName": "PerfTest Director",
+    "lastName": "Director",
+    "email": "perftest.director.20260814@example.invalid",
+    "errors": [],
+    "password": "PerfTest@2026"
+  }
+]

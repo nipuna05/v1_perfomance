@@ -1,0 +1,8 @@
+{
+  "repo": "HRMForce",
+  "releaseId": "post-2026-08-14-deploy",
+  "confirmedSha": null,
+  "approxSha": "at or near cd4c0e6 (2026-08-14 06:01 UTC, PR 5717 'Swap completed and pending tabs in manager view') - master HEAD at the time this run was executed; 20 commits ahead of the 2026-08-13 verified release (post-2026-08-13-deploy)",
+  "confirmedBy": "Functional probe: Manager/evaluator assessment side still renders 28 .mgscan-question elements (consistent with the 2026-08-13 release). Additionally observed real, distinct UI changes confirming forward progress: Personal Dashboard Report(HTML)/(PDF) buttons redesigned to icon-only (no visible text labels), consistent with PR 5718 'management scan employee report' fixes merged since the last verified run.",
+  "note": "Distinct from post-2026-08-13-deploy - 20 new commits merged, including Kalibirity grid-sync fix (PR 5714), pending-list duplicate fix (PR 5713), Manager report work (PR 5712), and this Personal Dashboard report-button redesign."
+}

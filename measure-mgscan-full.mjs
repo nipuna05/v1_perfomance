@@ -198,7 +198,12 @@ const notes = [];
       // HTML popup left over from the previous step, which the old immediate-download assumption
       // never detected or dismissed.
       async function personalDashboardReport(label) {
-        const btn = page.locator('button, a').filter({ hasText: `Report (${label})` });
+        // As of the 2026-08-14 release, these are icon-only buttons (title tooltip via a token
+        // binding, no visible text) - a UI redesign, not a functional change. Text matching
+        // silently found 0 buttons and made a working feature look broken. Match by icon class,
+        // same convention as the row-level icons (mgScanEmployee.html: .fa-code / .fa-file-pdf).
+        const iconClass = label === 'HTML' ? '.fa-code' : '.fa-file-pdf';
+        const btn = page.locator(`button:has(${iconClass}), a:has(${iconClass})`);
         if (await btn.count() === 0) { notes.push(`Report (${label}) button not present — cycle may not be published yet.`); return { skipped: true }; }
         let hadLanguagePopup = false;
         // The whole click sequence (main button, then Ok if a popup shows) runs INSIDE
