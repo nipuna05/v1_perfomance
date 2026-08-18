@@ -234,6 +234,28 @@ const notes = [];
       flow.push(await step('Action - Report (HTML) click', () => personalDashboardReport('HTML')));
       flow.push(await step('Action - Report (PDF) click', () => personalDashboardReport('PDF')));
 
+      // "Manager conversation" panel (added 2026-08-18) - visual UI only, no backend wiring
+      // per its own source comment (mgScanEmployee.js). Purely client-side observable toggles,
+      // so these should be near-instant; a slow result here would point at something else on
+      // the page (e.g. a stuck "Loading..." overlay) rather than this feature itself.
+      flow.push(await step('Action - Manager conversation: toggle Date-of-conversation editable', async () => {
+        const btn = page.locator('a[data-bind="click: onToggleConversationDateEditable"]');
+        if (await btn.count() === 0) { notes.push('Manager conversation panel not found (added 2026-08-18) — may not be deployed to this environment yet.'); return { skipped: true }; }
+        await btn.click();
+        await page.waitForTimeout(100);
+        const nowEditable = (await page.locator('input[type="date"]').first().getAttribute('readonly')) === null;
+        return { nowEditable };
+      }));
+
+      flow.push(await step('Action - Manager conversation: toggle Year-next-scan editable', async () => {
+        const btn = page.locator('a[data-bind="click: onToggleNextScanYearEditable"]');
+        if (await btn.count() === 0) { notes.push('Manager conversation panel not found (added 2026-08-18) — may not be deployed to this environment yet.'); return { skipped: true }; }
+        await btn.click();
+        await page.waitForTimeout(100);
+        const nowEditable = (await page.locator('input[type="number"]').first().getAttribute('readonly')) === null;
+        return { nowEditable };
+      }));
+
     } else {
       // ── Manager / Director: full Nine-Grid + Kalibirity sweep. ──────────────────────────
       const nineGridTab = page.locator('#tabMgScanNineGrid');

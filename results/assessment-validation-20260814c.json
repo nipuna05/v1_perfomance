@@ -1,13 +1,17 @@
 [
   {
+    "check": "Open-question textarea has no maxlength cap (250-char regression fixed)",
+    "result": "PASS (no maxlength attribute)"
+  },
+  {
     "check": "Unanswered questions get .is-unanswered highlight after Submit",
-    "result": "PASS (30 highlighted)",
-    "ms": 10048
+    "result": "PASS (27 highlighted)",
+    "ms": 10383
   },
   {
     "check": "Validation error banner shown on submit-without-answering",
     "result": "FAIL (no banner text found)",
-    "ms": 10048
+    "ms": 10383
   },
   {
     "check": "Submit does NOT navigate away when validation fails (stays on question view)",
@@ -16,17 +20,17 @@
   {
     "check": "Pause & resume later button present and clickable",
     "result": "PASS",
-    "ms": 851
+    "ms": 850
   },
   {
     "check": "Pause returns to Personal Dashboard",
     "result": "PASS",
-    "ms": 851
+    "ms": 850
   },
   {
     "check": "Resume -> question view with retained answers renders",
     "result": "PASS",
-    "ms": 1081
+    "ms": 1049
   },
   {
     "check": "Answers retained after Pause + Resume (3 answered before pause)",

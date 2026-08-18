@@ -63,6 +63,18 @@ function msSince(start) { return Math.round(Number(now() - start) / 1e6); }
     await page.locator('.btn-ctrl.primary:visible').click();
     await page.locator('.mgscan-question').first().waitFor({ state: 'visible', timeout: 15000 });
 
+    // ── Test 0: Open-question textarea maxlength (regression tracked since before 2026-08-13,
+    // reported fixed 2026-08-14/154c234c — "Removed maxlength attribute from textarea in
+    // mgScanAssessment.html to allow for longer answers"). Read-only check (no typing), placed
+    // before Test 1 so it can't affect the unanswered-count assertion below.
+    const firstTextarea = page.locator('.mgscan-question textarea').first();
+    if (await firstTextarea.count() > 0) {
+      const maxlength = await firstTextarea.getAttribute('maxlength');
+      findings.push({ check: 'Open-question textarea has no maxlength cap (250-char regression fixed)', result: maxlength === null ? 'PASS (no maxlength attribute)' : `FAIL (maxlength="${maxlength}")` });
+    } else {
+      findings.push({ check: 'Open-question textarea has no maxlength cap (250-char regression fixed)', result: 'SKIP (no open-question textarea on this account\'s assessment)' });
+    }
+
     // ── Test 1: Submit with nothing answered ────────────────────────────────────────────
     await shot(page, '02-question-page-unanswered');
     const submitClickStart = now();
