@@ -1,0 +1,8 @@
+{
+  "repo": "HRMForce",
+  "releaseId": "whole-project-first-smoke-test",
+  "confirmedSha": null,
+  "approxSha": "at or near the 'Add standalone V1 performance-timing suite (page-load + login-API)' commit (2026-07-24) - exact deployed IT SHA was not captured at the time",
+  "confirmedBy": null,
+  "note": "The very first verification run of this suite's whole-project sweep, against the real IT environment (not localhost). Never formally tracked as a baseline at the time - recorded retroactively on 2026-08-18 after being found sitting in results/ unused, to give the 2026-08-18 baseline a genuine prior data point instead of none. 25 days and an unknown number of commits separate the two runs - treat any diff as 'roughly how things drifted over 25 days', not a tight before/after release comparison."
+}

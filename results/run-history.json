@@ -1,4 +1,1171 @@
 {
   "description": "Tracks V1 app performance-timing runs (page-load + login-API), standalone suite independent of the V1.Tests C# learning project.",
-  "runs": []
+  "runs": [
+    {
+      "runStamp": "20260724",
+      "date": "2026-07-24",
+      "baseUrl": "https://q-assessments-hrmforce-it.h2software.nl",
+      "combinedResultsFile": "smoke-test-2-1784878504938.json",
+      "release": {
+        "repo": "HRMForce",
+        "releaseId": "whole-project-first-smoke-test",
+        "confirmedSha": null,
+        "approxSha": "at or near the 'Add standalone V1 performance-timing suite (page-load + login-API)' commit (2026-07-24) - exact deployed IT SHA was not captured at the time",
+        "confirmedBy": null,
+        "note": "The very first verification run of this suite's whole-project sweep, against the real IT environment (not localhost). Never formally tracked as a baseline at the time - recorded retroactively on 2026-08-18 after being found sitting in results/ unused, to give the 2026-08-18 baseline a genuine prior data point instead of none. 25 days and an unknown number of commits separate the two runs - treat any diff as 'roughly how things drifted over 25 days', not a tight before/after release comparison."
+      },
+      "steps": [
+        {
+          "role": "Admin",
+          "label": "Page Load - Sign In page",
+          "ms": 2299,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Login",
+          "ms": 5887,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - CRM Dashboard",
+          "ms": 1524,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - CRM Organization",
+          "ms": 3759,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - CRM Contacts",
+          "ms": 2605,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - CRM Tasks",
+          "ms": 2290,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - CRM Opportunity",
+          "ms": 2290,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - CRM Tree View",
+          "ms": 1860,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - CRM Email",
+          "ms": 2835,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - CRM Not In Contacts",
+          "ms": 2300,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Analytics Dashboard",
+          "ms": 4409,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Satisfaction",
+          "ms": 2900,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Group Overview",
+          "ms": 2815,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Factor Overview",
+          "ms": 2434,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Performance",
+          "ms": 2497,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Exit Assessment",
+          "ms": 2575,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Pulse Survey",
+          "ms": 2998,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Energy Assessment",
+          "ms": 2996,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Team Assessment",
+          "ms": 3217,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Develop Matrix",
+          "ms": 3871,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - 9 Box Performance Grid",
+          "ms": 2909,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Culture Assessment",
+          "ms": 1467,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Candidates",
+          "ms": 2780,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Groups",
+          "ms": 3010,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Direct Candidates",
+          "ms": 2256,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Test Managers",
+          "ms": 2118,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Clients",
+          "ms": 4728,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Partner",
+          "ms": 3209,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Recruitment Dashboard",
+          "ms": 6363,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Match Profile",
+          "ms": 2385,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Matching",
+          "ms": 1127,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Recruitment Portal Dashboard",
+          "ms": 1346,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Vacancy",
+          "ms": 1720,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Recruitment Documents",
+          "ms": 1092,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Global Process",
+          "ms": 2230,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Global Process Email Template",
+          "ms": 2467,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Global Procedure",
+          "ms": 1596,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Process",
+          "ms": 2049,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Recruitment Email Template",
+          "ms": 2228,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Procedure",
+          "ms": 1787,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Stakeholders",
+          "ms": 2255,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Applicant",
+          "ms": 1718,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Recruitment Client",
+          "ms": 4270,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - BiLa",
+          "ms": 1978,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - BiLa Overview",
+          "ms": 1095,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Ziezo",
+          "ms": 2635,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - BiLa Basic Overview",
+          "ms": 2653,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - BiLa Plus",
+          "ms": 4109,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - BiLa Plus Overview",
+          "ms": 1502,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Employees",
+          "ms": 5509,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - PPP Overview",
+          "ms": 1492,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Year Cycle Overview",
+          "ms": 1298,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - My Teams",
+          "ms": 5150,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Planning Overview",
+          "ms": 2075,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Requests Overview",
+          "ms": 1918,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Holiday Overview",
+          "ms": 2171,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Competency Profiles",
+          "ms": 2146,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Function",
+          "ms": 1555,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Department",
+          "ms": 2150,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Organisation Diagram",
+          "ms": 1306,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Task Overview",
+          "ms": 2220,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Customised Competencies",
+          "ms": 2525,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Materials",
+          "ms": 2299,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Pulse Survey Questions",
+          "ms": 3672,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Pulse Survey Questionnaire",
+          "ms": 2823,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Study",
+          "ms": 2429,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Custom Assessment",
+          "ms": 2701,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Support Overview",
+          "ms": 6059,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Support Documents",
+          "ms": 2637,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Training Document",
+          "ms": 1976,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Sample Reports",
+          "ms": 1757,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Competency Overview",
+          "ms": 2137,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Support",
+          "ms": 1691,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Service Desk",
+          "ms": 2481,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Support Call",
+          "ms": 6643,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - FAQ",
+          "ms": 2515,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Security",
+          "ms": 2675,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Video",
+          "ms": 1752,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Signals",
+          "ms": 1526,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Contact Details",
+          "ms": 1111,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Language Manager",
+          "ms": 2162,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Default Prices",
+          "ms": 2291,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Currency",
+          "ms": 2055,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Invoices",
+          "ms": 1525,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Distributor",
+          "ms": 4092,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Certification Training",
+          "ms": 1770,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - API Manual Sync",
+          "ms": 1265,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Recalculate an Assessment",
+          "ms": 3838,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Recalculate all assessments",
+          "ms": 1562,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Recalculate All Assessments Client Wise",
+          "ms": 1323,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Archive Candidates",
+          "ms": 2136,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Resend Invoice",
+          "ms": 2103,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - ToDo",
+          "ms": 1935,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - User Log",
+          "ms": 2356,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "runStamp": "20260818",
+      "date": "2026-08-18",
+      "baseUrl": "https://q-assessments-hrmforce-it.h2software.nl",
+      "combinedResultsFile": "whole-project-baseline-20260818.json",
+      "release": {
+        "repo": "HRMForce",
+        "releaseId": "whole-project-baseline-2026-08-18",
+        "confirmedSha": null,
+        "approxSha": "at or near a11ba8a6 (2026-08-18, PR 5760 'Add Manager conversation panel with editable date and year fields') - master HEAD synced into nipuna/managementscan-63017 immediately before this run",
+        "confirmedBy": "git log HEAD..origin/master showed 0 commits remaining after the merge performed just before this run.",
+        "note": "First whole-project run to use this suite's full tracking pipeline (Excel report + trend log + baseline doc), not just measure.mjs's raw JSON output. Previous whole-project sweeps (Jul 24 - Aug 10) predate this tracking infrastructure, which was built for the Management Scan deep-dive and is being extended here to cover the whole project too."
+      },
+      "steps": [
+        {
+          "role": "Admin",
+          "label": "Page Load - Sign In page",
+          "ms": 2473,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Login",
+          "ms": 3828,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - CRM Dashboard",
+          "ms": 1828,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - CRM Organization",
+          "ms": 4001,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - CRM Contacts",
+          "ms": 2973,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - CRM Tasks",
+          "ms": 3130,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - CRM Opportunity",
+          "ms": 2871,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - CRM Tree View",
+          "ms": 1718,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - CRM Email",
+          "ms": 2628,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - CRM Not In Contacts",
+          "ms": 2485,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Analytics Dashboard",
+          "ms": 5279,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Satisfaction",
+          "ms": 3299,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Group Overview",
+          "ms": 2330,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Factor Overview",
+          "ms": 2370,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Performance",
+          "ms": 2561,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Exit Assessment",
+          "ms": 2515,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Pulse Survey",
+          "ms": 2908,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Energy Assessment",
+          "ms": 2893,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Team Assessment",
+          "ms": 3700,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Develop Matrix",
+          "ms": 3125,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - 9 Box Performance Grid",
+          "ms": 2412,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Culture Assessment",
+          "ms": 1260,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Candidates",
+          "ms": 2395,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Groups",
+          "ms": 2744,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Direct Candidates",
+          "ms": 2370,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Test Managers",
+          "ms": 2216,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Clients",
+          "ms": 4345,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Partner",
+          "ms": 3051,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Recruitment Dashboard",
+          "ms": 6464,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Match Profile",
+          "ms": 2753,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Matching",
+          "ms": 1230,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Recruitment Portal Dashboard",
+          "ms": 1537,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Vacancy",
+          "ms": 1647,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Recruitment Documents",
+          "ms": 1157,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Global Process",
+          "ms": 2683,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Global Process Email Template",
+          "ms": 2467,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Global Procedure",
+          "ms": 2066,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Process",
+          "ms": 2027,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Recruitment Email Template",
+          "ms": 2219,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Procedure",
+          "ms": 1859,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Stakeholders",
+          "ms": 2222,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Applicant",
+          "ms": 1720,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Recruitment Client",
+          "ms": 3945,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - BiLa",
+          "ms": 2792,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - BiLa Overview",
+          "ms": 1333,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Ziezo",
+          "ms": 2916,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - BiLa Basic Overview",
+          "ms": 2666,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - BiLa Plus",
+          "ms": 4381,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - BiLa Plus Overview",
+          "ms": 1594,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Employees",
+          "ms": 5191,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - PPP Overview",
+          "ms": 1109,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Year Cycle Overview",
+          "ms": 1132,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - My Teams",
+          "ms": 4538,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Planning Overview",
+          "ms": 2258,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Requests Overview",
+          "ms": 1851,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Holiday Overview",
+          "ms": 2106,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Competency Profiles",
+          "ms": 2204,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Function",
+          "ms": 2131,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Department",
+          "ms": 2665,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Organisation Diagram",
+          "ms": 1272,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Task Overview",
+          "ms": 2057,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Customised Competencies",
+          "ms": 2664,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Materials",
+          "ms": 2196,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Pulse Survey Questions",
+          "ms": 3813,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Pulse Survey Questionnaire",
+          "ms": 3583,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Study",
+          "ms": 2303,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Custom Assessment",
+          "ms": 2681,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Support Overview",
+          "ms": 6039,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Support Documents",
+          "ms": 2409,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Training Document",
+          "ms": 1916,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Sample Reports",
+          "ms": 1472,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Competency Overview",
+          "ms": 2116,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Support",
+          "ms": 1468,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Service Desk",
+          "ms": 2499,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Support Call",
+          "ms": 6261,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - FAQ",
+          "ms": 2245,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Security",
+          "ms": 2564,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Video",
+          "ms": 1643,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Signals",
+          "ms": 1546,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Contact Details",
+          "ms": 1065,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Language Manager",
+          "ms": 2161,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Default Prices",
+          "ms": 1665,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Currency",
+          "ms": 1706,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Invoices",
+          "ms": 1363,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Distributor",
+          "ms": 3731,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Certification Training",
+          "ms": 1577,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - API Manual Sync",
+          "ms": 1240,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Recalculate an Assessment",
+          "ms": 4061,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Recalculate all assessments",
+          "ms": 1305,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Recalculate All Assessments Client Wise",
+          "ms": 1265,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Archive Candidates",
+          "ms": 2200,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Resend Invoice",
+          "ms": 2033,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - ToDo",
+          "ms": 2141,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - User Log",
+          "ms": 2225,
+          "ok": true
+        },
+        {
+          "role": "Admin",
+          "label": "Page Load - Management Scan",
+          "ms": 3069,
+          "ok": true
+        }
+      ]
+    }
+  ]
 }
