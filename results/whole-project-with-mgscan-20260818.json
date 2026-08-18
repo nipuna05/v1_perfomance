@@ -1,0 +1,1322 @@
+{
+  "runLabel": "whole-project-with-mgscan-detail",
+  "runTimestamp": "20260818",
+  "baseUrl": "https://q-assessments-hrmforce-it.h2software.nl",
+  "results": [
+    {
+      "role": "Admin",
+      "username": "service@hrmforce.com",
+      "flow": [
+        {
+          "label": "Page Load - Sign In page",
+          "ms": 2473,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Login",
+          "ms": 3828,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - CRM Dashboard",
+          "ms": 1828,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - CRM Organization",
+          "ms": 4001,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - CRM Contacts",
+          "ms": 2973,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - CRM Tasks",
+          "ms": 3130,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - CRM Opportunity",
+          "ms": 2871,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - CRM Tree View",
+          "ms": 1718,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - CRM Email",
+          "ms": 2628,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - CRM Not In Contacts",
+          "ms": 2485,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Analytics Dashboard",
+          "ms": 5279,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Satisfaction",
+          "ms": 3299,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Group Overview",
+          "ms": 2330,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Factor Overview",
+          "ms": 2370,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Performance",
+          "ms": 2561,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Exit Assessment",
+          "ms": 2515,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Pulse Survey",
+          "ms": 2908,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Energy Assessment",
+          "ms": 2893,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Team Assessment",
+          "ms": 3700,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Develop Matrix",
+          "ms": 3125,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - 9 Box Performance Grid",
+          "ms": 2412,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Culture Assessment",
+          "ms": 1260,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Candidates",
+          "ms": 2395,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Groups",
+          "ms": 2744,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Direct Candidates",
+          "ms": 2370,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Test Managers",
+          "ms": 2216,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Clients",
+          "ms": 4345,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Partner",
+          "ms": 3051,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Recruitment Dashboard",
+          "ms": 6464,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Match Profile",
+          "ms": 2753,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Matching",
+          "ms": 1230,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Recruitment Portal Dashboard",
+          "ms": 1537,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Vacancy",
+          "ms": 1647,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Recruitment Documents",
+          "ms": 1157,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Global Process",
+          "ms": 2683,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Global Process Email Template",
+          "ms": 2467,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Global Procedure",
+          "ms": 2066,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Process",
+          "ms": 2027,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Recruitment Email Template",
+          "ms": 2219,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Procedure",
+          "ms": 1859,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Stakeholders",
+          "ms": 2222,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Applicant",
+          "ms": 1720,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Recruitment Client",
+          "ms": 3945,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - BiLa",
+          "ms": 2792,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - BiLa Overview",
+          "ms": 1333,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Ziezo",
+          "ms": 2916,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - BiLa Basic Overview",
+          "ms": 2666,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - BiLa Plus",
+          "ms": 4381,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - BiLa Plus Overview",
+          "ms": 1594,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Employees",
+          "ms": 5191,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - PPP Overview",
+          "ms": 1109,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Year Cycle Overview",
+          "ms": 1132,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - My Teams",
+          "ms": 4538,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Planning Overview",
+          "ms": 2258,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Requests Overview",
+          "ms": 1851,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Holiday Overview",
+          "ms": 2106,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Competency Profiles",
+          "ms": 2204,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Function",
+          "ms": 2131,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Department",
+          "ms": 2665,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Organisation Diagram",
+          "ms": 1272,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Task Overview",
+          "ms": 2057,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Customised Competencies",
+          "ms": 2664,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Materials",
+          "ms": 2196,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Pulse Survey Questions",
+          "ms": 3813,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Pulse Survey Questionnaire",
+          "ms": 3583,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Study",
+          "ms": 2303,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Custom Assessment",
+          "ms": 2681,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Support Overview",
+          "ms": 6039,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Support Documents",
+          "ms": 2409,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Training Document",
+          "ms": 1916,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Sample Reports",
+          "ms": 1472,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Competency Overview",
+          "ms": 2116,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Support",
+          "ms": 1468,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Service Desk",
+          "ms": 2499,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Support Call",
+          "ms": 6261,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - FAQ",
+          "ms": 2245,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Security",
+          "ms": 2564,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Video",
+          "ms": 1643,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Signals",
+          "ms": 1546,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Contact Details",
+          "ms": 1065,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Language Manager",
+          "ms": 2161,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Default Prices",
+          "ms": 1665,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Currency",
+          "ms": 1706,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Invoices",
+          "ms": 1363,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Distributor",
+          "ms": 3731,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Certification Training",
+          "ms": 1577,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - API Manual Sync",
+          "ms": 1240,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Recalculate an Assessment",
+          "ms": 4061,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Recalculate all assessments",
+          "ms": 1305,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Recalculate All Assessments Client Wise",
+          "ms": 1265,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Archive Candidates",
+          "ms": 2200,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Resend Invoice",
+          "ms": 2033,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - ToDo",
+          "ms": 2141,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - User Log",
+          "ms": 2225,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Management Scan",
+          "ms": 3069,
+          "ok": true,
+          "error": null
+        }
+      ],
+      "notes": []
+    },
+    {
+      "role": "Management Scan - Manager",
+      "username": "perftest.employee.20260814",
+      "flow": [
+        {
+          "label": "employee - Assessment start view load",
+          "ms": 1302,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Click Start/Continue -> question view renders",
+          "ms": 326,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #1 - scale-option click",
+          "ms": 31,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #2 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #3 - scale-option click",
+          "ms": 48,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #4 - scale-option click",
+          "ms": 42,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #5 - scale-option click",
+          "ms": 48,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #6 - scale-option click",
+          "ms": 43,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #7 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #8 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #9 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #10 - scale-option click",
+          "ms": 43,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #11 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #12 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #13 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #14 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #15 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #16 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #17 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #18 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #19 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #20 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #21 - scale-option click",
+          "ms": 35,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #22 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #23 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #24 - scale-option click",
+          "ms": 41,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #25 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #26 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #27 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Statement #28 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Open question #1 - textarea fill",
+          "ms": 13,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Open question #2 - textarea fill",
+          "ms": 12,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Open question #3 - textarea fill",
+          "ms": 9,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "employee - Submit -> response (validation banner or end view)",
+          "ms": 922,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "bannerShown": false,
+            "bannerText": null
+          }
+        },
+        {
+          "label": "employee - Back to dashboard",
+          "ms": 1069,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Login",
+          "ms": 5539,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Personal Dashboard",
+          "ms": 1733,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Permission check - Nine-Grid/Kalibirity tabs absent for Employee",
+          "ms": 7,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "confirmedAbsent": true
+          }
+        },
+        {
+          "label": "Action - Report (HTML) click",
+          "ms": 4012,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "hadLanguagePopup": true,
+            "downloadStarted": false,
+            "openedNewTab": true,
+            "suggestedFilename": null
+          }
+        },
+        {
+          "label": "Action - Report (PDF) click",
+          "ms": 5414,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "hadLanguagePopup": true,
+            "downloadStarted": false,
+            "openedNewTab": true,
+            "suggestedFilename": null
+          }
+        }
+      ],
+      "notes": []
+    },
+    {
+      "role": "Management Scan - Director",
+      "username": "perftest.manager.20260814",
+      "flow": [
+        {
+          "label": "manager - Assessment start view load",
+          "ms": 799,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Click Start/Continue -> question view renders",
+          "ms": 276,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #1 - scale-option click",
+          "ms": 28,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #2 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #3 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #4 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #5 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #6 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #7 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #8 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #9 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #10 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #11 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #12 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #13 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #14 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #15 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #16 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #17 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #18 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #19 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #20 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #21 - scale-option click",
+          "ms": 44,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #22 - scale-option click",
+          "ms": 47,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #23 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #24 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #25 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #26 - scale-option click",
+          "ms": 45,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #27 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Statement #28 - scale-option click",
+          "ms": 46,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "manager - Submit -> response (validation banner or end view)",
+          "ms": 928,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "bannerShown": false,
+            "bannerText": null
+          }
+        },
+        {
+          "label": "manager - Back to dashboard",
+          "ms": 1066,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Login",
+          "ms": 6221,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Page Load - Management Scan (Nine-Grid)",
+          "ms": 2224,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Search by name (real match)",
+          "ms": 715,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Clear search",
+          "ms": 347,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Nine-Grid Generate",
+          "ms": 804,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Report (PDF) toolbar (language popup + overview report)",
+          "ms": 5301,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "downloadStarted": false,
+            "openedNewTab": true,
+            "suggestedFilename": null
+          }
+        },
+        {
+          "label": "Action - Export (.xlsx download)",
+          "ms": 502,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "downloadStarted": true,
+            "suggestedFilename": "Management_Scan.xlsx"
+          }
+        },
+        {
+          "label": "Action - Filter: Department (multi-select, Chosen)",
+          "ms": 411,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "picked": "Automation Test Department"
+          }
+        },
+        {
+          "label": "Action - Filter: Function (multi-select, Chosen)",
+          "ms": 326,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "picked": "Automation Test Function"
+          }
+        },
+        {
+          "label": "Action - Filter: Supervisor (multi-select, Chosen)",
+          "ms": 299,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "picked": "PerfTest Manager"
+          }
+        },
+        {
+          "label": "Action - Filter: Group (single-select, native)",
+          "ms": 34,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "picked": "All Employee"
+          }
+        },
+        {
+          "label": "Action - Nine-Grid Generate (with filters applied)",
+          "ms": 142,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Reset filters (Department/Function/Supervisor back to All)",
+          "ms": 1145,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "dept": {
+              "cleared": false,
+              "remaining": 1,
+              "iterations": 1
+            },
+            "func": {
+              "cleared": false,
+              "remaining": 1,
+              "iterations": 1
+            },
+            "sup": {
+              "cleared": false,
+              "remaining": 1,
+              "iterations": 1
+            }
+          }
+        },
+        {
+          "label": "Action - Nine-Grid Generate (filters reset)",
+          "ms": 132,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Grid Cell click (real data cell)",
+          "ms": 812,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Data check - Employee row visible with correct scores",
+          "ms": 3,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "found": false
+          }
+        },
+        {
+          "label": "Action - Row click -> open candidate Personal Dashboard",
+          "ms": 3,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true
+          }
+        },
+        {
+          "label": "Action - Back to Nine-Grid from candidate dashboard",
+          "ms": 2,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true
+          }
+        },
+        {
+          "label": "Action - \"Load All Completed\" (drops cell scope, ADR-012)",
+          "ms": 435,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Sub-tab round trip (Voltooid -> Openstaand -> Voltooid)",
+          "ms": 680,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Pending tab click",
+          "ms": 511,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Load More - pending list (only meaningful with >10 rows)",
+          "ms": 5,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true,
+            "reason": "below pagination threshold"
+          }
+        },
+        {
+          "label": "Action - Kalibirity tab load",
+          "ms": 1117,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Action - Kalibirity Generate",
+          "ms": 209,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "modalStuck": false
+          }
+        },
+        {
+          "label": "Data check - Kalibirity row for Employee visible",
+          "ms": 61,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "found": true
+          }
+        },
+        {
+          "label": "Action - Stage a manual override (click a non-current swatch)",
+          "ms": 10051,
+          "ok": false,
+          "error": "locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#tabMgScanKalibirity .kal-row').filter({ hasText: 'PerfTest Employee' }).first().locator('.kal-swatch:not(.is-current)').first()\u001b[22m\n\u001b[2m    - locator resolved to <a class=\"kal-swatch\" title=\"Needs Support\" data-bind=\"↵                            click: function () { $parent.selectPosition($data) },↵                  ",
+          "extra": null
+        },
+        {
+          "label": "Action - Kalibirity batch save (\"Save calibrations (N)\")",
+          "ms": 6,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "skipped": true,
+            "label": "Calibrations saved (0)"
+          }
+        },
+        {
+          "label": "Action - Publish/Unpublish toggle",
+          "ms": 1235,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "before": "Unpublish",
+            "after": "Publish",
+            "toggled": true,
+            "stillThere": true
+          }
+        },
+        {
+          "label": "Action - Report (HTML) generate for candidate row",
+          "ms": 4014,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "hadLanguagePopup": true,
+            "downloadStarted": false,
+            "openedNewTab": true,
+            "suggestedFilename": null
+          }
+        },
+        {
+          "label": "Action - Report (PDF) generate for candidate row",
+          "ms": 5435,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "hadLanguagePopup": true,
+            "downloadStarted": false,
+            "openedNewTab": true,
+            "suggestedFilename": null
+          }
+        }
+      ],
+      "notes": [
+        "chosenClearAll(mgScanDepartment): click on .search-choice-close did not reduce the chip count (stuck at 1) - stopped after 1 attempt(s) instead of hanging.",
+        "chosenClearAll(mgScanFunction): click on .search-choice-close did not reduce the chip count (stuck at 1) - stopped after 1 attempt(s) instead of hanging.",
+        "chosenClearAll(mgScanSupervisor): click on .search-choice-close did not reduce the chip count (stuck at 1) - stopped after 1 attempt(s) instead of hanging.",
+        "manager: PerfTest Employee row not found in this cell — may need a different cell (subtree visibility) or search.",
+        "Employee row not visible for dashboard-navigation test.",
+        "Back button not found on candidate dashboard.",
+        "No Load More control visible — dataset (1 candidate) is below the pagination threshold, so this is untestable with current seed data.",
+        "Batch-save button shows \"Calibrations saved (0)\" — no pending change was actually staged (override click may not have registered)."
+      ]
+    }
+  ]
+}
