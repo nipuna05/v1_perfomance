@@ -1,0 +1,28 @@
+[
+  {
+    "role": "evaluator (feature Director, direct manager)",
+    "username": "perftest.manager.20260814",
+    "networkCallsSeen": [
+      "GetFilteredScans",
+      "GetFilteredScansForCalibration"
+    ],
+    "kalibirityRowFoundForEmployee": true,
+    "overrideResult": {
+      "attempted": true,
+      "ok": true,
+      "ms": 33
+    }
+  },
+  {
+    "role": "org-rollup Director (2 levels up)",
+    "username": "perftest.director.20260814",
+    "networkCallsSeen": [
+      "GetFilteredScans",
+      "GetFilteredScansForCalibration"
+    ],
+    "kalibirityRowFoundForEmployee": false,
+    "overrideResult": {
+      "attempted": false
+    }
+  }
+]

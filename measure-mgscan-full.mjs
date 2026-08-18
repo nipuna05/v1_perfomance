@@ -462,6 +462,10 @@ const notes = [];
         // This is the same class of "Loading..." stuck-spinner issue already seen on Kalibirity
         // Generate, just a different trigger/selector - wait it out first rather than let a plain
         // .click() hang for the full 30s with a message that doesn't explain what actually blocked it.
+        // Confirmed FIXED 2026-08-18 (check-kalibirity-adr024.mjs): the click now completes in
+        // ~33ms for the direct-manager evaluator, after Kalibirity switched to a new
+        // GetFilteredScansForCalibration endpoint. Left this defensive wait in place anyway -
+        // cheap insurance, not proof the underlying class of stuck-spinner bug can't recur elsewhere.
         const genericLoading = page.getByText('Loading...', { exact: true });
         const stuckBeforeSwatch = await genericLoading.isVisible().catch(() => false);
         if (stuckBeforeSwatch) {
