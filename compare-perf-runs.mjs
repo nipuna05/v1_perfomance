@@ -12,7 +12,9 @@ import { fileURLToPath } from 'url';
 //   node compare-perf-runs.mjs <runStampA> <runStampB>
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const trendPath = path.join(__dirname, 'results', 'mgscan-perf-trend.json');
+// Same TREND_FILE override as record-perf-run.mjs, so a different suite's trend log
+// (e.g. whole-project-perf-trend.json) can be diffed with this same script.
+const trendPath = path.join(__dirname, 'results', process.env.TREND_FILE || 'mgscan-perf-trend.json');
 
 const THRESHOLDS = {
   'Action -': { good: 1000, ok: 3000 },

@@ -17,12 +17,16 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const resultsDir = path.join(__dirname, 'results');
-const trendPath = path.join(resultsDir, 'mgscan-perf-trend.json');
+// TREND_FILE env var lets this same script maintain a separate trend log for a different
+// suite (e.g. results/whole-project-perf-trend.json) without duplicating this file - default
+// preserves the original Management-Scan-only behavior for every existing call site.
+const trendPath = path.join(resultsDir, process.env.TREND_FILE || 'mgscan-perf-trend.json');
 
 const [, , combinedResultsFile, runStamp, date, releaseJsonFile] = process.argv;
 
 if (!combinedResultsFile || !runStamp || !date || !releaseJsonFile) {
   console.error('Usage: node record-perf-run.mjs <combinedResultsFile> <runStamp> <date> <releaseJsonFile>');
+  console.error('Set TREND_FILE=whole-project-perf-trend.json to record against a different trend log.');
   process.exit(1);
 }
 

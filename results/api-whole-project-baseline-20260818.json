@@ -1,0 +1,147 @@
+{
+  "runLabel": "whole-project-baseline",
+  "runTimestamp": "20260818",
+  "baseUrl": "https://q-assessments-hrmforce-it.h2software.nl",
+  "results": [
+    {
+      "role": "Admin",
+      "username": "service@hrmforce.com",
+      "flow": [
+        {
+          "label": "Page Load - Sign In page",
+          "ms": 2030,
+          "ok": true,
+          "error": null
+        },
+        {
+          "label": "Login (API response) #1",
+          "ms": 1089,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "method": "POST",
+            "url": "https://q-assessments-hrmforce-it.h2software.nl/?AspxAutoDetectCookieSupport=1",
+            "status": 302
+          }
+        },
+        {
+          "label": "Login (API response) #2",
+          "ms": 961,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "method": "POST",
+            "url": "https://q-assessments-hrmforce-it.h2software.nl/?AspxAutoDetectCookieSupport=1",
+            "status": 302
+          }
+        },
+        {
+          "label": "Login (API response) #3",
+          "ms": 1008,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "method": "POST",
+            "url": "https://q-assessments-hrmforce-it.h2software.nl/?AspxAutoDetectCookieSupport=1",
+            "status": 302
+          }
+        },
+        {
+          "label": "Login (API response) #4",
+          "ms": 1130,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "method": "POST",
+            "url": "https://q-assessments-hrmforce-it.h2software.nl/?AspxAutoDetectCookieSupport=1",
+            "status": 302
+          }
+        },
+        {
+          "label": "Login (API response) #5",
+          "ms": 1080,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "method": "POST",
+            "url": "https://q-assessments-hrmforce-it.h2software.nl/?AspxAutoDetectCookieSupport=1",
+            "status": 302
+          }
+        },
+        {
+          "label": "API: POST /auth/login (direct) #1",
+          "ms": 1755,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "status": 404,
+            "url": "https://q-assessments-hrmforce-it.h2software.nl/auth/login?AspxAutoDetectCookieSupport=1",
+            "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\"/>\r\n<title>404 - File or directory not found.</title>\r\n<style typ",
+            "note": "Known live issue: /auth/login 404s against the real environment (see LoginApiTests.cs)."
+          }
+        },
+        {
+          "label": "API: POST /auth/login (direct) #2",
+          "ms": 171,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "status": 404,
+            "url": "https://q-assessments-hrmforce-it.h2software.nl/auth/login",
+            "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\"/>\r\n<title>404 - File or directory not found.</title>\r\n<style typ",
+            "note": "Known live issue: /auth/login 404s against the real environment (see LoginApiTests.cs)."
+          }
+        },
+        {
+          "label": "API: POST /auth/login (direct) #3",
+          "ms": 171,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "status": 404,
+            "url": "https://q-assessments-hrmforce-it.h2software.nl/auth/login",
+            "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\"/>\r\n<title>404 - File or directory not found.</title>\r\n<style typ",
+            "note": "Known live issue: /auth/login 404s against the real environment (see LoginApiTests.cs)."
+          }
+        },
+        {
+          "label": "API: POST /auth/login (direct) #4",
+          "ms": 176,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "status": 404,
+            "url": "https://q-assessments-hrmforce-it.h2software.nl/auth/login",
+            "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\"/>\r\n<title>404 - File or directory not found.</title>\r\n<style typ",
+            "note": "Known live issue: /auth/login 404s against the real environment (see LoginApiTests.cs)."
+          }
+        },
+        {
+          "label": "API: POST /auth/login (direct) #5",
+          "ms": 175,
+          "ok": true,
+          "error": null,
+          "extra": {
+            "status": 404,
+            "url": "https://q-assessments-hrmforce-it.h2software.nl/auth/login",
+            "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\"/>\r\n<title>404 - File or directory not found.</title>\r\n<style typ",
+            "note": "Known live issue: /auth/login 404s against the real environment (see LoginApiTests.cs)."
+          }
+        }
+      ],
+      "notes": [
+        "Discovery: the UI sign-in form's own POST goes to the page itself (ASP.NET Forms-Auth postback, observed live returning a 302 redirect) — NOT to /auth/login. These are separate code paths (confirmed against V1_Automation/V1.Tests/Tests/Performance/LoginApiTimingTests.cs, which also times /auth/login via direct calls, not through the UI). Both are measured below.",
+        "Run #1: UI sign-in form POST observed: POST https://q-assessments-hrmforce-it.h2software.nl/?AspxAutoDetectCookieSupport=1 -> 302.",
+        "Run #2: UI sign-in form POST observed: POST https://q-assessments-hrmforce-it.h2software.nl/?AspxAutoDetectCookieSupport=1 -> 302.",
+        "Run #3: UI sign-in form POST observed: POST https://q-assessments-hrmforce-it.h2software.nl/?AspxAutoDetectCookieSupport=1 -> 302.",
+        "Run #4: UI sign-in form POST observed: POST https://q-assessments-hrmforce-it.h2software.nl/?AspxAutoDetectCookieSupport=1 -> 302.",
+        "Run #5: UI sign-in form POST observed: POST https://q-assessments-hrmforce-it.h2software.nl/?AspxAutoDetectCookieSupport=1 -> 302.",
+        "Run #1: /auth/login (direct) -> 404 — matches the known, pre-existing environment issue documented in LoginApiTests.cs. Not treated as a script failure.",
+        "Run #2: /auth/login (direct) -> 404 — matches the known, pre-existing environment issue documented in LoginApiTests.cs. Not treated as a script failure.",
+        "Run #3: /auth/login (direct) -> 404 — matches the known, pre-existing environment issue documented in LoginApiTests.cs. Not treated as a script failure.",
+        "Run #4: /auth/login (direct) -> 404 — matches the known, pre-existing environment issue documented in LoginApiTests.cs. Not treated as a script failure.",
+        "Run #5: /auth/login (direct) -> 404 — matches the known, pre-existing environment issue documented in LoginApiTests.cs. Not treated as a script failure."
+      ]
+    }
+  ]
+}

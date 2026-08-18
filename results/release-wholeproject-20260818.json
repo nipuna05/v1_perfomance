@@ -1,0 +1,8 @@
+{
+  "repo": "HRMForce",
+  "releaseId": "whole-project-baseline-2026-08-18",
+  "confirmedSha": null,
+  "approxSha": "at or near a11ba8a6 (2026-08-18, PR 5760 'Add Manager conversation panel with editable date and year fields') - master HEAD synced into nipuna/managementscan-63017 immediately before this run",
+  "confirmedBy": "git log HEAD..origin/master showed 0 commits remaining after the merge performed just before this run.",
+  "note": "First whole-project run to use this suite's full tracking pipeline (Excel report + trend log + baseline doc), not just measure.mjs's raw JSON output. Previous whole-project sweeps (Jul 24 - Aug 10) predate this tracking infrastructure, which was built for the Management Scan deep-dive and is being extended here to cover the whole project too."
+}
